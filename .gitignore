@@ -1,0 +1,5 @@
+# Project exclude paths
+/xxdesign-api-user/target/
+/xxdesign-common/target/
+/xxdesign-pc-web/target/
+/xxdesign-user/target/
