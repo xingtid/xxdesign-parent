@@ -1,7 +1,7 @@
 package xyz.hpwyx.service;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import xyz.hpwyx.baseresult.ResponseBase;
+import xyz.hpwyx.baseresult.XResult;
 
 /**
  * @author tid
@@ -10,5 +10,5 @@ import xyz.hpwyx.baseresult.ResponseBase;
 @RequestMapping("/member")
 public interface TestService {
     @RequestMapping("/test")
-    ResponseBase test();
+    XResult test(String phone);
 }

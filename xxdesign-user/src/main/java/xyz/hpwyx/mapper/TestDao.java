@@ -1,4 +1,4 @@
-package xyz.hpwyx.dao;
+package xyz.hpwyx.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

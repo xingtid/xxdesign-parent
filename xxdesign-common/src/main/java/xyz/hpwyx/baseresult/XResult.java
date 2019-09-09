@@ -1,12 +1,32 @@
 package xyz.hpwyx.baseresult;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author tid
- * @create 2019-09-05 4:41 下午
- *
- * 返回结果封装方法
+ * @create 2019-07-11 21:58
  **/
-public class XXResult {
+
+@Slf4j
+@Getter
+@Setter
+public class XResult {
+    private Integer rtnCode;
+    private String msg;
+    private Object data;
+
+    public XResult() {
+    }
+
+    public XResult(Integer rtnCode, String msg, Object data) {
+        this.rtnCode = rtnCode;
+        this.msg = msg;
+        this.data = data;
+    }
+
     /**
      * 通用封装
      * @param code 状态码
@@ -14,15 +34,15 @@ public class XXResult {
      * @param data 数据
      * @return
      */
-    public static ResponseBase build(Integer code, String msg, Object data) {
-        return new ResponseBase (code, msg, data);
+    public static XResult build(Integer code, String msg, Object data) {
+        return new XResult (code, msg, data);
     }
 
     /**
      * 成功返回无数据
      * @return
      */
-    public static ResponseBase isOk() {
+    public static XResult isOk() {
 
         return build (Constants.HTTP_RES_CODE_200, Constants.HTTP_RES_CODE_200_VALUE, null);
     }
@@ -32,7 +52,7 @@ public class XXResult {
      * @param data
      * @return
      */
-    public static ResponseBase isOk(Object data) {
+    public static XResult isOk(Object data) {
 
         return build (Constants.HTTP_RES_CODE_200, Constants.HTTP_RES_CODE_200_VALUE, data);
     }
@@ -42,7 +62,7 @@ public class XXResult {
      * @param msg
      * @return
      */
-    public static ResponseBase failMsg(String msg) {
+    public static XResult failMsg(String msg) {
 
         return build (Constants.HTTP_RES_CODE_500, msg, null);
     }
@@ -50,7 +70,7 @@ public class XXResult {
      * 失败返回无信息
      * @return
      */
-    public static ResponseBase failNoMsg() {
+    public static XResult failNoMsg() {
 
         return build (Constants.HTTP_RES_CODE_500, Constants.HTTP_RES_CODE_500_VALUE, null);
     }

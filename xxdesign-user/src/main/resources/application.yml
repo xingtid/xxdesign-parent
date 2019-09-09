@@ -7,10 +7,22 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 spring:
   application:
-    name: member
+    name: user
   datasource:
    driver-class-name: com.mysql.cj.jdbc.Driver
    password: Hewenxing4316@
    url: jdbc:mysql://106.14.140.238:3306/xxDesign?characterEncoding=utf-8
    username: root
 
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: xyz.hpwyx.pojo
+
+#logging:
+##  path: /log
+#  pattern:
+#    console: %d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
+  #  在控制台输出的日志的格式
+#  logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
+  # 指定文件中日志输出的格式
+#  logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
