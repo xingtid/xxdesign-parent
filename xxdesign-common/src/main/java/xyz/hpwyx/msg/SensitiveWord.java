@@ -111,8 +111,9 @@ public class SensitiveWord {
             read = new InputStreamReader(SensitiveWord.class.getClassLoader().getResourceAsStream(fileName),encoding);
             bufferedReader = new BufferedReader(read);  
             for(String txt = null;(txt = bufferedReader.readLine()) != null;){  
-                if(!arrayList.contains(txt))  
-                    arrayList.add(txt);  
+                if(!arrayList.contains(txt)) {
+                    arrayList.add(txt);
+                }
             }  
         } catch (UnsupportedEncodingException e) {  
             e.printStackTrace();  
@@ -120,14 +121,16 @@ public class SensitiveWord {
             e.printStackTrace();  
         }finally{  
             try {  
-                if(null != bufferedReader)  
-                bufferedReader.close();  
+                if(null != bufferedReader) {
+                    bufferedReader.close();
+                }
             } catch (IOException e) {  
                 e.printStackTrace();  
             }  
             try {  
-                if(null != read)  
-                read.close();  
+                if(null != read) {
+                    read.close();
+                }
             } catch (IOException e) {  
                 e.printStackTrace();  
             }  

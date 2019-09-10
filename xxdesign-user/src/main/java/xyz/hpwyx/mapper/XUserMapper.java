@@ -32,4 +32,10 @@ public interface XUserMapper {
     int updateByPrimaryKeySelective(XUser record);
 
     int updateByPrimaryKey(XUser record);
+
+    XUser findOpenIdUser(String openId);
+
+    XUser findByPhone(String phone);
+
+    Integer updateOpenIdUser(@Param ("openId") String openId,@Param ("userId") Integer userId);
 }

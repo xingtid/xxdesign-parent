@@ -12,6 +12,7 @@
     <artifactId>xxdesign-user</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>xyz.hpwyx</groupId>
             <artifactId>xxdesign-common</artifactId>

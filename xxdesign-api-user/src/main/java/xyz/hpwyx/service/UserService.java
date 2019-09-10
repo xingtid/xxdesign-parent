@@ -17,12 +17,10 @@ public interface UserService {
 
     @RequestMapping("/findById")
     XResult findUserById(Long id);
-
+    @RequestMapping("/findByPhone")
+    XResult findUserByPhone(String phone);
     @RequestMapping("/register")
     XResult regUser(@RequestBody XUser user);
-
-    @RequestMapping("/login")
-    XResult login(@RequestBody XUser user);
 
     @RequestMapping("/findByToken")
     XResult findByToken(String token);

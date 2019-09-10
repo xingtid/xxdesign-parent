@@ -310,4 +310,21 @@
       u_ex2 = #{uEx2,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
+  <select id="findOpenIdUser" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from x_user
+    where u_openid = #{uOpenId,jdbcType=VARCHAR}
+  </select>
+  <select id="findByPhone" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from x_user
+    where u_phone = #{uPhone,jdbcType=VARCHAR}
+  </select>
+  <update id="updateOpenIdUser" >
+    update x_user
+    set  u_openid = #{uOpenid,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
 </mapper>

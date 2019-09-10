@@ -3,16 +3,24 @@ package xyz.hpwyx.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.mapper.XUserMapper;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.redis.RedisUtil;
 import xyz.hpwyx.service.UserService;
 import xyz.hpwyx.token.TokenUtils;
+
+import java.util.Date;
 
 
 /**
@@ -26,11 +34,13 @@ public class UserServiceImpl implements UserService {
     private RedisUtil redisUtil;
     @Autowired
     XUserMapper xUserMapper;
+
     @Override
     public XResult baseLogin(@RequestBody XUser user) {
         String phone = user.getUPhone ();
         String password = user.getUPassword ();
-        //判断师范为空
+
+        //判断为空
         if (phone.isEmpty ()) {
             return XResult.failMsg ("用户名不能为空");
         }
@@ -40,10 +50,28 @@ public class UserServiceImpl implements UserService {
         //加盐MD5加密
         password = user.getUPassword () + "+1998";
         String pwd = DigestUtils.md5DigestAsHex (password.getBytes ());
-        System.out.println (pwd);
+
+        //shiro进入
+        Subject subject = SecurityUtils.getSubject ();
+        UsernamePasswordToken token = new UsernamePasswordToken (phone, pwd);
+        try {
+            subject.login (token);
+        } catch (UnknownAccountException e) {
+            return XResult.build (400, "用户名不存在", null);
+        } catch (IncorrectCredentialsException e) {
+            return XResult.build (400, "密码错误", null);
+        }
+
+        XUser xUser = xUserMapper.findByPhone (token.getUsername ());
         //调用mapper查找
-        XUser xUser = xUserMapper.selectByPhoneAndPassword (phone, pwd);
         return setLogin (xUser);
+    }
+
+    @Override
+    public XResult findUserByPhone(String phone) {
+        XUser byPhone = xUserMapper.findByPhone (phone);
+
+        return XResult.isOk (byPhone);
     }
 
     @Override
@@ -53,13 +81,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public XResult regUser(XUser user) {
-        return null;
+        String password = user.getUPassword () + "+1998";
+        System.out.println (password);
+        if (StringUtils.isEmpty (password)) {
+            return XResult.failNoMsg ();
+        }
+        String pwdMD5 = DigestUtils.md5DigestAsHex (password.getBytes ());
+        System.out.println (pwdMD5);
+        user.setUPassword (pwdMD5);
+        user.setUCreateAt (new Date ());
+        user.setUIsdesign ("not");
+        user.setULoginAt (new Date ());
+        Integer re = xUserMapper.insert (user);
+        if (re <= 0) {
+            return XResult.failMsg ("注册失败");
+        }
+//        String json = emailJSON (user.getEmail ());
+//        sendMSG (json);
+        return XResult.isOk ();
     }
 
-    @Override
-    public XResult login(XUser user) {
-        return null;
-    }
 
     @Override
     public XResult findByToken(String token) {
@@ -72,26 +113,62 @@ public class UserServiceImpl implements UserService {
             return XResult.failMsg ("token无效或者过期");
         }
         long l = Long.parseLong (token1);
-        XUser byID = xUserMapper.selectByPrimaryKey ((int) l);
-        if (byID == null) {
+        XUser user = xUserMapper.selectByPrimaryKey ((int) l);
+        if (user == null) {
             return XResult.failMsg ("未查找到该用户");
         }
-        byID.setUPassword ("");
-        return XResult.isOk (byID);
+        user.setUPassword ("");
+        return XResult.isOk (user);
     }
 
     @Override
     public XResult findOpenIdUser(String openId) {
-        return null;
+        //验证参数
+        if (StringUtils.isEmpty (openId)) {
+            return XResult.failMsg ("系统错误");
+        }
+        //使用openid查询数据库对应的信息
+        XUser user = xUserMapper.findOpenIdUser (openId);
+        if (user == null) {
+            return XResult.build (Constants.HTTP_RES_CODE_201, "该openID没有关联", null);
+        }
+        //自动登录
+        XResult responseBase = setLogin (user);
+        return responseBase;
     }
 
     @Override
     public XResult qqlogin(XUser user) {
-        return null;
+        //1.验证参数
+        String openId = user.getUOpenid ();
+        if (StringUtils.isEmpty (openId)) {
+            return XResult.failMsg ("openId不能为空");
+        }
+        //2.登录 数据库修改openid
+        XResult setLogin = baseLogin (user);
+        if (!setLogin.getRtnCode ().equals (Constants.HTTP_RES_CODE_200)) {
+            //失败
+            return setLogin;
+        }
+        //成功
+        JSONObject data = (JSONObject) setLogin.getData ();
+        String token = data.getString ("memberToken");
+        XResult byToken = findByToken (token);
+        if (byToken.getRtnCode () != 200) {
+            return XResult.failMsg ("失败");
+        }
+        XUser userPojo = (XUser) byToken.getData ();
+
+        Integer integer = xUserMapper.updateOpenIdUser (openId, userPojo.getUId ());
+        if (integer <= 0) {
+            return XResult.failMsg ("账号关联失败");
+        }
+        return setLogin;
     }
 
     /**
      * 放入redis
+     *
      * @param userPojo
      * @return
      */
