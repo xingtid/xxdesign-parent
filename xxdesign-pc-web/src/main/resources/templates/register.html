@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+</head>
+<body>
+<div>
+    <form action="/register" method="post">
+    用户名<input type="text" name="uName">
+    手机号<input type="text" name="uPhone" id="user">
+        验证吗<input type="text" name="usercode">
+        <hr>
+        <div onclick="sendas()">发送验证码</div>
+    密码<input type="text" name="uPassword">
+        <input type="submit" value="注册">
+    </form>
+</div>
+<script>
+    //发送验证码
+    function sendas() {
+
+        // var obj = $("#send");
+        var phonea = $("#user").val();
+        $.post("/sendCode", {"phone": phonea}, function () {
+            // hit.innerHTML = "验证码已发送";
+            alert("a")
+            // hint()
+        });
+        // settime(obj);
+    }
+    function settime(obj) { //发送验证码倒计时
+        if (countdown == 0) {
+            obj.attr('disabled', false);
+            obj.val("获取验证码");
+            $("#send").css("background", "none");
+            countdown = 60;
+            return;
+        } else {
+            obj.attr('disabled', true);
+            obj.val("" + countdown + "s");
+            countdown--;
+            $("#send").css("background", "#999999")
+        }
+        setTimeout(function () {
+                settime(obj)
+            }
+            , 1000)
+    }
+</script>
+</body>
+
+</html>

@@ -21,14 +21,19 @@ public class RegisterController {
     private UserServiceFigen serviceFigen;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public XResult doregister(XUser pojo, HttpServletRequest request, @RequestParam(value = "usercode", required = false) String usercode) {
+    public XResult doregister(@RequestParam(value = "uName", required = false) String uName, @RequestParam(value = "uPassword", required = false) String uPassword,@RequestParam(value = "uPhone", required = false) String uPhone,HttpServletRequest request, @RequestParam(value = "usercode", required = false) String usercode) {
         String ipAddress = GetIp.getIpAddress (request);
+        XUser pojo = new XUser ();
+        pojo.setUName (uName);
+        pojo.setUPassword (uPassword);
+        pojo.setUPhone (uPhone);
+        System.out.println (uName);
         String code = (String) request.getSession ().getAttribute ("verifyCode");
         if (!usercode.equals (code)) {
             return XResult.build (400, "验证码错误", null);
         }
         //1. 验证参数
-        if (StringUtils.isEmpty (pojo.getUPhone ())) {
+        if (StringUtils.isEmpty (uPhone)) {
             return XResult.failNoMsg ();
         }
         pojo.setUIp (ipAddress);
@@ -53,6 +58,7 @@ public class RegisterController {
     public XResult sendCode(@RequestParam(value = "phone", required = false) String phone, HttpServletRequest request) {
         String code = SendMsg.sendduanxing (phone);
         request.getSession ().setAttribute ("verifyCode", code);
+        System.out.println ("aa"+phone);
         return XResult.isOk ();
     }
 }
