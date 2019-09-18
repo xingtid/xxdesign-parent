@@ -12,6 +12,10 @@
         <module>xxdesign-api-user</module>
         <module>xxdesign-user</module>
         <module>xxdesign-pc-web</module>
+        <module>xxdesign-index</module>
+        <module>xxdesign-api-index</module>
+        <module>xxdesign-api-share</module>
+        <module>xxdesign-share</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -71,9 +75,9 @@
             <version>1.2.59</version>
         </dependency>
         <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
-            <version>3.3.7</version>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>mysql</groupId>-->

@@ -23,7 +23,7 @@ public interface UserService {
     XResult regUser(@RequestBody XUser user);
 
     @RequestMapping("/findByToken")
-    XResult findByToken(String token);
+    XResult findByToken(@RequestParam("token")String token);
 
     //使用token登录
     @RequestMapping("/findOpenIdUser")

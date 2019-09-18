@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
@@ -103,12 +104,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public XResult findByToken(String token) {
+    public XResult findByToken(@RequestParam("token")  String token) {
         if (StringUtils.isEmpty (token)) {
             return XResult.failMsg ("token不能为空");
-
         }
-        String token1 = redisUtil.get ("token", 0);
+        String token1 = redisUtil.get (token, 0);
         if (StringUtils.isEmpty (token1)) {
             return XResult.failMsg ("token无效或者过期");
         }
@@ -181,9 +181,8 @@ public class UserServiceImpl implements UserService {
         redisUtil.set (userToken, id + "", 0);
         redisUtil.expire (userToken, 200000, 0);
         log.info ("#### 用户信息 key为{} ####", userToken);
-        JSONObject JSONObject = new JSONObject ();
-        JSONObject.put ("token", userToken);
-        return XResult.isOk (JSONObject);
-
+        JSONObject jsonObject = new JSONObject ();
+        jsonObject.put ("token", userToken);
+        return XResult.isOk (jsonObject);
     }
 }

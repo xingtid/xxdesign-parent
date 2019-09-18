@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XShareMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XShare" >
+    <id column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="s_content" property="sContent" jdbcType="VARCHAR" />
+    <result column="s_anth_id" property="sAnthId" jdbcType="INTEGER" />
+    <result column="s_get_click" property="sGetClick" jdbcType="INTEGER" />
+    <result column="s_type1" property="sType1" jdbcType="CHAR" />
+    <result column="s_type2" property="sType2" jdbcType="CHAR" />
+    <result column="s_title" property="sTitle" jdbcType="VARCHAR" />
+    <result column="s_time" property="sTime" jdbcType="TIMESTAMP" />
+    <result column="s_img" property="sImg" jdbcType="VARCHAR" />
+    <result column="s_ex1" property="sEx1" jdbcType="VARCHAR" />
+    <result column="s_ex2" property="sEx2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    s_id, s_content, s_anth_id, s_get_click, s_type1, s_type2, s_title, s_time, s_img, 
+    s_ex1, s_ex2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XShareExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_share
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_share
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XShareExample" >
+    delete from x_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XShare" >
+    insert into x_share (s_id, s_content, s_anth_id, 
+      s_get_click, s_type1, s_type2, 
+      s_title, s_time, s_img, 
+      s_ex1, s_ex2)
+    values (#{sId,jdbcType=INTEGER}, #{sContent,jdbcType=VARCHAR}, #{sAnthId,jdbcType=INTEGER}, 
+      #{sGetClick,jdbcType=INTEGER}, #{sType1,jdbcType=CHAR}, #{sType2,jdbcType=CHAR}, 
+      #{sTitle,jdbcType=VARCHAR}, #{sTime,jdbcType=TIMESTAMP}, #{sImg,jdbcType=VARCHAR}, 
+      #{sEx1,jdbcType=VARCHAR}, #{sEx2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XShare" >
+    insert into x_share
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="sContent != null" >
+        s_content,
+      </if>
+      <if test="sAnthId != null" >
+        s_anth_id,
+      </if>
+      <if test="sGetClick != null" >
+        s_get_click,
+      </if>
+      <if test="sType1 != null" >
+        s_type1,
+      </if>
+      <if test="sType2 != null" >
+        s_type2,
+      </if>
+      <if test="sTitle != null" >
+        s_title,
+      </if>
+      <if test="sTime != null" >
+        s_time,
+      </if>
+      <if test="sImg != null" >
+        s_img,
+      </if>
+      <if test="sEx1 != null" >
+        s_ex1,
+      </if>
+      <if test="sEx2 != null" >
+        s_ex2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sContent != null" >
+        #{sContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sAnthId != null" >
+        #{sAnthId,jdbcType=INTEGER},
+      </if>
+      <if test="sGetClick != null" >
+        #{sGetClick,jdbcType=INTEGER},
+      </if>
+      <if test="sType1 != null" >
+        #{sType1,jdbcType=CHAR},
+      </if>
+      <if test="sType2 != null" >
+        #{sType2,jdbcType=CHAR},
+      </if>
+      <if test="sTitle != null" >
+        #{sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sTime != null" >
+        #{sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sImg != null" >
+        #{sImg,jdbcType=VARCHAR},
+      </if>
+      <if test="sEx1 != null" >
+        #{sEx1,jdbcType=VARCHAR},
+      </if>
+      <if test="sEx2 != null" >
+        #{sEx2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XShareExample" resultType="java.lang.Integer" >
+    select count(*) from x_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_share
+    <set >
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sContent != null" >
+        s_content = #{record.sContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sAnthId != null" >
+        s_anth_id = #{record.sAnthId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sGetClick != null" >
+        s_get_click = #{record.sGetClick,jdbcType=INTEGER},
+      </if>
+      <if test="record.sType1 != null" >
+        s_type1 = #{record.sType1,jdbcType=CHAR},
+      </if>
+      <if test="record.sType2 != null" >
+        s_type2 = #{record.sType2,jdbcType=CHAR},
+      </if>
+      <if test="record.sTitle != null" >
+        s_title = #{record.sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sTime != null" >
+        s_time = #{record.sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sImg != null" >
+        s_img = #{record.sImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sEx1 != null" >
+        s_ex1 = #{record.sEx1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sEx2 != null" >
+        s_ex2 = #{record.sEx2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_share
+    set s_id = #{record.sId,jdbcType=INTEGER},
+      s_content = #{record.sContent,jdbcType=VARCHAR},
+      s_anth_id = #{record.sAnthId,jdbcType=INTEGER},
+      s_get_click = #{record.sGetClick,jdbcType=INTEGER},
+      s_type1 = #{record.sType1,jdbcType=CHAR},
+      s_type2 = #{record.sType2,jdbcType=CHAR},
+      s_title = #{record.sTitle,jdbcType=VARCHAR},
+      s_time = #{record.sTime,jdbcType=TIMESTAMP},
+      s_img = #{record.sImg,jdbcType=VARCHAR},
+      s_ex1 = #{record.sEx1,jdbcType=VARCHAR},
+      s_ex2 = #{record.sEx2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XShare" >
+    update x_share
+    <set >
+      <if test="sContent != null" >
+        s_content = #{sContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sAnthId != null" >
+        s_anth_id = #{sAnthId,jdbcType=INTEGER},
+      </if>
+      <if test="sGetClick != null" >
+        s_get_click = #{sGetClick,jdbcType=INTEGER},
+      </if>
+      <if test="sType1 != null" >
+        s_type1 = #{sType1,jdbcType=CHAR},
+      </if>
+      <if test="sType2 != null" >
+        s_type2 = #{sType2,jdbcType=CHAR},
+      </if>
+      <if test="sTitle != null" >
+        s_title = #{sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sTime != null" >
+        s_time = #{sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sImg != null" >
+        s_img = #{sImg,jdbcType=VARCHAR},
+      </if>
+      <if test="sEx1 != null" >
+        s_ex1 = #{sEx1,jdbcType=VARCHAR},
+      </if>
+      <if test="sEx2 != null" >
+        s_ex2 = #{sEx2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XShare" >
+    update x_share
+    set s_content = #{sContent,jdbcType=VARCHAR},
+      s_anth_id = #{sAnthId,jdbcType=INTEGER},
+      s_get_click = #{sGetClick,jdbcType=INTEGER},
+      s_type1 = #{sType1,jdbcType=CHAR},
+      s_type2 = #{sType2,jdbcType=CHAR},
+      s_title = #{sTitle,jdbcType=VARCHAR},
+      s_time = #{sTime,jdbcType=TIMESTAMP},
+      s_img = #{sImg,jdbcType=VARCHAR},
+      s_ex1 = #{sEx1,jdbcType=VARCHAR},
+      s_ex2 = #{sEx2,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

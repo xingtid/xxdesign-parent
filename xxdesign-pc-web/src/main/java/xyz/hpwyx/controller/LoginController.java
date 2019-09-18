@@ -5,20 +5,16 @@ import com.qq.connect.api.OpenID;
 import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.oauth.Oauth;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.cookie.CookieUtils;
 import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.redis.RedisUtil;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -31,16 +27,19 @@ import java.util.LinkedHashMap;
  * @author tid
  * @create 2019-09-08 4:39 下午
  **/
-@RestController
+@Controller
 public class LoginController {
-
+    @Autowired
+    private RedisUtil redisUtil;
     @Autowired
     UserServiceFigen serviceFigen;
+    @ResponseBody
     @RequestMapping(value = "/baseLogin", method = RequestMethod.POST)
     public XResult baseLogin(@RequestParam("uPhone") String phone,@RequestParam("uPassword") String password, HttpServletResponse response, HttpServletRequest request){
         //1.验证参数
 
         if (phone==null||password==null){
+
             return XResult.failMsg("用户名或密码为空");
         }
 
@@ -59,7 +58,7 @@ public class LoginController {
         if (StringUtils.isEmpty (membertoken)){
             return XResult.failMsg ("会话失效");
         }
-
+        System.out.println (membertoken);
         //3。将token 存在 cookie 中
         setCooke (membertoken,request,response);
 
@@ -67,9 +66,10 @@ public class LoginController {
     }
     // 生成qq授权登录链接
     @RequestMapping("/localQQlogin")
-    public XResult locaQQLogin(ServletRequest reqest) throws QQConnectException {
+    public String locaQQLogin(ServletRequest reqest) throws QQConnectException {
         String authorizeURL = new Oauth ().getAuthorizeURL(reqest);
-        return XResult.isOk (authorizeURL);
+//        return XResult.isOk (authorizeURL);
+        return "redirect:" + authorizeURL;
     }
     @RequestMapping("/qqlogin")
     public String qqlogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws QQConnectException {
@@ -114,10 +114,21 @@ public class LoginController {
         setCooke (memberToken,request,response);
         //已经绑定
 
-        return "redirect:localhost:8080/login";
+        return "redirect:localhost:8088/login";
 //        return XResult.isOk ();
     }
+    @RequestMapping(value = "/loginOut")
+    public String loginOut(HttpServletRequest request,HttpServletResponse response){
+        XUser xUser = (XUser) request.getSession ().getAttribute ("USERINFO");
+        String token = CookieUtil.getUid(request, Constants.COOKIE_TOKEN);
+        CookieUtils.deleteCookie (request,response,Constants.COOKIE_TOKEN);
+       request.getSession ().removeAttribute ("USERINFO");
+        redisUtil.del (0,xUser.getUId ()+"",token);
+        return "redirect:http://localhost:8088";
+    }
     public void setCooke(String memberToken,HttpServletRequest request,HttpServletResponse response){
-        CookieUtils.setCookie (request,response, Constants.COOKIE_TOKEN,memberToken,60*30);
+        System.out.println ("setCookie::"+memberToken);
+        CookieUtils.setCookie (request,response, Constants.COOKIE_TOKEN,memberToken,60*30*12);
+
     }
 }

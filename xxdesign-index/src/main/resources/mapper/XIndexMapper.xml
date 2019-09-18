@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XIndexMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XIndex" >
+    <id column="i_id" property="iId" jdbcType="INTEGER" />
+    <result column="i_name" property="iName" jdbcType="VARCHAR" />
+    <result column="i_type" property="iType" jdbcType="VARCHAR" />
+    <result column="i_img" property="iImg" jdbcType="VARCHAR" />
+    <result column="i_parent" property="iParent" jdbcType="INTEGER" />
+    <result column="i_time" property="iTime" jdbcType="TIMESTAMP" />
+    <result column="i_path" property="iPath" jdbcType="VARCHAR" />
+    <result column="i_url" property="iUrl" jdbcType="VARCHAR" />
+    <result column="i_mark" property="iMark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    i_id, i_name, i_type, i_img, i_parent, i_time, i_path, i_url, i_mark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XIndexExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_index
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_index
+    where i_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_index
+    where i_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XIndexExample" >
+    delete from x_index
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XIndex" >
+    insert into x_index (i_id, i_name, i_type, 
+      i_img, i_parent, i_time, 
+      i_path, i_url, i_mark)
+    values (#{iId,jdbcType=INTEGER}, #{iName,jdbcType=VARCHAR}, #{iType,jdbcType=VARCHAR}, 
+      #{iImg,jdbcType=VARCHAR}, #{iParent,jdbcType=INTEGER}, #{iTime,jdbcType=TIMESTAMP}, 
+      #{iPath,jdbcType=VARCHAR}, #{iUrl,jdbcType=VARCHAR}, #{iMark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XIndex" >
+    insert into x_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        i_id,
+      </if>
+      <if test="iName != null" >
+        i_name,
+      </if>
+      <if test="iType != null" >
+        i_type,
+      </if>
+      <if test="iImg != null" >
+        i_img,
+      </if>
+      <if test="iParent != null" >
+        i_parent,
+      </if>
+      <if test="iTime != null" >
+        i_time,
+      </if>
+      <if test="iPath != null" >
+        i_path,
+      </if>
+      <if test="iUrl != null" >
+        i_url,
+      </if>
+      <if test="iMark != null" >
+        i_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="iName != null" >
+        #{iName,jdbcType=VARCHAR},
+      </if>
+      <if test="iType != null" >
+        #{iType,jdbcType=VARCHAR},
+      </if>
+      <if test="iImg != null" >
+        #{iImg,jdbcType=VARCHAR},
+      </if>
+      <if test="iParent != null" >
+        #{iParent,jdbcType=INTEGER},
+      </if>
+      <if test="iTime != null" >
+        #{iTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iPath != null" >
+        #{iPath,jdbcType=VARCHAR},
+      </if>
+      <if test="iUrl != null" >
+        #{iUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="iMark != null" >
+        #{iMark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XIndexExample" resultType="java.lang.Integer" >
+    select count(*) from x_index
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_index
+    <set >
+      <if test="record.iId != null" >
+        i_id = #{record.iId,jdbcType=INTEGER},
+      </if>
+      <if test="record.iName != null" >
+        i_name = #{record.iName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iType != null" >
+        i_type = #{record.iType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iImg != null" >
+        i_img = #{record.iImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iParent != null" >
+        i_parent = #{record.iParent,jdbcType=INTEGER},
+      </if>
+      <if test="record.iTime != null" >
+        i_time = #{record.iTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.iPath != null" >
+        i_path = #{record.iPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iUrl != null" >
+        i_url = #{record.iUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iMark != null" >
+        i_mark = #{record.iMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_index
+    set i_id = #{record.iId,jdbcType=INTEGER},
+      i_name = #{record.iName,jdbcType=VARCHAR},
+      i_type = #{record.iType,jdbcType=VARCHAR},
+      i_img = #{record.iImg,jdbcType=VARCHAR},
+      i_parent = #{record.iParent,jdbcType=INTEGER},
+      i_time = #{record.iTime,jdbcType=TIMESTAMP},
+      i_path = #{record.iPath,jdbcType=VARCHAR},
+      i_url = #{record.iUrl,jdbcType=VARCHAR},
+      i_mark = #{record.iMark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XIndex" >
+    update x_index
+    <set >
+      <if test="iName != null" >
+        i_name = #{iName,jdbcType=VARCHAR},
+      </if>
+      <if test="iType != null" >
+        i_type = #{iType,jdbcType=VARCHAR},
+      </if>
+      <if test="iImg != null" >
+        i_img = #{iImg,jdbcType=VARCHAR},
+      </if>
+      <if test="iParent != null" >
+        i_parent = #{iParent,jdbcType=INTEGER},
+      </if>
+      <if test="iTime != null" >
+        i_time = #{iTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iPath != null" >
+        i_path = #{iPath,jdbcType=VARCHAR},
+      </if>
+      <if test="iUrl != null" >
+        i_url = #{iUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="iMark != null" >
+        i_mark = #{iMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XIndex" >
+    update x_index
+    set i_name = #{iName,jdbcType=VARCHAR},
+      i_type = #{iType,jdbcType=VARCHAR},
+      i_img = #{iImg,jdbcType=VARCHAR},
+      i_parent = #{iParent,jdbcType=INTEGER},
+      i_time = #{iTime,jdbcType=TIMESTAMP},
+      i_path = #{iPath,jdbcType=VARCHAR},
+      i_url = #{iUrl,jdbcType=VARCHAR},
+      i_mark = #{iMark,jdbcType=VARCHAR}
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>

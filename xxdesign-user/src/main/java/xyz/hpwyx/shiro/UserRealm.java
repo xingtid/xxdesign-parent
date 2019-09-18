@@ -6,8 +6,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import xyz.hpwyx.baseresult.XResult;
-import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.service.impl.UserServiceImpl;
 
 /**
  * @author tid
@@ -15,7 +15,7 @@ import xyz.hpwyx.pojo.XUser;
  **/
 public class UserRealm extends AuthorizingRealm {
     @Autowired
-    private UserServiceFigen serviceFigen;
+    UserServiceImpl userService;
 
     /**
      * 执行授权逻辑
@@ -40,7 +40,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        XResult xResult = serviceFigen.findUserByPhone (token.getUsername ().trim ());
+        XResult xResult = userService.findUserByPhone (token.getUsername ().trim ());
         XUser user = (XUser) xResult.getData ();
         System.out.println (token.getUsername ());
         if (user == null) {

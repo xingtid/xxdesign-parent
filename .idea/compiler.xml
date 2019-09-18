@@ -6,21 +6,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="xxdesign-pc-web" />
-        <module name="eureka-server" />
-        <module name="xxdesign-common" />
         <module name="xxdesign-api-user" />
+        <module name="eureka-server" />
+        <module name="xxdesign-api-share" />
+        <module name="xxdesign-common" />
         <module name="xxdesign-user" />
+        <module name="xxdesign-pc-web" />
+        <module name="xxdesign-share" />
+        <module name="xxdesign-index" />
+        <module name="xxdesign-api-index" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-server" options="-parameters" />
+      <module name="xxdesign-api-index" options="-parameters" />
+      <module name="xxdesign-api-share" options="-parameters" />
       <module name="xxdesign-api-user" options="-parameters" />
       <module name="xxdesign-common" options="-parameters" />
+      <module name="xxdesign-index" options="-parameters" />
       <module name="xxdesign-parent" options="-parameters" />
       <module name="xxdesign-pc-web" options="-parameters" />
+      <module name="xxdesign-share" options="-parameters" />
       <module name="xxdesign-user" options="-parameters" />
     </option>
   </component>
