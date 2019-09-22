@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>发布</title>
+    <link rel="stylesheet" type="text/css" href="/simditor/css/simditor.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/message.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+	<link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/simditor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/simditor/js/module.js"></script>
+    <script type="text/javascript" src="/simditor/js/hotkeys.js"></script>
+    <script type="text/javascript" src="/simditor/js/uploader.js"></script>
+    <script type="text/javascript" src="/simditor/js/simditor.js"></script>
+    <script type="text/javascript" src="/simditor/js/simditor-dropzone.js"></script>
+    <style type="text/css">
+        .content {
+            padding-left: 20px;
+            width: 900px;
+            min-height: 480px;
+            float: inherit;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="templates::head"></div>
+<div class="main-top" id="home">
+	<div class="banner_w3lspvt-2">
+
+	</div>
+</div>
+<div class="breadcrumb-mobamu" >
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="index.html">Home</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page" >标题</li>
+	</ol>
+</div>
+<!-- //page details -->
+
+    <form action="" method="post" id="myInfo">
+        <dl class="clearfix">
+            <dt>文章标题：</dt>
+            <dd>
+                <input type="text" name="sTitle" autofocus="autofocus" placeholder="最大25个字"/>
+            </dd>
+
+        </dl>
+        <div id="contextText">
+            <textarea id="editor" placeholder=""></textarea>
+        </div>
+
+        <input type="hidden" id="content" name="sContent" value=''>
+        <div class="btn-sub" style="margin-top: 30px;">
+            <button type="button" onclick="insert()" style="margin-left: 42%;margin-top: 10px;">发布</button>
+        </div>
+	</form>
+<script>
+    Simditor.locale = 'zh-CN';
+
+    var editor = new Simditor({
+        textarea: $('#editor'),
+        pasteImage: true,
+        upload: {
+            url: '/uploadImg', //文件上传的接口地址
+            params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+            fileKey: 'file', //服务器端获取文件数据的参数名
+            connectionCount: 3,
+            leaveConfirm: '正在上传文件'
+        }
+    });
+</script>
+<script type="text/javascript">
+    function hint() {
+        let hit = document.getElementById("hint");
+        hit.style.display = "block";
+        setTimeout("closea()", 1500)
+    }
+
+    function closea() {
+        let hit = document.getElementById("hint");
+        hit.style.display = "none"
+    }
+
+    $('.all>li').hover(function (e) {
+        $(this).children('ul').stop().slideToggle()
+    });
+
+    function insert() {
+        var content = $(".simditor-body").html();
+        $("#content").val(content);
+        let hit = document.getElementById("hint");
+        $.post("/insertShare", $("#myInfo").serialize(), function (data) {
+            if (data.rtnCode == 200) {
+                setTimeout(function () {
+                    location.href = "http://localhost:8088/getShare?cId=" + data.msg;
+                }, 500);
+
+            } else {
+                hit.innerHTML = data.msg;
+                hint()
+            }
+        });
+    }
+</script>
+</body>
+</html>

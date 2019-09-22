@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.pojo.XIndex;
 import xyz.hpwyx.pojo.XIndexExample;
 @Mapper
@@ -29,4 +30,6 @@ public interface XIndexMapper {
     int updateByPrimaryKeySelective(XIndex record);
 
     int updateByPrimaryKey(XIndex record);
+
+    List<IndexPojo> findShare();
 }

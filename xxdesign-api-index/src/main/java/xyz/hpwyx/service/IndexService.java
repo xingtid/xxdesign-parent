@@ -9,6 +9,8 @@ import xyz.hpwyx.baseresult.XResult;
  **/
 @RequestMapping("/index")
 public interface IndexService {
-    @RequestMapping("/show")
-    XResult showIndex();
+    @RequestMapping("/showPic")
+    XResult showPic();
+    @RequestMapping("/showShare")
+    XResult showShare();
 }

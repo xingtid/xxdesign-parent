@@ -14,6 +14,33 @@
     <result column="s_ex1" property="sEx1" jdbcType="VARCHAR" />
     <result column="s_ex2" property="sEx2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="BaseUserResultMap" type="xyz.hpwyx.pojo.XShare" >
+    <id column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="s_content" property="sContent" jdbcType="VARCHAR" />
+    <result column="s_anth_id" property="sAnthId" jdbcType="INTEGER" />
+    <result column="s_get_click" property="sGetClick" jdbcType="INTEGER" />
+    <result column="s_type1" property="sType1" jdbcType="CHAR" />
+    <result column="s_type2" property="sType2" jdbcType="CHAR" />
+    <result column="s_title" property="sTitle" jdbcType="VARCHAR" />
+    <result column="s_time" property="sTime" jdbcType="TIMESTAMP" />
+    <result column="s_img" property="sImg" jdbcType="VARCHAR" />
+    <result column="s_ex1" property="sEx1" jdbcType="VARCHAR" />
+    <result column="s_ex2" property="sEx2" jdbcType="VARCHAR" />
+    <collection property="xUser" ofType="xyz.hpwyx.pojo.XUser" >
+      <id column="u_id" property="uId" jdbcType="INTEGER" />
+      <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+      <result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+      <result column="u_name" property="uName" jdbcType="VARCHAR" />
+      <result column="u_openid" property="uOpenid" jdbcType="VARCHAR" />
+      <result column="u_ip" property="uIp" jdbcType="VARCHAR" />
+      <result column="u_create_at" property="uCreateAt" jdbcType="TIMESTAMP" />
+      <result column="u_login_at" property="uLoginAt" jdbcType="TIMESTAMP" />
+      <result column="u_isdesign" property="uIsdesign" jdbcType="VARCHAR" />
+      <result column="u_ex1" property="uEx1" jdbcType="VARCHAR" />
+      <result column="u_ex2" property="uEx2" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -303,4 +330,20 @@
       s_ex2 = #{sEx2,jdbcType=VARCHAR}
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
+  <sql id="USERAD_SHARE">
+    s.s_id, s_content, s_anth_id, s_get_click, s_type1, s_type2, s_title, s_time, s_img, s_ex1, s_ex2,u.u_id, u_password, u_phone, u_name, u_openid, u_ip, u_create_at, u_login_at, u_isdesign, u_ex1, u_ex2
+  </sql>
+  <sql id="INDEX_SHARE">
+    s.s_id,  s_get_click, s_type1, s_type2, s_title, s_time, s_img, s_ex1, s_ex2,u.u_id, u_password, u_phone, u_name, u_openid, u_ip, u_create_at, u_login_at, u_isdesign, u_ex1, u_ex2
+  </sql>
+  <select id="selectShareAndUserById" parameterType="int" resultMap="BaseUserResultMap">
+    select
+     <include refid="USERAD_SHARE"></include>
+     from x_share s, x_user u where s.s_anth_id = u.u_id and s.s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <select id="selectShareAndUser" parameterType="string" resultMap="BaseUserResultMap">
+    select
+    <include refid="USERAD_SHARE"></include>
+    from x_share s, x_user u where s.s_anth_id = u.u_id
+  </select>
 </mapper>

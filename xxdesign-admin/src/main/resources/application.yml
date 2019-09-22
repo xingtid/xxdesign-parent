@@ -1,0 +1,18 @@
+server:
+  port: 8765
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: admin
+  datasource:
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   password: Hewenxing4316@
+   url: jdbc:mysql://106.14.140.238:3306/xxDesign?characterEncoding=utf-8
+   username: root
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: xyz.hpwyx.pojo

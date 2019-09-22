@@ -25,6 +25,16 @@ public class XShare {
 
     private String sEx2;
 
+    private XUser xUser;
+
+    public XUser getxUser() {
+        return xUser;
+    }
+
+    public void setxUser(XUser xUser) {
+        this.xUser = xUser;
+    }
+
     public Integer getsId() {
         return sId;
     }

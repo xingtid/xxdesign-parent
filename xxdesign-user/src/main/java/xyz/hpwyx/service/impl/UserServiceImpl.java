@@ -179,7 +179,7 @@ public class UserServiceImpl implements UserService {
         Integer id = userPojo.getUId ();
         String userToken = TokenUtils.getUserToken ();
         redisUtil.set (userToken, id + "", 0);
-        redisUtil.expire (userToken, 200000, 0);
+        redisUtil.expire (userToken, 20000, 0);
         log.info ("#### 用户信息 key为{} ####", userToken);
         JSONObject jsonObject = new JSONObject ();
         jsonObject.put ("token", userToken);

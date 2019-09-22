@@ -3,6 +3,7 @@ package xyz.hpwyx.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.mapper.XIndexMapper;
 import xyz.hpwyx.pojo.XIndex;
@@ -22,11 +23,19 @@ public class IndexServiceImpl implements IndexService {
     XIndexMapper indexMapper;
 
     @Override
-    public XResult showIndex() {
+    public XResult showPic() {
         XIndexExample example = new XIndexExample ();
         XIndexExample.Criteria criteria = example.createCriteria ();
         criteria.andITypeEqualTo (1+"");
         List<XIndex> xIndices = indexMapper.selectByExample (example);
+
+
         return XResult.isOk (xIndices);
+    }
+
+    @Override
+    public XResult showShare() {
+        List<IndexPojo> share = indexMapper.findShare ();
+        return XResult.isOk (share);
     }
 }

@@ -270,4 +270,8 @@
       i_mark = #{iMark,jdbcType=VARCHAR}
     where i_id = #{iId,jdbcType=INTEGER}
   </update>
+  <select id="findShare" resultType="xyz.hpwyx.baseresult.IndexPojo">
+    select   i_parent,s_id, s_content, s_img,s_title
+    from x_index x,x_share s where x.i_parent = s.s_id and x.i_type = 2
+  </select>
 </mapper>

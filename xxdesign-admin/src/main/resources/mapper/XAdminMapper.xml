@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XAdminMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XAdmin" >
+    <id column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="a_username" property="aUsername" jdbcType="VARCHAR" />
+    <result column="a_pwd" property="aPwd" jdbcType="VARCHAR" />
+    <result column="a_level" property="aLevel" jdbcType="CHAR" />
+    <result column="a_reg_time" property="aRegTime" jdbcType="TIMESTAMP" />
+    <result column="a_ip" property="aIp" jdbcType="VARCHAR" />
+    <result column="a_user_id" property="aUserId" jdbcType="INTEGER" />
+    <result column="a_mark" property="aMark" jdbcType="VARCHAR" />
+    <result column="a_uuid" property="aUuid" jdbcType="VARCHAR" />
+    <result column="a_pic" property="aPic" jdbcType="VARCHAR" />
+    <result column="a_token" property="aToken" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    a_id, a_username, a_pwd, a_level, a_reg_time, a_ip, a_user_id, a_mark, a_uuid, a_pic, 
+    a_token
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XAdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_admin
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_admin
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XAdminExample" >
+    delete from x_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XAdmin" >
+    insert into x_admin (a_id, a_username, a_pwd, 
+      a_level, a_reg_time, a_ip, 
+      a_user_id, a_mark, a_uuid, 
+      a_pic, a_token)
+    values (#{aId,jdbcType=INTEGER}, #{aUsername,jdbcType=VARCHAR}, #{aPwd,jdbcType=VARCHAR}, 
+      #{aLevel,jdbcType=CHAR}, #{aRegTime,jdbcType=TIMESTAMP}, #{aIp,jdbcType=VARCHAR}, 
+      #{aUserId,jdbcType=INTEGER}, #{aMark,jdbcType=VARCHAR}, #{aUuid,jdbcType=VARCHAR}, 
+      #{aPic,jdbcType=VARCHAR}, #{aToken,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XAdmin" >
+    insert into x_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aUsername != null" >
+        a_username,
+      </if>
+      <if test="aPwd != null" >
+        a_pwd,
+      </if>
+      <if test="aLevel != null" >
+        a_level,
+      </if>
+      <if test="aRegTime != null" >
+        a_reg_time,
+      </if>
+      <if test="aIp != null" >
+        a_ip,
+      </if>
+      <if test="aUserId != null" >
+        a_user_id,
+      </if>
+      <if test="aMark != null" >
+        a_mark,
+      </if>
+      <if test="aUuid != null" >
+        a_uuid,
+      </if>
+      <if test="aPic != null" >
+        a_pic,
+      </if>
+      <if test="aToken != null" >
+        a_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aUsername != null" >
+        #{aUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="aPwd != null" >
+        #{aPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="aLevel != null" >
+        #{aLevel,jdbcType=CHAR},
+      </if>
+      <if test="aRegTime != null" >
+        #{aRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aIp != null" >
+        #{aIp,jdbcType=VARCHAR},
+      </if>
+      <if test="aUserId != null" >
+        #{aUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aMark != null" >
+        #{aMark,jdbcType=VARCHAR},
+      </if>
+      <if test="aUuid != null" >
+        #{aUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="aPic != null" >
+        #{aPic,jdbcType=VARCHAR},
+      </if>
+      <if test="aToken != null" >
+        #{aToken,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XAdminExample" resultType="java.lang.Integer" >
+    select count(*) from x_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_admin
+    <set >
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aUsername != null" >
+        a_username = #{record.aUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aPwd != null" >
+        a_pwd = #{record.aPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aLevel != null" >
+        a_level = #{record.aLevel,jdbcType=CHAR},
+      </if>
+      <if test="record.aRegTime != null" >
+        a_reg_time = #{record.aRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.aIp != null" >
+        a_ip = #{record.aIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aUserId != null" >
+        a_user_id = #{record.aUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aMark != null" >
+        a_mark = #{record.aMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aUuid != null" >
+        a_uuid = #{record.aUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aPic != null" >
+        a_pic = #{record.aPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aToken != null" >
+        a_token = #{record.aToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_admin
+    set a_id = #{record.aId,jdbcType=INTEGER},
+      a_username = #{record.aUsername,jdbcType=VARCHAR},
+      a_pwd = #{record.aPwd,jdbcType=VARCHAR},
+      a_level = #{record.aLevel,jdbcType=CHAR},
+      a_reg_time = #{record.aRegTime,jdbcType=TIMESTAMP},
+      a_ip = #{record.aIp,jdbcType=VARCHAR},
+      a_user_id = #{record.aUserId,jdbcType=INTEGER},
+      a_mark = #{record.aMark,jdbcType=VARCHAR},
+      a_uuid = #{record.aUuid,jdbcType=VARCHAR},
+      a_pic = #{record.aPic,jdbcType=VARCHAR},
+      a_token = #{record.aToken,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XAdmin" >
+    update x_admin
+    <set >
+      <if test="aUsername != null" >
+        a_username = #{aUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="aPwd != null" >
+        a_pwd = #{aPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="aLevel != null" >
+        a_level = #{aLevel,jdbcType=CHAR},
+      </if>
+      <if test="aRegTime != null" >
+        a_reg_time = #{aRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aIp != null" >
+        a_ip = #{aIp,jdbcType=VARCHAR},
+      </if>
+      <if test="aUserId != null" >
+        a_user_id = #{aUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aMark != null" >
+        a_mark = #{aMark,jdbcType=VARCHAR},
+      </if>
+      <if test="aUuid != null" >
+        a_uuid = #{aUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="aPic != null" >
+        a_pic = #{aPic,jdbcType=VARCHAR},
+      </if>
+      <if test="aToken != null" >
+        a_token = #{aToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XAdmin" >
+    update x_admin
+    set a_username = #{aUsername,jdbcType=VARCHAR},
+      a_pwd = #{aPwd,jdbcType=VARCHAR},
+      a_level = #{aLevel,jdbcType=CHAR},
+      a_reg_time = #{aRegTime,jdbcType=TIMESTAMP},
+      a_ip = #{aIp,jdbcType=VARCHAR},
+      a_user_id = #{aUserId,jdbcType=INTEGER},
+      a_mark = #{aMark,jdbcType=VARCHAR},
+      a_uuid = #{aUuid,jdbcType=VARCHAR},
+      a_pic = #{aPic,jdbcType=VARCHAR},
+      a_token = #{aToken,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

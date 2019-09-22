@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XUserInfo" >
+    <id column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="u_email" property="uEmail" jdbcType="VARCHAR" />
+    <result column="u_sex" property="uSex" jdbcType="CHAR" />
+    <result column="u_age" property="uAge" jdbcType="INTEGER" />
+    <result column="u_city" property="uCity" jdbcType="VARCHAR" />
+    <result column="u_face" property="uFace" jdbcType="VARCHAR" />
+    <result column="u_style1" property="uStyle1" jdbcType="VARCHAR" />
+    <result column="u_style2" property="uStyle2" jdbcType="VARCHAR" />
+    <result column="u_style3" property="uStyle3" jdbcType="VARCHAR" />
+    <result column="u_height" property="uHeight" jdbcType="INTEGER" />
+    <result column="u_weight" property="uWeight" jdbcType="INTEGER" />
+    <result column="u_skin" property="uSkin" jdbcType="VARCHAR" />
+    <result column="u_hair" property="uHair" jdbcType="VARCHAR" />
+    <result column="u_position" property="uPosition" jdbcType="VARCHAR" />
+    <result column="u_photo" property="uPhoto" jdbcType="VARCHAR" />
+    <result column="u_other" property="uOther" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    u_id, u_email, u_sex, u_age, u_city, u_face, u_style1, u_style2, u_style3, u_height, 
+    u_weight, u_skin, u_hair, u_position, u_photo, u_other
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XUserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_user_info
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_user_info
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XUserInfoExample" >
+    delete from x_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XUserInfo" >
+    insert into x_user_info (u_id, u_email, u_sex, 
+      u_age, u_city, u_face, 
+      u_style1, u_style2, u_style3, 
+      u_height, u_weight, u_skin, 
+      u_hair, u_position, u_photo, 
+      u_other)
+    values (#{uId,jdbcType=INTEGER}, #{uEmail,jdbcType=VARCHAR}, #{uSex,jdbcType=CHAR}, 
+      #{uAge,jdbcType=INTEGER}, #{uCity,jdbcType=VARCHAR}, #{uFace,jdbcType=VARCHAR}, 
+      #{uStyle1,jdbcType=VARCHAR}, #{uStyle2,jdbcType=VARCHAR}, #{uStyle3,jdbcType=VARCHAR}, 
+      #{uHeight,jdbcType=INTEGER}, #{uWeight,jdbcType=INTEGER}, #{uSkin,jdbcType=VARCHAR}, 
+      #{uHair,jdbcType=VARCHAR}, #{uPosition,jdbcType=VARCHAR}, #{uPhoto,jdbcType=VARCHAR}, 
+      #{uOther,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XUserInfo" >
+    insert into x_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="uEmail != null" >
+        u_email,
+      </if>
+      <if test="uSex != null" >
+        u_sex,
+      </if>
+      <if test="uAge != null" >
+        u_age,
+      </if>
+      <if test="uCity != null" >
+        u_city,
+      </if>
+      <if test="uFace != null" >
+        u_face,
+      </if>
+      <if test="uStyle1 != null" >
+        u_style1,
+      </if>
+      <if test="uStyle2 != null" >
+        u_style2,
+      </if>
+      <if test="uStyle3 != null" >
+        u_style3,
+      </if>
+      <if test="uHeight != null" >
+        u_height,
+      </if>
+      <if test="uWeight != null" >
+        u_weight,
+      </if>
+      <if test="uSkin != null" >
+        u_skin,
+      </if>
+      <if test="uHair != null" >
+        u_hair,
+      </if>
+      <if test="uPosition != null" >
+        u_position,
+      </if>
+      <if test="uPhoto != null" >
+        u_photo,
+      </if>
+      <if test="uOther != null" >
+        u_other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uEmail != null" >
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null" >
+        #{uSex,jdbcType=CHAR},
+      </if>
+      <if test="uAge != null" >
+        #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uCity != null" >
+        #{uCity,jdbcType=VARCHAR},
+      </if>
+      <if test="uFace != null" >
+        #{uFace,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle1 != null" >
+        #{uStyle1,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle2 != null" >
+        #{uStyle2,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle3 != null" >
+        #{uStyle3,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeight != null" >
+        #{uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="uWeight != null" >
+        #{uWeight,jdbcType=INTEGER},
+      </if>
+      <if test="uSkin != null" >
+        #{uSkin,jdbcType=VARCHAR},
+      </if>
+      <if test="uHair != null" >
+        #{uHair,jdbcType=VARCHAR},
+      </if>
+      <if test="uPosition != null" >
+        #{uPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhoto != null" >
+        #{uPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="uOther != null" >
+        #{uOther,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XUserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from x_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_user_info
+    <set >
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uEmail != null" >
+        u_email = #{record.uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSex != null" >
+        u_sex = #{record.uSex,jdbcType=CHAR},
+      </if>
+      <if test="record.uAge != null" >
+        u_age = #{record.uAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.uCity != null" >
+        u_city = #{record.uCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uFace != null" >
+        u_face = #{record.uFace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uStyle1 != null" >
+        u_style1 = #{record.uStyle1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uStyle2 != null" >
+        u_style2 = #{record.uStyle2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uStyle3 != null" >
+        u_style3 = #{record.uStyle3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uHeight != null" >
+        u_height = #{record.uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.uWeight != null" >
+        u_weight = #{record.uWeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.uSkin != null" >
+        u_skin = #{record.uSkin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uHair != null" >
+        u_hair = #{record.uHair,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPosition != null" >
+        u_position = #{record.uPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPhoto != null" >
+        u_photo = #{record.uPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uOther != null" >
+        u_other = #{record.uOther,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_user_info
+    set u_id = #{record.uId,jdbcType=INTEGER},
+      u_email = #{record.uEmail,jdbcType=VARCHAR},
+      u_sex = #{record.uSex,jdbcType=CHAR},
+      u_age = #{record.uAge,jdbcType=INTEGER},
+      u_city = #{record.uCity,jdbcType=VARCHAR},
+      u_face = #{record.uFace,jdbcType=VARCHAR},
+      u_style1 = #{record.uStyle1,jdbcType=VARCHAR},
+      u_style2 = #{record.uStyle2,jdbcType=VARCHAR},
+      u_style3 = #{record.uStyle3,jdbcType=VARCHAR},
+      u_height = #{record.uHeight,jdbcType=INTEGER},
+      u_weight = #{record.uWeight,jdbcType=INTEGER},
+      u_skin = #{record.uSkin,jdbcType=VARCHAR},
+      u_hair = #{record.uHair,jdbcType=VARCHAR},
+      u_position = #{record.uPosition,jdbcType=VARCHAR},
+      u_photo = #{record.uPhoto,jdbcType=VARCHAR},
+      u_other = #{record.uOther,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XUserInfo" >
+    update x_user_info
+    <set >
+      <if test="uEmail != null" >
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null" >
+        u_sex = #{uSex,jdbcType=CHAR},
+      </if>
+      <if test="uAge != null" >
+        u_age = #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uCity != null" >
+        u_city = #{uCity,jdbcType=VARCHAR},
+      </if>
+      <if test="uFace != null" >
+        u_face = #{uFace,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle1 != null" >
+        u_style1 = #{uStyle1,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle2 != null" >
+        u_style2 = #{uStyle2,jdbcType=VARCHAR},
+      </if>
+      <if test="uStyle3 != null" >
+        u_style3 = #{uStyle3,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeight != null" >
+        u_height = #{uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="uWeight != null" >
+        u_weight = #{uWeight,jdbcType=INTEGER},
+      </if>
+      <if test="uSkin != null" >
+        u_skin = #{uSkin,jdbcType=VARCHAR},
+      </if>
+      <if test="uHair != null" >
+        u_hair = #{uHair,jdbcType=VARCHAR},
+      </if>
+      <if test="uPosition != null" >
+        u_position = #{uPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhoto != null" >
+        u_photo = #{uPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="uOther != null" >
+        u_other = #{uOther,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XUserInfo" >
+    update x_user_info
+    set u_email = #{uEmail,jdbcType=VARCHAR},
+      u_sex = #{uSex,jdbcType=CHAR},
+      u_age = #{uAge,jdbcType=INTEGER},
+      u_city = #{uCity,jdbcType=VARCHAR},
+      u_face = #{uFace,jdbcType=VARCHAR},
+      u_style1 = #{uStyle1,jdbcType=VARCHAR},
+      u_style2 = #{uStyle2,jdbcType=VARCHAR},
+      u_style3 = #{uStyle3,jdbcType=VARCHAR},
+      u_height = #{uHeight,jdbcType=INTEGER},
+      u_weight = #{uWeight,jdbcType=INTEGER},
+      u_skin = #{uSkin,jdbcType=VARCHAR},
+      u_hair = #{uHair,jdbcType=VARCHAR},
+      u_position = #{uPosition,jdbcType=VARCHAR},
+      u_photo = #{uPhoto,jdbcType=VARCHAR},
+      u_other = #{uOther,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>

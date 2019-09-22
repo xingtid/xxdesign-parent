@@ -21,7 +21,7 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean ();
         shiroFilterFactoryBean.setSecurityManager (securityManager);
-
+        System.out.println ("--------shiro-------");
         /**
          * 过滤器
          * anon: 无需登录
@@ -33,6 +33,7 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<String, String> ();
         filterMap.put ("/login.html", "anon");
+        filterMap.put ("/isContent.html", "authc");
         //修改跳转页面
         shiroFilterFactoryBean.setLoginUrl ("baselogin.html");
         shiroFilterFactoryBean.setUnauthorizedUrl ("/noAuth");
