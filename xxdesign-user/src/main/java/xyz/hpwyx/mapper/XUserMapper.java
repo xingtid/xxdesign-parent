@@ -25,6 +25,8 @@ public interface XUserMapper {
 
     XUser selectByPrimaryKey(Integer uId);
 
+
+
     int updateByExampleSelective(@Param("record") XUser record, @Param("example") XUserExample example);
 
     int updateByExample(@Param("record") XUser record, @Param("example") XUserExample example);

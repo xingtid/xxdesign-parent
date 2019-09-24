@@ -17,4 +17,5 @@ public class IndexPojo {
     private String s_title;
     private String i_parent;  //类型
     private String s_content;
+    private Integer s_get_click;
 }

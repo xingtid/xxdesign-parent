@@ -6,21 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="xxdesign-web-admin" />
         <module name="xxdesign-api-user" />
         <module name="eureka-server" />
         <module name="xxdesign-api-share" />
         <module name="xxdesign-common" />
         <module name="xxdesign-user" />
+        <module name="xxdesign-pc-web" />
         <module name="xxdesign-api-admin" />
         <module name="xxdesign-admin" />
         <module name="xxdesign-share" />
-        <module name="xxdesign-web-pc" />
         <module name="xxdesign-index" />
         <module name="xxdesign-api-index" />
+        <module name="xxdesign-admin-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="xxdesign-web-admin" target="1.8" />
+      <module name="xxdesign-web-pc" target="1.8" />
       <module name="xxdesign-zuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -28,6 +30,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-server" options="-parameters" />
       <module name="xxdesign-admin" options="-parameters" />
+      <module name="xxdesign-admin-web" options="-parameters" />
       <module name="xxdesign-api-admin" options="-parameters" />
       <module name="xxdesign-api-index" options="-parameters" />
       <module name="xxdesign-api-share" options="-parameters" />
@@ -35,6 +38,7 @@
       <module name="xxdesign-common" options="-parameters" />
       <module name="xxdesign-index" options="-parameters" />
       <module name="xxdesign-parent" options="-parameters" />
+      <module name="xxdesign-pc-web" options="-parameters" />
       <module name="xxdesign-share" options="-parameters" />
       <module name="xxdesign-user" options="-parameters" />
       <module name="xxdesign-web-admin" options="-parameters" />

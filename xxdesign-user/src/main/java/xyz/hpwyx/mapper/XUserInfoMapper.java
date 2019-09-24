@@ -1,10 +1,12 @@
 package xyz.hpwyx.mapper;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import xyz.hpwyx.pojo.XUserInfo;
 import xyz.hpwyx.pojo.XUserInfoExample;
-
+@Mapper
 public interface XUserInfoMapper {
     int countByExample(XUserInfoExample example);
 

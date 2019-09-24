@@ -13,7 +13,9 @@ spring:
    password: Hewenxing4316@
    url: jdbc:mysql://106.14.140.238:3306/xxDesign?characterEncoding=utf-8
    username: root
-
+ribbon:
+  eureka:
+    enabled: false
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml

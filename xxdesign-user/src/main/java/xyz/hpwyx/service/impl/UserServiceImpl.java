@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.mapper.XUserInfoMapper;
 import xyz.hpwyx.mapper.XUserMapper;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.pojo.XUserInfo;
 import xyz.hpwyx.redis.RedisUtil;
 import xyz.hpwyx.service.UserService;
 import xyz.hpwyx.token.TokenUtils;
@@ -35,7 +37,8 @@ public class UserServiceImpl implements UserService {
     private RedisUtil redisUtil;
     @Autowired
     XUserMapper xUserMapper;
-
+    @Autowired
+    XUserInfoMapper xUserInfoMapper;
     @Override
     public XResult baseLogin(@RequestBody XUser user) {
         String phone = user.getUPhone ();
@@ -76,10 +79,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public XResult findUserById(Long id) {
-        return null;
+    public XUser findUserById(@RequestParam("id")Integer id) {
+        XUser xUser = xUserMapper.selectByPrimaryKey (id);
+        return xUser;
     }
 
+    @Override
+    public XUserInfo findInfoById(@RequestParam("id") Integer id){
+        XUserInfo xUserInfo = xUserInfoMapper.selectByPrimaryKey (id);
+        return xUserInfo;
+    }
     @Override
     public XResult regUser(XUser user) {
         String password = user.getUPassword () + "+1998";
@@ -97,8 +106,6 @@ public class UserServiceImpl implements UserService {
         if (re <= 0) {
             return XResult.failMsg ("注册失败");
         }
-//        String json = emailJSON (user.getEmail ());
-//        sendMSG (json);
         return XResult.isOk ();
     }
 
@@ -112,8 +119,8 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty (token1)) {
             return XResult.failMsg ("token无效或者过期");
         }
-        long l = Long.parseLong (token1);
-        XUser user = xUserMapper.selectByPrimaryKey ((int) l);
+        Integer l = Integer.parseInt (token1);
+        XUser user = xUserMapper.selectByPrimaryKey (l);
         if (user == null) {
             return XResult.failMsg ("未查找到该用户");
         }

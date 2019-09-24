@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import xyz.hpwyx.baseresult.DesignPojo;
 import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.pojo.XIndex;
 import xyz.hpwyx.pojo.XIndexExample;
+
 @Mapper
 public interface XIndexMapper {
     int countByExample(XIndexExample example);
@@ -32,4 +34,6 @@ public interface XIndexMapper {
     int updateByPrimaryKey(XIndex record);
 
     List<IndexPojo> findShare();
+
+    List<DesignPojo> findDesigner();
 }

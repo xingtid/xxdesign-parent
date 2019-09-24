@@ -1,7 +1,12 @@
 package xyz.hpwyx.service;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import xyz.hpwyx.baseresult.DesignPojo;
+import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.pojo.XIndex;
+
+import java.util.List;
 
 /**
  * @author tid
@@ -10,7 +15,11 @@ import xyz.hpwyx.baseresult.XResult;
 @RequestMapping("/index")
 public interface IndexService {
     @RequestMapping("/showPic")
-    XResult showPic();
+    List<XIndex> showPic();
     @RequestMapping("/showShare")
     XResult showShare();
+    @RequestMapping("/showDesign")
+    List<DesignPojo> showDesign();
+    @RequestMapping("/showService")
+    List<XIndex> showService();
 }

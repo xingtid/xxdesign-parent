@@ -13,7 +13,6 @@ import xyz.hpwyx.fastDFS.FastDFSClient;
  **/
 @Controller
 public class picController {
-    @ResponseBody
     @RequestMapping(value = "/uploadImg")
     public String upLoadImg(MultipartFile file) {
         try {

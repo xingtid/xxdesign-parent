@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.pojo.XUserInfo;
 
 /**
  * @author tid
@@ -16,7 +17,9 @@ public interface UserService {
     XResult baseLogin(@RequestBody XUser user);
 
     @RequestMapping("/findById")
-    XResult findUserById(Long id);
+    XUser findUserById(@RequestParam("id")Integer id);
+    @RequestMapping("/findInfoById")
+    XUserInfo findInfoById(@RequestParam("id") Integer id);
     @RequestMapping("/findByPhone")
     XResult findUserByPhone(String phone);
     @RequestMapping("/register")

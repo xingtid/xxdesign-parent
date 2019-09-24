@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import xyz.hpwyx.baseresult.Constants;
+import xyz.hpwyx.baseresult.DesignPojo;
+import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.fegin.IndexServiceFigen;
@@ -19,7 +21,6 @@ import xyz.hpwyx.pojo.XUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -37,11 +38,14 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest reqest, HttpSession session) {
-        XResult xResult = indexServiceFigen.showPic ();
-        List<XIndex> data = (List<XIndex>) xResult.getData ();
-        reqest.setAttribute ("index_pic1", data);
+        List<XIndex> xResult = indexServiceFigen.showPic ();
+        reqest.setAttribute ("index_pic1", xResult);
         XResult xResult1 = indexServiceFigen.showShare ();
         reqest.setAttribute ("shareList", xResult1.getData ());
+        List<DesignPojo> indexPojos = indexServiceFigen.showDesign ();
+        reqest.setAttribute ("designList", indexPojos);
+        List<XIndex> xIndices = indexServiceFigen.showService ();
+        reqest.setAttribute ("serviceList", xIndices);
         // 1.从cookie中获取 token信息
         String token = CookieUtil.getUid (reqest, Constants.COOKIE_TOKEN);
 //        System.out.println ("token"+token);
@@ -49,31 +53,17 @@ public class IndexController {
         if (!StringUtils.isEmpty (token)) {
             XResult responseBase = serviceFigen.findByToken (token);
             //如果正确获取用户信息发送到前端
-            if (responseBase.getRtnCode ().equals (Constants.HTTP_RES_CODE_200)) {
-                LinkedHashMap userData = (LinkedHashMap) responseBase.getData ();
-                String username = (String) userData.get ("uname");
-                String img = (String) userData.get ("uex1");
-                String uphone = (String) userData.get ("uphone");
-                String uisdesign = (String) userData.get ("uisdesign");
-                String uopenid = (String) userData.get ("uopenid");
-                String uip = (String) userData.get ("uip");
-                Integer uId = (Integer) userData.get ("uid");
-                XUser xUser = new XUser ();
-                xUser.setUPhone (uphone);
-                xUser.setUName (username);
-                xUser.setUEx1 (img);
-                xUser.setUId (uId);
-                xUser.setUIp (uip);
-                xUser.setUIsdesign (uisdesign);
-                xUser.setUOpenid (uopenid);
-                session.setAttribute ("USERINFO", xUser);
-                System.out.println ("aa11");
+            XUser getuser = getuser (responseBase);
+            if (getuser != null) {
+                session.setAttribute ("USERINFO", getuser);
             }
+
         }
         return "index";
     }
+
     @RequestMapping("/login.html")
-    public String toLogin( HttpServletRequest request,HttpSession session) {
+    public String toLogin(HttpServletRequest request, HttpSession session) {
         // 1.从cookie中获取 token信息
         String token = CookieUtil.getUid (request, Constants.COOKIE_TOKEN);
         System.out.println ("login");
@@ -81,37 +71,57 @@ public class IndexController {
         if (!StringUtils.isEmpty (token)) {
             XResult responseBase = serviceFigen.findByToken (token);
             //如果正确获取用户信息发送到前端
-            if (responseBase.getRtnCode ().equals (Constants.HTTP_RES_CODE_200)) {
-                LinkedHashMap userData = (LinkedHashMap) responseBase.getData ();
-                String username = (String) userData.get ("uname");
-                String img = (String) userData.get ("uex1");
-                String uphone = (String) userData.get ("uphone");
-                String uisdesign = (String) userData.get ("uisdesign");
-                String uopenid = (String) userData.get ("uopenid");
-                String uip = (String) userData.get ("uip");
-                Integer uId = (Integer) userData.get ("uid");
-                XUser xUser = new XUser ();
-                xUser.setUPhone (uphone);
-                xUser.setUName (username);
-                xUser.setUEx1 (img);
-                xUser.setUId (uId);
-                xUser.setUIp (uip);
-                xUser.setUIsdesign (uisdesign);
-                xUser.setUOpenid (uopenid);
-                session.setAttribute ("USERINFO", xUser);
+            XUser getuser = getuser (responseBase);
+            if (getuser != null) {
+                session.setAttribute ("USERINFO", getuser);
                 return "redirect:/";
             }
         }
         return "login";
     }
+
     @RequestMapping("/{page}")
     public String showPage(@PathVariable String page, HttpServletRequest request, Model model) {
         String ipAddress = GetIp.getIpAddress (request);
         log.info ("page:" + ipAddress + " " + page);
         String url = request.getHeader ("REFERER");
         System.out.println (url);
-        System.out.println ("page:"+page);
+        System.out.println ("page:" + page);
         model.addAttribute ("REFERER", url);
         return page;
+    }
+
+    @RequestMapping("/{path}/{page}.html")
+    public String showPage2(@PathVariable String path, @PathVariable String page, HttpServletRequest request, Model model) {
+        String ipAddress = GetIp.getIpAddress (request);
+        log.info ("page:" + ipAddress + " " + page);
+        String url = request.getHeader ("REFERER");
+        System.out.println (url);
+        System.out.println ("page:" + page);
+        model.addAttribute ("REFERER", url);
+        return path + "/" + page;
+    }
+
+    private XUser getuser(XResult responseBase) {
+        if (responseBase.getRtnCode ().equals (Constants.HTTP_RES_CODE_200)) {
+            LinkedHashMap userData = (LinkedHashMap) responseBase.getData ();
+            String username = (String) userData.get ("uname");
+            String img = (String) userData.get ("uex1");
+            String uphone = (String) userData.get ("uphone");
+            String uisdesign = (String) userData.get ("uisdesign");
+            String uopenid = (String) userData.get ("uopenid");
+            String uip = (String) userData.get ("uip");
+            Integer uId = (Integer) userData.get ("uid");
+            XUser xUser = new XUser ();
+            xUser.setUPhone (uphone);
+            xUser.setUName (username);
+            xUser.setUEx1 (img);
+            xUser.setUId (uId);
+            xUser.setUIp (uip);
+            xUser.setUIsdesign (uisdesign);
+            xUser.setUOpenid (uopenid);
+            return xUser;
+        }
+        return null;
     }
 }

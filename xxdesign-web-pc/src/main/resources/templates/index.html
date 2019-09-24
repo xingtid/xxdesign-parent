@@ -14,12 +14,10 @@
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
     </script>
-
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
@@ -48,7 +46,7 @@
                         <div class="w3ls_banner_txt">
                             <p th:text="${pic.iName}"></p>
                             <h3 class="w3ls_pvt-title text-wh text-uppercase let"></h3>
-                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">Read More</a>
+                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">了解更多</a>
                         </div>
                     </div>
                 </li>
@@ -171,13 +169,14 @@
         <p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">拥有专业资格认证或者有着大量的粉丝团体</p>
         <div class="row text-center">
             <!-- for -->
-            <div class="col-lg-4 col-md-6 team-gd-info">
+            <div th:each="design:${designList}" class="col-lg-4 col-md-6 team-gd-info mt-md-0 mt-5">
                 <div class="team-gd">
                     <div class="team-img mb-4">
-                        <img src="images/te1.jpg" class="img-fluid" alt="user-image">
+                        <img th:src="${design.d_head}" class="img-fluid" alt="user-image">
                     </div>
                     <div class="team-info">
-                        <h3>大卫 <span class="sub-tittle-team">上海</span></h3>
+                        <h3><span th:text="${design.u_name}"></span> <span class="sub-tittle-team"
+                                                                           th:text="${design.d_local}">上海</span></h3>
                         <ul class="list-unstyled my-md-4 my-3">
                             <li><span class="fa fa-star"></span></li>
                             <li><span class="fa fa-star"></span></li>
@@ -185,44 +184,7 @@
                             <li><span class="fa fa-star"></span></li>
                             <li><span class="fa fa-star-o"></span></li>
                         </ul>
-                        <p>我们是专业对.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- /for -->
-            <div class="col-lg-4 col-md-6 team-gd-info mt-md-0 mt-5">
-                <div class="team-gd">
-                    <div class="team-img mb-4">
-                        <img src="images/te2.jpg" class="img-fluid" alt="user-image">
-                    </div>
-                    <div class="team-info">
-                        <h3>Mariana Noe <span class="sub-tittle-team">Italy</span></h3>
-                        <ul class="list-unstyled my-md-4 my-3">
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star-half-o"></span></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mx-lg-0 mx-md-auto team-gd-info mt-lg-0 mt-5">
-                <div class="team-gd">
-                    <div class="team-img mb-4">
-                        <img src="images/te3.jpg" class="img-fluid" alt="user-image">
-                    </div>
-                    <div class="team-info">
-                        <h3>Daniel Doe <span class="sub-tittle-team">Germany</span></h3>
-                        <ul class="list-unstyled my-md-4 my-3">
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                            <li><span class="fa fa-star"></span></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+                        <p th:text="${design.d_describe}"></p>
                     </div>
                 </div>
             </div>
@@ -235,40 +197,18 @@
 <div class="serives-mobamu py-5" id="services">
     <div class="container py-xl-5 py-lg-3">
         <h3 class="tittle text-center text-wh font-weight-bold">会员提供的服务</h3>
-        <p class="sub-tittle text-center text-li mt-2 mb-sm-5 mb-4 pb-xl-3">Sed do eiusmod tempor incididunt ut labore
-            et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <p class="sub-tittle text-center text-li mt-2 mb-sm-5 mb-4 pb-xl-3">我们的会员实行分期或者终身制
+        提供以下专属服务</p>
         <div class="row welcome-bottom text-center">
-            <div class="col-lg-3 col-sm-6 px-2">
+            <div class="col-lg-3 col-sm-6 px-2" th:each="service:${serviceList}">
                 <div class="welcome-grid bg-wh py-5 px-4">
                     <img src="/images/wh1.jpg" alt="" class="img-fluid">
-                    <h4 class="mt-4 mb-3 text-bl">Service 01</h4>
-                    <p>Quis nostrum ullam corporis suscipit.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5 px-2">
-                <div class="welcome-grid bg-wh py-5 px-4">
-                    <img src="/images/wh2.jpg" alt="" class="img-fluid">
-                    <h4 class="mt-4 mb-3 text-bl">Service 02</h4>
-                    <p>Quis nostrum ullam corporis suscipit.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5 px-2">
-                <div class="welcome-grid bg-wh py-5 px-4">
-                    <img src="/images/wh3.jpg" alt="" class="img-fluid">
-                    <h4 class="mt-4 mb-3 text-bl">Service 03</h4>
-                    <p>Quis nostrum ullam corporis suscipit.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5 px-2">
-                <div class="welcome-grid bg-wh py-5 px-4">
-                    <img src="/images/wh4.jpg" alt="" class="img-fluid">
-                    <h4 class="mt-4 mb-3 text-bl">Service 04</h4>
+                    <h4 class="mt-4 mb-3 text-bl" th:text="${service.iName}">Service 01</h4>
                     <p>Quis nostrum ullam corporis suscipit.</p>
                 </div>
             </div>
             <div class="text-center" style="margin-left: 80%;">
-                <a href="question.html" class="btn button-style button-style mt-sm-5 mt-4">加入我们</a>
+                <a href="joinVIP.html" class="btn button-style button-style mt-sm-5 mt-4">加入会员</a>
             </div>
         </div>
     </div>

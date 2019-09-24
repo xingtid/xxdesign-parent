@@ -11,12 +11,12 @@
         <module>xxdesign-common</module>
         <module>xxdesign-api-user</module>
         <module>xxdesign-user</module>
-        <module>xxdesign-pc-web</module>
+        <module>xxdesign-web-pc</module>
         <module>xxdesign-index</module>
         <module>xxdesign-api-index</module>
         <module>xxdesign-api-share</module>
         <module>xxdesign-share</module>
-        <module>xxdesign-admin-web</module>
+        <module>xxdesign-web-admin</module>
         <module>xxdesign-api-admin</module>
         <module>xxdesign-admin</module>
     </modules>
