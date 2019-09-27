@@ -3,27 +3,25 @@ package xyz.hpwyx.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.hpwyx.IDutil.IDUtils;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.mapper.XUserInfoMapper;
 import xyz.hpwyx.mapper.XUserMapper;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.pojo.XUserExample;
 import xyz.hpwyx.pojo.XUserInfo;
 import xyz.hpwyx.redis.RedisUtil;
 import xyz.hpwyx.service.UserService;
 import xyz.hpwyx.token.TokenUtils;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -51,31 +49,23 @@ public class UserServiceImpl implements UserService {
         if (password.isEmpty ()) {
             return XResult.failMsg ("密码不能为空");
         }
-        //加盐MD5加密
-        password = user.getUPassword () + "+1998";
-        String pwd = DigestUtils.md5DigestAsHex (password.getBytes ());
 
-        //shiro进入
-        Subject subject = SecurityUtils.getSubject ();
-        UsernamePasswordToken token = new UsernamePasswordToken (phone, pwd);
-        try {
-            subject.login (token);
-        } catch (UnknownAccountException e) {
-            return XResult.build (400, "用户名不存在", null);
-        } catch (IncorrectCredentialsException e) {
-            return XResult.build (400, "密码错误", null);
-        }
-
-        XUser xUser = xUserMapper.findByPhone (token.getUsername ());
         //调用mapper查找
-        return setLogin (xUser);
+        return setLogin (user);
     }
 
     @Override
-    public XResult findUserByPhone(String phone) {
+    public XUser findUserByPhone(@RequestParam("phone") String phone) {
         XUser byPhone = xUserMapper.findByPhone (phone);
 
-        return XResult.isOk (byPhone);
+        return byPhone;
+    }
+
+    @Override
+    public List<XUser> findAllUser() {
+        XUserExample example = new XUserExample ();
+        List<XUser> xUsers = xUserMapper.selectByExample (example);
+        return xUsers;
     }
 
     @Override
@@ -97,12 +87,17 @@ public class UserServiceImpl implements UserService {
             return XResult.failNoMsg ();
         }
         String pwdMD5 = DigestUtils.md5DigestAsHex (password.getBytes ());
-        System.out.println (pwdMD5);
         user.setUPassword (pwdMD5);
         user.setUCreateAt (new Date ());
         user.setUIsdesign ("not");
         user.setULoginAt (new Date ());
+        //生成ID
+        Integer integer = IDUtils.genItemId ();
+        user.setUId (integer);
         Integer re = xUserMapper.insert (user);
+        XUserInfo xUserInfo = new XUserInfo ();
+        xUserInfo.setuId (integer);
+        xUserInfoMapper.insert (xUserInfo);
         if (re <= 0) {
             return XResult.failMsg ("注册失败");
         }
@@ -172,6 +167,12 @@ public class UserServiceImpl implements UserService {
         }
         return setLogin;
     }
+
+    @Override
+    public XResult changeStates(@RequestParam("state") String states) {
+        return null;
+    }
+
 
     /**
      * 放入redis

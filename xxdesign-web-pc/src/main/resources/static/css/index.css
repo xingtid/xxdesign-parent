@@ -979,9 +979,6 @@ p.sub-tittle {
     border-radius: 0px;
 }
 
-select.form-control:not([size]):not([multiple]) {
-    height: inherit;
-}
 
 .mobamuinfo_mail_grid_right textarea {
     min-height: 180px;

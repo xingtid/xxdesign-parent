@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.pojo.XUser;
@@ -12,6 +11,7 @@ import xyz.hpwyx.pojo.XUserInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author tid
@@ -34,5 +34,7 @@ public class UserController {
         reqest.setAttribute ("userinfo", infoById);
         return "user/userinfo";
     }
+
+
 
 }

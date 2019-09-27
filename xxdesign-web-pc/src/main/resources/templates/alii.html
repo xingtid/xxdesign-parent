@@ -2,90 +2,147 @@
 <html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>Blog Details</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content="" />
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+    <title>Blog Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
 
-	<link rel="stylesheet" href="/css/bootstrap.css">
-	<link rel="stylesheet" href="/css/headandfoot.css">
-	<link href="/css/single.css" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
-	<link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="/css/dropzone.min.css">
 
-
-	<link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
-	<link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
-<!--	<script type="text/javascript" src="/js/jquery.1.7.2.js"></script>-->
+    <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/other.js"></script>
+    <script src="/js/dropzone.min.js"></script>
 </head>
 
+<script type="text/javascript">
+    //两种配置方式，第一种，表单上传时的配置方式，可以打开form表单的注释，myAwesomeDropzone是表单的id
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 10,// MB
+        addRemoveLinks: true,
+        dictResponseError: '文件上传失败!'
+    };
+</script>
 <body>
 
-	<!-- main banner -->
-	<div class="main-top" id="home">
-		<div th:replace="templates::head" ></div>
-		<!-- banner -->
-		<div class="banner_w3lspvt-2">
+<!-- main banner -->
+<div class="main-top" id="home">
+    <div th:replace="templates::head"></div>
+    <!-- banner -->
+    <div class="banner_w3lspvt-2">
 
-		</div>
-		<!-- //banner -->
-	</div>
-	<!-- //main banner -->
+    </div>
+    <!-- //banner -->
+</div>
+<!-- //main banner -->
 
-	<!-- page details -->
-	<div class="breadcrumb-mobamu">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="/">Home</a>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">标题</li>
-		</ol>
-	</div>
-	<!-- //page details -->
+<!-- page details -->
+<div class="breadcrumb-mobamu">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">主页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">标题</li>
+    </ol>
+</div>
+<!-- //page details -->
 
-	<!-- single -->
-	<div class="blog-w3l py-5">
-		<div class="container py-xl-5 py-lg-3">
-			<h3 class="tittle text-center text-bl font-weight-bold">Blog Details</h3>
-			<p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">Sed do eiusmod tempor incididunt ut labore et dolore
-				magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-			<div class="blog_section px-lg-5">
+<!-- booking form -->
+<div class="register-w3 py-5">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">放入衣柜</h3>
+        <p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">
+            在这里，你可以添加你的衣物的基本信息，贴上标签，保存起来
+        </p>
 
-				<div class="comment-top mt-5">
-					<h4>Leave a Comment</h4>
-					<div class="comment-bottom mobamuinfo_mail_grid_right">
-						<form action="#" method="post">
-							<div class="form-group">
-								<input class="form-control" type="text" name="Name" placeholder="Name" required="">
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="email" name="Email" placeholder="Email" required="">
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="text" name="Subject" placeholder="Subject" required="">
-							</div>
-							<div class="form-group">
-								<textarea class="form-control" name="Message" placeholder="Message..." required=""></textarea>
-							</div>
-							<button type="submit" class="btn submit mt-4">Submit</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //single -->
+        <div>
+            <label>衣物图片</label>
+            <form style="background-color:rgba(255,255,255,0);width:auto;border:2px dashed rgba(0,135,247,0.45);
+    border-radius: 10px;" action="/uploadImg"
+                  class="dropzone needsclick dz-clickable" id="demo-upload">
+                <div class="dz-message needsclick">
+                    <span class="note needsclick">(点击或者拖拽到此处上传)</span>
+                </div>
+            </form>
+        </div>
+        <div class="comment-top mt-5">
+            <div class="comment-bottom mobamuinfo_mail_grid_right">
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-lg-5 form-group">
+                            <label>衣物名称</label>
+                            <input class="form-control" type="text" name="Name" placeholder="输入衣物的称呼" required="">
+                        </div>
+                        <div class="col-lg-5 form-group">
+                            <label>品牌</label>
+                            <input class="form-control" type="text" name="Name" placeholder="输入品牌" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            <label>价格</label>
+                            <input class="form-control" type="text" name="Email" placeholder="输入价格" required="">
+                        </div>
+                        <div class="col-lg-4 form-group date-plu">
+                            <label>购买时间</label>
+                            <input type="date" name="date" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            <label>适合季节</label>
+                            <select class="form-control">
+                                <option value="春">春</option>
+                                <option value="夏">夏</option>
+                                <option value="秋">秋</option>
+                                <option value="冬">冬</option>
+                                <option value="春夏">春夏</option>
+                                <option value="秋冬">秋冬</option>
+                                <option value="四季">四季</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <label>风格</label>
+                            <select  class="form-control">
+                                <option value="">No.of guests</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="4">3</option>
+                                <option value="4">4</option>
+                                <option value="4">5</option>
+                                <option value="4">6</option>
+                                <option value="4">7 more</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>介绍以及备注</label>
+                        <textarea class="form-control" name="Message" placeholder="你喜欢这件衣服么？"></textarea>
+                    </div>
+                    <button type="submit" class="btn submit mt-3">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //booking form -->
 
-	<div th:replace="templates::footer"></div>
+<div th:replace="templates::footer"></div>
 </body>
 
 </html>

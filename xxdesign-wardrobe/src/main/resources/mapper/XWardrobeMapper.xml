@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XWardrobeMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XWardrobe" >
+    <id column="w_id" property="wId" jdbcType="INTEGER" />
+    <result column="w_broud" property="wBroud" jdbcType="VARCHAR" />
+    <result column="w_date" property="wDate" jdbcType="TIMESTAMP" />
+    <result column="w_img" property="wImg" jdbcType="VARCHAR" />
+    <result column="w_img2" property="wImg2" jdbcType="VARCHAR" />
+    <result column="w_img3" property="wImg3" jdbcType="VARCHAR" />
+    <result column="w_style" property="wStyle" jdbcType="VARCHAR" />
+    <result column="w_season" property="wSeason" jdbcType="VARCHAR" />
+    <result column="w_price" property="wPrice" jdbcType="REAL" />
+    <result column="w_userid" property="wUserid" jdbcType="INTEGER" />
+    <result column="w_mark" property="wMark" jdbcType="VARCHAR" />
+    <result column="w_create_time" property="wCreateTime" jdbcType="DATE" />
+    <result column="w_exx" property="wExx" jdbcType="VARCHAR" />
+    <result column="w_exe" property="wExe" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    w_id, w_broud, w_date, w_img, w_img2, w_img3, w_style, w_season, w_price, w_userid, 
+    w_mark, w_create_time, w_exx, w_exe
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XWardrobeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_wardrobe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_wardrobe
+    where w_id = #{wId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_wardrobe
+    where w_id = #{wId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XWardrobeExample" >
+    delete from x_wardrobe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XWardrobe" >
+    insert into x_wardrobe (w_id, w_broud, w_date, 
+      w_img, w_img2, w_img3, 
+      w_style, w_season, w_price, 
+      w_userid, w_mark, w_create_time, 
+      w_exx, w_exe)
+    values (#{wId,jdbcType=INTEGER}, #{wBroud,jdbcType=VARCHAR}, #{wDate,jdbcType=TIMESTAMP}, 
+      #{wImg,jdbcType=VARCHAR}, #{wImg2,jdbcType=VARCHAR}, #{wImg3,jdbcType=VARCHAR}, 
+      #{wStyle,jdbcType=VARCHAR}, #{wSeason,jdbcType=VARCHAR}, #{wPrice,jdbcType=REAL}, 
+      #{wUserid,jdbcType=INTEGER}, #{wMark,jdbcType=VARCHAR}, #{wCreateTime,jdbcType=DATE}, 
+      #{wExx,jdbcType=VARCHAR}, #{wExe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XWardrobe" >
+    insert into x_wardrobe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wId != null" >
+        w_id,
+      </if>
+      <if test="wBroud != null" >
+        w_broud,
+      </if>
+      <if test="wDate != null" >
+        w_date,
+      </if>
+      <if test="wImg != null" >
+        w_img,
+      </if>
+      <if test="wImg2 != null" >
+        w_img2,
+      </if>
+      <if test="wImg3 != null" >
+        w_img3,
+      </if>
+      <if test="wStyle != null" >
+        w_style,
+      </if>
+      <if test="wSeason != null" >
+        w_season,
+      </if>
+      <if test="wPrice != null" >
+        w_price,
+      </if>
+      <if test="wUserid != null" >
+        w_userid,
+      </if>
+      <if test="wMark != null" >
+        w_mark,
+      </if>
+      <if test="wCreateTime != null" >
+        w_create_time,
+      </if>
+      <if test="wExx != null" >
+        w_exx,
+      </if>
+      <if test="wExe != null" >
+        w_exe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wId != null" >
+        #{wId,jdbcType=INTEGER},
+      </if>
+      <if test="wBroud != null" >
+        #{wBroud,jdbcType=VARCHAR},
+      </if>
+      <if test="wDate != null" >
+        #{wDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wImg != null" >
+        #{wImg,jdbcType=VARCHAR},
+      </if>
+      <if test="wImg2 != null" >
+        #{wImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="wImg3 != null" >
+        #{wImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="wStyle != null" >
+        #{wStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="wSeason != null" >
+        #{wSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="wPrice != null" >
+        #{wPrice,jdbcType=REAL},
+      </if>
+      <if test="wUserid != null" >
+        #{wUserid,jdbcType=INTEGER},
+      </if>
+      <if test="wMark != null" >
+        #{wMark,jdbcType=VARCHAR},
+      </if>
+      <if test="wCreateTime != null" >
+        #{wCreateTime,jdbcType=DATE},
+      </if>
+      <if test="wExx != null" >
+        #{wExx,jdbcType=VARCHAR},
+      </if>
+      <if test="wExe != null" >
+        #{wExe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XWardrobeExample" resultType="java.lang.Integer" >
+    select count(*) from x_wardrobe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_wardrobe
+    <set >
+      <if test="record.wId != null" >
+        w_id = #{record.wId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wBroud != null" >
+        w_broud = #{record.wBroud,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wDate != null" >
+        w_date = #{record.wDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wImg != null" >
+        w_img = #{record.wImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wImg2 != null" >
+        w_img2 = #{record.wImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wImg3 != null" >
+        w_img3 = #{record.wImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wStyle != null" >
+        w_style = #{record.wStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wSeason != null" >
+        w_season = #{record.wSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wPrice != null" >
+        w_price = #{record.wPrice,jdbcType=REAL},
+      </if>
+      <if test="record.wUserid != null" >
+        w_userid = #{record.wUserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wMark != null" >
+        w_mark = #{record.wMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wCreateTime != null" >
+        w_create_time = #{record.wCreateTime,jdbcType=DATE},
+      </if>
+      <if test="record.wExx != null" >
+        w_exx = #{record.wExx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wExe != null" >
+        w_exe = #{record.wExe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_wardrobe
+    set w_id = #{record.wId,jdbcType=INTEGER},
+      w_broud = #{record.wBroud,jdbcType=VARCHAR},
+      w_date = #{record.wDate,jdbcType=TIMESTAMP},
+      w_img = #{record.wImg,jdbcType=VARCHAR},
+      w_img2 = #{record.wImg2,jdbcType=VARCHAR},
+      w_img3 = #{record.wImg3,jdbcType=VARCHAR},
+      w_style = #{record.wStyle,jdbcType=VARCHAR},
+      w_season = #{record.wSeason,jdbcType=VARCHAR},
+      w_price = #{record.wPrice,jdbcType=REAL},
+      w_userid = #{record.wUserid,jdbcType=INTEGER},
+      w_mark = #{record.wMark,jdbcType=VARCHAR},
+      w_create_time = #{record.wCreateTime,jdbcType=DATE},
+      w_exx = #{record.wExx,jdbcType=VARCHAR},
+      w_exe = #{record.wExe,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XWardrobe" >
+    update x_wardrobe
+    <set >
+      <if test="wBroud != null" >
+        w_broud = #{wBroud,jdbcType=VARCHAR},
+      </if>
+      <if test="wDate != null" >
+        w_date = #{wDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wImg != null" >
+        w_img = #{wImg,jdbcType=VARCHAR},
+      </if>
+      <if test="wImg2 != null" >
+        w_img2 = #{wImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="wImg3 != null" >
+        w_img3 = #{wImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="wStyle != null" >
+        w_style = #{wStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="wSeason != null" >
+        w_season = #{wSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="wPrice != null" >
+        w_price = #{wPrice,jdbcType=REAL},
+      </if>
+      <if test="wUserid != null" >
+        w_userid = #{wUserid,jdbcType=INTEGER},
+      </if>
+      <if test="wMark != null" >
+        w_mark = #{wMark,jdbcType=VARCHAR},
+      </if>
+      <if test="wCreateTime != null" >
+        w_create_time = #{wCreateTime,jdbcType=DATE},
+      </if>
+      <if test="wExx != null" >
+        w_exx = #{wExx,jdbcType=VARCHAR},
+      </if>
+      <if test="wExe != null" >
+        w_exe = #{wExe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where w_id = #{wId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XWardrobe" >
+    update x_wardrobe
+    set w_broud = #{wBroud,jdbcType=VARCHAR},
+      w_date = #{wDate,jdbcType=TIMESTAMP},
+      w_img = #{wImg,jdbcType=VARCHAR},
+      w_img2 = #{wImg2,jdbcType=VARCHAR},
+      w_img3 = #{wImg3,jdbcType=VARCHAR},
+      w_style = #{wStyle,jdbcType=VARCHAR},
+      w_season = #{wSeason,jdbcType=VARCHAR},
+      w_price = #{wPrice,jdbcType=REAL},
+      w_userid = #{wUserid,jdbcType=INTEGER},
+      w_mark = #{wMark,jdbcType=VARCHAR},
+      w_create_time = #{wCreateTime,jdbcType=DATE},
+      w_exx = #{wExx,jdbcType=VARCHAR},
+      w_exe = #{wExe,jdbcType=VARCHAR}
+    where w_id = #{wId,jdbcType=INTEGER}
+  </update>
+</mapper>

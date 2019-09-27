@@ -1,4 +1,4 @@
-package xyz.hpwyx.shiro;
+package xyz.hpwyx.oauth2;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -33,9 +33,12 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<String, String> ();
         filterMap.put ("/login.html", "anon");
-        filterMap.put ("/isContent.html", "authc");
+        filterMap.put ("/login", "anon");
+//        filterMap.put ("/isContent.html", "authc");
+//        filterMap.put ("/isContent", "authc");
+
         //修改跳转页面
-        shiroFilterFactoryBean.setLoginUrl ("baselogin.html");
+        shiroFilterFactoryBean.setLoginUrl ("login");
         shiroFilterFactoryBean.setUnauthorizedUrl ("/noAuth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap (filterMap);
         return shiroFilterFactoryBean;

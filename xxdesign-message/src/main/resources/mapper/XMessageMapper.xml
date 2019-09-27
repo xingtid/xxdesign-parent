@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XMessageMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XMessage" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="m_send_id" property="mSendId" jdbcType="INTEGER" />
+    <result column="m_besend_id" property="mBesendId" jdbcType="INTEGER" />
+    <result column="m_title" property="mTitle" jdbcType="VARCHAR" />
+    <result column="m_content" property="mContent" jdbcType="VARCHAR" />
+    <result column="m_time" property="mTime" jdbcType="TIMESTAMP" />
+    <result column="m_type" property="mType" jdbcType="INTEGER" />
+    <result column="m_parent" property="mParent" jdbcType="INTEGER" />
+    <result column="m_mee" property="mMee" jdbcType="VARCHAR" />
+    <result column="m_mark" property="mMark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    m_id, m_send_id, m_besend_id, m_title, m_content, m_time, m_type, m_parent, m_mee, 
+    m_mark
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XMessage" >
+    insert into x_message (m_id, m_send_id, m_besend_id, 
+      m_title, m_content, m_time, 
+      m_type, m_parent, m_mee, 
+      m_mark)
+    values (#{mId,jdbcType=INTEGER}, #{mSendId,jdbcType=INTEGER}, #{mBesendId,jdbcType=INTEGER}, 
+      #{mTitle,jdbcType=VARCHAR}, #{mContent,jdbcType=VARCHAR}, #{mTime,jdbcType=TIMESTAMP}, 
+      #{mType,jdbcType=INTEGER}, #{mParent,jdbcType=INTEGER}, #{mMee,jdbcType=VARCHAR}, 
+      #{mMark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XMessage" >
+    insert into x_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="mSendId != null" >
+        m_send_id,
+      </if>
+      <if test="mBesendId != null" >
+        m_besend_id,
+      </if>
+      <if test="mTitle != null" >
+        m_title,
+      </if>
+      <if test="mContent != null" >
+        m_content,
+      </if>
+      <if test="mTime != null" >
+        m_time,
+      </if>
+      <if test="mType != null" >
+        m_type,
+      </if>
+      <if test="mParent != null" >
+        m_parent,
+      </if>
+      <if test="mMee != null" >
+        m_mee,
+      </if>
+      <if test="mMark != null" >
+        m_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="mSendId != null" >
+        #{mSendId,jdbcType=INTEGER},
+      </if>
+      <if test="mBesendId != null" >
+        #{mBesendId,jdbcType=INTEGER},
+      </if>
+      <if test="mTitle != null" >
+        #{mTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mContent != null" >
+        #{mContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mTime != null" >
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mType != null" >
+        #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mParent != null" >
+        #{mParent,jdbcType=INTEGER},
+      </if>
+      <if test="mMee != null" >
+        #{mMee,jdbcType=VARCHAR},
+      </if>
+      <if test="mMark != null" >
+        #{mMark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XMessage" >
+    update x_message
+    set m_send_id = #{mSendId,jdbcType=INTEGER},
+      m_besend_id = #{mBesendId,jdbcType=INTEGER},
+      m_title = #{mTitle,jdbcType=VARCHAR},
+      m_content = #{mContent,jdbcType=VARCHAR},
+      m_time = #{mTime,jdbcType=TIMESTAMP},
+      m_type = #{mType,jdbcType=INTEGER},
+      m_parent = #{mParent,jdbcType=INTEGER},
+      m_mee = #{mMee,jdbcType=VARCHAR},
+      m_mark = #{mMark,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

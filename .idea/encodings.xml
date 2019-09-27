@@ -6,14 +6,18 @@
     <file url="file://$PROJECT_DIR$/xxdesign-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-index" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-message" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-share" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-wardrobe" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-index" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-message" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-share" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-wardrobe" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-web-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-web-pc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/xxdesign-zuul" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-server" charset="UTF-8" />
   </component>
 </project>

@@ -7,12 +7,19 @@ import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.pojo.XUserInfo;
 
+import java.util.List;
+
 /**
  * @author tid
  * @create 2019-09-08 5:03 下午
  **/
 @RequestMapping("/user")
 public interface UserService {
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
     @RequestMapping("/baselogin")
     XResult baseLogin(@RequestBody XUser user);
 
@@ -21,18 +28,36 @@ public interface UserService {
     @RequestMapping("/findInfoById")
     XUserInfo findInfoById(@RequestParam("id") Integer id);
     @RequestMapping("/findByPhone")
-    XResult findUserByPhone(String phone);
+    XUser findUserByPhone(@RequestParam("phone") String phone);
+    @RequestMapping("/findAllUser")
+    List<XUser> findAllUser();
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
     @RequestMapping("/register")
     XResult regUser(@RequestBody XUser user);
 
     @RequestMapping("/findByToken")
     XResult findByToken(@RequestParam("token")String token);
 
-    //使用token登录
+    /**
+     * 使用token登录
+     * @param openId
+     * @return
+     */
     @RequestMapping("/findOpenIdUser")
     XResult findOpenIdUser(@RequestParam("openId") String openId);
 
-    //qq登录
+    /**
+     * qq登录
+     * @param user
+     * @return
+     */
     @RequestMapping("/qqlogin")
     XResult qqlogin(@RequestBody XUser user);
+
+    @RequestMapping("/changeStates")
+     XResult changeStates(@RequestParam("state") String states);
 }

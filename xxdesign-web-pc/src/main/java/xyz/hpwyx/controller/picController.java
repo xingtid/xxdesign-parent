@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.hpwyx.fastDFS.FastDFSClient;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 
 /**
  * @author tid
@@ -13,8 +16,9 @@ import xyz.hpwyx.fastDFS.FastDFSClient;
  **/
 @Controller
 public class picController {
+    @ResponseBody
     @RequestMapping(value = "/uploadImg")
-    public String upLoadImg(MultipartFile file) {
+    public void upLoadImg(MultipartFile file, HttpServletResponse response) throws IOException {
         try {
             FastDFSClient fastDFSClient = new FastDFSClient ("/config/client.conf");
             //取扩展名
@@ -23,11 +27,11 @@ public class picController {
             //得到一个图片的地址和文件名
             String urla = fastDFSClient.uploadFile (file.getBytes (), extName);
             urla = "http://www.hpwyx.xyz:81/" + urla;
-            System.out.println (urla);
-            return "redirect:"+urla;
+            System.out.println ("图片地址："+urla);
+            response.getWriter().write (urla);
         }catch (Exception e) {
             e.printStackTrace ();
-            return "fail";
+            response.getWriter().write (e.toString ());
         }
     }
 }

@@ -2,9 +2,15 @@ package xyz.hpwyx.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,6 +60,7 @@ public class IndexController {
             XResult responseBase = serviceFigen.findByToken (token);
             //如果正确获取用户信息发送到前端
             XUser getuser = getuser (responseBase);
+
             if (getuser != null) {
                 session.setAttribute ("USERINFO", getuser);
             }
@@ -83,11 +90,23 @@ public class IndexController {
     @RequestMapping("/{page}")
     public String showPage(@PathVariable String page, HttpServletRequest request, Model model) {
         String ipAddress = GetIp.getIpAddress (request);
-        log.info ("page:" + ipAddress + " " + page);
-        String url = request.getHeader ("REFERER");
-        System.out.println (url);
-        System.out.println ("page:" + page);
-        model.addAttribute ("REFERER", url);
+        if (request.getSession ().getAttribute ("USERINFO") != null) {
+            log.info ("page:" + ipAddress + " " + page);
+            String url = request.getHeader ("REFERER");
+            System.out.println (url);
+            System.out.println ("page:" + page);
+            model.addAttribute ("REFERER", url);
+            return page;
+        }else
+        if ("isContent.html".equals (page)) {
+            log.info ("page:" + ipAddress + " " + page);
+            String url = request.getHeader ("REFERER");
+            System.out.println (url);
+            System.out.println ("page:" + page);
+            model.addAttribute ("REFERER", url);
+            return "login";
+        }
+
         return page;
     }
 

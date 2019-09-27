@@ -63,12 +63,15 @@
         </div>
     </div>
 </div>
+<input id="ref" type="hidden" th:value="${REFERER}" >
 <script>
     function login() {
         $.post("baseLogin", $("#formlogin").serialize(), function (data) {
             if (data.rtnCode === 200) {
                 setTimeout(function () {
-                   location.href = "http://localhost:8088";
+
+                    var ref = $("#ref").val();
+                   location.href = ref;
                 }, 500);
             } else {
                 alert("a")

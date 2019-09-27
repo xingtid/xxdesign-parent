@@ -1,13 +1,12 @@
-package xyz.hpwyx.shiro;
+package xyz.hpwyx.oauth2;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.pojo.XUser;
-import xyz.hpwyx.service.impl.UserServiceImpl;
 
 /**
  * @author tid
@@ -15,7 +14,7 @@ import xyz.hpwyx.service.impl.UserServiceImpl;
  **/
 public class UserRealm extends AuthorizingRealm {
     @Autowired
-    UserServiceImpl userService;
+    UserServiceFigen userService;
 
     /**
      * 执行授权逻辑
@@ -40,9 +39,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        XResult xResult = userService.findUserByPhone (token.getUsername ().trim ());
-        XUser user = (XUser) xResult.getData ();
-        System.out.println (token.getUsername ());
+        XUser user = userService.findUserByPhone (token.getUsername ().trim ());
         if (user == null) {
             return null;
         }

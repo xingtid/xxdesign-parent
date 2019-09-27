@@ -5,8 +5,14 @@ import com.qq.connect.api.OpenID;
 import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.oauth.Oauth;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
@@ -33,42 +39,59 @@ public class LoginController {
     private RedisUtil redisUtil;
     @Autowired
     UserServiceFigen serviceFigen;
+
     @ResponseBody
     @RequestMapping(value = "/baseLogin", method = RequestMethod.POST)
-    public XResult baseLogin(@RequestParam("uPhone") String phone,@RequestParam("uPassword") String password, HttpServletResponse response, HttpServletRequest request){
+    public XResult baseLogin(@RequestParam("uPhone") String phone, @RequestParam("uPassword") String password, HttpServletResponse response, HttpServletRequest request) {
         //1.验证参数
+        if (phone == null || password == null) {
 
-        if (phone==null||password==null){
-
-            return XResult.failMsg("用户名或密码为空");
+            return XResult.failMsg ("用户名或密码为空");
         }
-
         XUser user = new XUser ();
         user.setUPhone (phone);
         user.setUPassword (password);
         //2。调用接口，获取token 信息
-        XResult login = serviceFigen.baseLogin (user);
+        String pa = password+"+1998";
+        //加盐MD5加密
+        String pwd = DigestUtils.md5DigestAsHex (pa.getBytes ());
+
+        //shiro进入
+        Subject subject = SecurityUtils.getSubject ();
+        UsernamePasswordToken token = new UsernamePasswordToken (phone, pwd);
+        try {
+            subject.login (token);
+            System.out.println("isAuthen:"+subject.isAuthenticated());
+        } catch (UnknownAccountException e) {
+            return XResult.build (400, "用户名不存在", null);
+        } catch (IncorrectCredentialsException e) {
+            return XResult.build (400, "密码错误", null);
+        }
+        XUser xUser = serviceFigen.findUserByPhone (token.getUsername ());
+        XResult login = serviceFigen.baseLogin (xUser);
         // 判断
         if (!login.getRtnCode ().equals (200)) {
             return XResult.failMsg ("账号或密码错误");
         }
         LinkedHashMap data = (LinkedHashMap) login.getData ();
         String membertoken = (String) data.get ("token");
-        if (StringUtils.isEmpty (membertoken)){
+        if (StringUtils.isEmpty (membertoken)) {
             return XResult.failMsg ("会话失效");
         }
         //3。将token 存在 cookie 中
-        setCooke (membertoken,request,response);
-
+        setCooke (membertoken, request, response);
+        request.getSession ().setAttribute ("USERINFO", xUser);
         return XResult.isOk (login);
     }
+
     // 生成qq授权登录链接
     @RequestMapping("/localQQlogin")
     public String locaQQLogin(ServletRequest reqest) throws QQConnectException {
-        String authorizeURL = new Oauth ().getAuthorizeURL(reqest);
+        String authorizeURL = new Oauth ().getAuthorizeURL (reqest);
 //        return XResult.isOk (authorizeURL);
         return "redirect:" + authorizeURL;
     }
+
     @RequestMapping("/qqlogin")
     public String qqlogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws QQConnectException {
         //1.获取授权吗code
@@ -79,14 +102,14 @@ public class LoginController {
 
 
         // 我们的网站被CSRF攻击了或者用户取消了授权
-        if (accessTokenByRequest == null||accessTokenByRequest.getAccessToken ().equals ("")){
+        if (accessTokenByRequest == null || accessTokenByRequest.getAccessToken ().equals ("")) {
 
             return "error";
         }
-        System.out.println ("ds"+accessTokenByRequest);
+        System.out.println ("ds" + accessTokenByRequest);
         String accessToken = accessTokenByRequest.getAccessToken ();
 
-        if (accessToken == null){
+        if (accessToken == null) {
 //            return XResult.failNoMsg ();
             return "error";
         }
@@ -94,39 +117,41 @@ public class LoginController {
         OpenID openID = new OpenID (accessToken);
         String userOpenID = openID.getUserOpenID ();
         System.out.println (userOpenID);
-        if (userOpenID == null){
+        if (userOpenID == null) {
 //            return XResult.failNoMsg ();
             return "error";
         }
 
         //查找是否关联账号
         XResult responseBase = serviceFigen.findOpenIdUser (userOpenID);
-        if (responseBase.getRtnCode ().equals (Constants.HTTP_RES_CODE_201)){
+        if (responseBase.getRtnCode ().equals (Constants.HTTP_RES_CODE_201)) {
             //如果没有关联账号
-            session.setAttribute ("qqOpenId",userOpenID);
+            session.setAttribute ("qqOpenId", userOpenID);
 //            return XResult.build (Constants.HTTP_RES_CODE_201,"没有关联账号",null);
             return "redirect:localhost:8080/login";
         }
         LinkedHashMap data = (LinkedHashMap) responseBase.getData ();
         String memberToken = (String) data.get ("membertoken");
-        setCooke (memberToken,request,response);
+        setCooke (memberToken, request, response);
         //已经绑定
 
         return "redirect:localhost:8088/login";
 //        return XResult.isOk ();
     }
+
     @RequestMapping(value = "/loginOut")
-    public String loginOut(HttpServletRequest request,HttpServletResponse response){
+    public String loginOut(HttpServletRequest request, HttpServletResponse response) {
         XUser xUser = (XUser) request.getSession ().getAttribute ("USERINFO");
-        String token = CookieUtil.getUid(request, Constants.COOKIE_TOKEN);
-        CookieUtils.deleteCookie (request,response,Constants.COOKIE_TOKEN);
-       request.getSession ().removeAttribute ("USERINFO");
-        redisUtil.del (0,xUser.getUId ()+"",token);
+        String token = CookieUtil.getUid (request, Constants.COOKIE_TOKEN);
+        CookieUtils.deleteCookie (request, response, Constants.COOKIE_TOKEN);
+        request.getSession ().removeAttribute ("USERINFO");
+        redisUtil.del (0, xUser.getUId () + "", token);
         return "redirect:http://localhost:8088";
     }
-    public void setCooke(String memberToken,HttpServletRequest request,HttpServletResponse response){
-        System.out.println ("setCookie::"+memberToken);
-        CookieUtils.setCookie (request,response, Constants.COOKIE_TOKEN,memberToken,60*30*12);
+
+    public void setCooke(String memberToken, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println ("setCookie::" + memberToken);
+        CookieUtils.setCookie (request, response, Constants.COOKIE_TOKEN, memberToken, 60 * 30 * 12);
 
     }
 }

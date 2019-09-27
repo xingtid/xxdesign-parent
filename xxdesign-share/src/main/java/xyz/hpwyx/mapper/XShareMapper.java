@@ -24,12 +24,6 @@ public interface XShareMapper {
 
     XShare selectByPrimaryKey(Integer sId);
 
-    int updateByExampleSelective(@Param("record") XShare record, @Param("example") XShareExample example);
-
-    int updateByExample(@Param("record") XShare record, @Param("example") XShareExample example);
-
-    int updateByPrimaryKeySelective(XShare record);
-
     int updateByPrimaryKey(XShare record);
 
     XShare selectShareAndUserById(Integer sId);

@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/xxdesign-web-admin/pom.xml" />
         <option value="$PROJECT_DIR$/xxdesign-web-pc/pom.xml" />
+        <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
       </list>
     </option>
   </component>

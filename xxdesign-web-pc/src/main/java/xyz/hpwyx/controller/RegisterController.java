@@ -39,6 +39,7 @@ public class RegisterController {
         pojo.setUIp (ipAddress);
         //2. 调用会员注册接口
         XResult responseBase = serviceFigen.regUser (pojo);
+
         //3. 如果失败
         if (responseBase.getRtnCode () != 200) {
 
