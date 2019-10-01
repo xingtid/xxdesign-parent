@@ -252,5 +252,6 @@
     select
     <include refid="USERAD_SHARE"></include>
     from x_share s, x_user u where s.s_anth_id = u.u_id
+
   </select>
 </mapper>

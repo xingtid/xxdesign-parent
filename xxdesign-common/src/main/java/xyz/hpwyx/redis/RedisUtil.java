@@ -2,7 +2,6 @@ package xyz.hpwyx.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.BinaryClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.SortingParams;
@@ -1076,35 +1075,7 @@ public class RedisUtil {
         return res;
     }
 
-    /**
-     * <p>
-     * 通过key在list指定的位置之前或者之后 添加字符串元素
-     * </p>
-     *
-     * @param key
-     * @param where
-     *            LIST_POSITION枚举类型
-     * @param pivot
-     *            list里面的value
-     * @param value
-     *            添加的value
-     * @return
-     */
-    public Long linsert(String key, BinaryClient.LIST_POSITION where, String pivot,
-                        String value) {
-        Jedis jedis = null;
-        Long res = null;
-        try {
-            jedis = jedisPool.getResource();
-            res = jedis.linsert(key, where, pivot, value);
-        } catch (Exception e) {
 
-           System.out.println(e.getMessage());
-        } finally {
-            returnResource(jedisPool, jedis);
-        }
-        return res;
-    }
 
     /**
      * <p>
@@ -2282,7 +2253,7 @@ public class RedisUtil {
      */
     public static void returnResource(JedisPool jedisPool, Jedis jedis) {
         if (jedis != null) {
-            jedisPool.returnResource(jedis);
+            jedis.close ();
         }
     }
 

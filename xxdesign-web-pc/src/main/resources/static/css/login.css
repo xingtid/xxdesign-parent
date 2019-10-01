@@ -103,10 +103,18 @@ html,
 body {
     padding: 0;
     margin: 0;
-    background: #fff;
+    /*background: #fff;*/
+
     font-family: 'Open Sans', sans-serif;
 }
-
+body {
+    box-sizing: border-box;
+    background: #e9e9e9;
+    min-height: 100vh;
+}
+body{
+    background: url("http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2R38yAevFMAAtjl5hXLjk100.jpg") no-repeat;
+}
 body a {
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
@@ -162,11 +170,7 @@ ul {
 /*-- //Reset-Code --*/
 
 /*--background --*/
-body {
-    box-sizing: border-box;
-    background: #e9e9e9;
-    min-height: 100vh;
-}
+
 
 .w3layouts-two-grids {
     width: 62%;

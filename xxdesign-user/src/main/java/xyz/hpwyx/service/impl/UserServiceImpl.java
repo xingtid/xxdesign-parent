@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public XUser findUserByPhone(@RequestParam("phone") String phone) {
+    public XUser findUserByPhone(@RequestParam String phone) {
         XUser byPhone = xUserMapper.findByPhone (phone);
 
         return byPhone;
@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
         user.setUPassword (pwdMD5);
         user.setUCreateAt (new Date ());
         user.setUIsdesign ("not");
+        user.setUEx1 ("http://www.hpwyx.xyz:81/group1/M00/00/00/rBM2QlyuAZOABsqEAAApq-VjHyY8..jpeg");
         user.setULoginAt (new Date ());
         //生成ID
         Integer integer = IDUtils.genItemId ();

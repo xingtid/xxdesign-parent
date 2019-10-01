@@ -59,7 +59,7 @@ public class RegisterController {
     public XResult sendCode(@RequestParam(value = "phone", required = false) String phone, HttpServletRequest request) {
         String code = SendMsg.sendduanxing (phone);
         request.getSession ().setAttribute ("verifyCode", code);
-        System.out.println ("aa"+phone);
+        System.out.println ("phone"+phone);
         return XResult.isOk ();
     }
 }

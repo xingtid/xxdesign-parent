@@ -19,23 +19,21 @@
                     <input type="checkbox" id="drop"/>
                     <ul class="menu">
                         <li><a href="/" class="active">主页</a></li>
-                        <li><a href="about.html">形象管理</a></li>
-                        <li><a href="/getShareList">share</a></li>
-                        <li><a href="alii.html">专业设计</a></li>
+                        <li><a href="joinVIP.html">加入会员</a></li>
                         <li>
                             <!-- First Tier Drop Down -->
-                            <label for="drop-2" class="toggle toogle-2">获取灵感<span class="fa fa-angle-down"
+                            <label for="drop-4" class="toggle toogle-2">share<span class="fa fa-angle-down"
                                                                                   aria-hidden="true"></span>
                             </label>
-                            <a href="#">获取更多 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                            <input type="checkbox" id="drop-2"/>
+                            <a href="/getShareList">获取文章 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-4"/>
                             <ul>
-                                <li><a href="#services" class="drop-text">妆容</a></li>
-                                <li><a href="#blog" class="drop-text">礼仪</a></li>
-                                <li><a href="#why" class="drop-text">穿搭</a></li>
-                                <li><a href="#price" class="drop-text">其他</a></li>
+                                <li><a href="isContent.html" class="drop-text">分享穿搭</a></li>
+                                <li><a href="#price" class="drop-text">我的喜欢</a></li>
                             </ul>
                         </li>
+                        <li><a href="iswardrobe.html">我的衣柜</a></li>
+
                         <li th:if="${session.USERINFO} eq null"><a href="login.html">登录</a>
                             <a href="register.html">注册</a></li>
                         <!--                        <li><a href="admin.html">后台</a></li>-->

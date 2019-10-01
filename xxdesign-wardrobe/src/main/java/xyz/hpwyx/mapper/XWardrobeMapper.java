@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import xyz.hpwyx.pojo.XWardrobe;
 import xyz.hpwyx.pojo.XWardrobeExample;
-
 @Mapper
 public interface XWardrobeMapper {
     int countByExample(XWardrobeExample example);

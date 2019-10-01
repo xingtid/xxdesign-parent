@@ -3,20 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
-    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+    <link href="/css/user/reg.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div>
-    <form action="/register" method="post">
-    用户名<input type="text" name="uName">
-    手机号<input type="text" name="uPhone" id="user">
-        验证吗<input type="text" name="usercode">
-        <hr>
-        <div onclick="sendas()">发送验证码</div>
-    密码<input type="text" name="uPassword">
-        <input type="submit" value="注册">
-    </form>
+<div class="as_register" style="">
+
+    <div class="as_wrap ">
+        <div id="tabCh" class="lan_tabpage tabch">
+            <h2 class="tit">注册</h2>
+            <div class="func_tab cl">
+                <a href="javascript:void(0);">手机注册（推荐）<i></i></a>
+                <a href="javascript:void(0);">邮箱注册 <i></i></a>
+            </div>
+            <div class="func_tabpage">
+                <form id="myInfo" action="" autocomplete="off">
+                    <input type="hidden" name="from" value="0"/>
+                    <input type="hidden" name="s" value=""/>
+                    <div class="ibox mb17">
+                        <input id="user" name="uPhone" required="required" class="t_phone" type="text" placeholder="手机号"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="ibox ibox_eye">
+                        <label class="pwshow">密码（由8-16位大小写字母、数字及字符组成）</label>
+                        <input name="uPassword" required="required" class="pwhide password" type="password"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="pwlevel">
+                        <ul class="cl pwLv" style="display: none;">
+                            <li class="l cur"><span>低</span></li>
+                            <li class="m"><span>中</span></li>
+                            <li class="h"><span>高</span></li>
+                        </ul>
+                    </div>
+                    <div class="ibox ibox_eye mb34">
+                        <label class="pwshow">重复密码</label>
+                        <input required="required" class="pwhide repeat" type="password"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="ibox mb17">
+                        <input name="uName" required="required" type="text" placeholder="昵称"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+
+                    <div class="cl vbox">
+                        <div class="fl vboxl">
+                            <div class="ibox">
+                                <input name="usercode" type="text" placeholder="验证码"/>
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="fl vboxr">
+                            <a class="getMobileRand" onclick="sendas()">获取验证码</a>
+                        </div>
+                    </div>
+
+
+                    <a class="rbtn_com rbtn_s1 mb15" href="javascript:void(0);" onclick="checkin()">免费注册</a>
+                    <a class="rbtn_com rbtn_s2" href="login.html">已经有账号了？</a>
+                </form>
+            </div>
+            <div class="func_tabpage">
+                <form action="" autocomplete="off">
+                    <input type="hidden" name="from" value="0"/>
+                    <input type="hidden" name="s" value=""/>
+                    <div class="ibox mb17">
+                        <input name="username" required="required" class="t_email" type="text" placeholder="邮箱账号"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="ibox ibox_eye">
+                        <label class="pwshow">密码（由8-16位大小写字母、数字及字符组成）</label>
+                        <input required="required" class="pwhide password" type="password"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="pwlevel">
+                        <ul class="cl pwLv" style="display: none;">
+                            <li class="l cur"><span>低</span></li>
+                            <li class="m"><span>中</span></li>
+                            <li class="h"><span>高</span></li>
+                        </ul>
+                    </div>
+                    <div class="ibox ibox_eye mb34">
+                        <!-- <input class="pwshow" type="text" placeholder="重复密码" /> -->
+                        <label class="pwshow">重复密码</label>
+                        <input required="required" class="pwhide repeat" type="password"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="ibox mb17">
+                        <input name="truename" required="required" type="text" placeholder="昵称"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+                    <div class="ibox mb17">
+                        <input name="idnumber" required="required" type="text" placeholder="身份证"/>
+                        <i></i>
+                        <span class="ihint ihint_error" style="display: none;"></span>
+                    </div>
+
+                    <a class="rbtn_com rbtn_s1 mb15" href="javascript:void(0);" onclick="checkin(this)">免费注册</a>
+                    <a class="rbtn_com rbtn_s2" href="login.html">已经有账号了？</a>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="rand_node" style="margin-top: 5px; display: block">
+            <div id="mCaptcha"></div>
+        </div>
+        <div id="isMCaptcha" style="display: none"></div>
+
+
+    </div>
 </div>
+<script src="https://safestatic.games.wanmei.com/passport/script/jquery.min.js" type="text/javascript"></script>
+<script src="https://safestatic.games.wanmei.com/passport/script/is.min.js" type="text/javascript"></script>
+<script src="https://safestatic.games.wanmei.com/passport/reg/js/register.js" type="text/javascript"></script>
+<script src="https://safestatic.games.wanmei.com/passport/reg/js/common.js?201712" type="text/javascript"></script>
+<script type="text/javascript" src="https://csafestatic.wanmei.com/vanguard/client/js/vanguard-common.js"></script>
+<script src="https://csafestatic.wanmei.com/captchas/c/js/mCaptcha.min.js"></script>
+<script src="https://safestatic.games.wanmei.com/passport/script/jsencrypt.min.js"></script>
+<script type="text/javascript">
+
+    function checkin() {
+
+        $.post("/register", $("#myInfo").serialize(), function (data) {
+
+            if (data.rtnCode == 200) {
+                // hit.innerHTML = data.msg;
+                // hint();
+                setTimeout(function () {
+
+                    location.href = "http://127.0.0.1:8088/";
+                }, 500);
+
+            } else {
+                // hit.innerHTML = data.msg;
+                // hint()
+                alert("密码错误")
+            }
+        });
+
+
+    }
+
+
+    $(function () {
+
+        $('input[required]').on('blur', function (e) {
+            var v = $(this).val();
+            if (is.empty(v)) {
+                $(this).showCueMessage(msgNoEmpty[getLocale()], false);
+                e.stopImmediatePropagation();
+                return;
+            }
+        });
+        $('input.t_phone').on('blur', function (e) {
+            var v = $(this).val();
+            if (!checkCellPhone(v)) {
+                $(this).showCueMessage(msgInvalidMobile[getLocale()], false);
+                e.stopImmediatePropagation();
+                return;
+            } else {
+                $(this).showCueMessage('', true);
+            }
+        });
+        $('input.t_email').on('blur', function (e) {
+            var v = $(this).val();
+            if (!is.email(v)) {
+                $(this).showCueMessage(msgInvalidEmail[getLocale()], false);
+                e.stopImmediatePropagation();
+                return;
+            } else {
+                $(this).showCueMessage('', true);
+            }
+        });
+        $('input[name="uPhone"]').on('blur', function () {
+            var v = $(this).val();
+            var self = this;
+
+        });
+        $('input.password').keyup(function () {
+            $(this).passwordLevel();
+        });
+        $('input.password').blur(function () {
+            $(this).passwordLevel();
+        });
+        $('input.repeat').blur(function () {
+            if ($(this).val() == $(this).closest('form').find('input.password').val()) {
+                $(this).showCueMessage('', true);
+            } else {
+                $(this).showCueMessage(msgInvalidPwdRepeat[getLocale()], false);
+            }
+        });
+
+        //手机或邮箱注册切换
+        $(".lan_tabpage.tabch").tabOn({
+            toggleClass: "cur",
+            menu: ".func_tab a",
+            box: ".func_tabpage"
+        });
+        $(".lan_tabpage.taben").tabOn({
+            toggleClass: "cur",
+            menu: ".func_tab a",
+            box: ".func_tabpage",
+            page: 1
+        });
+
+        //模拟input placeholder属性
+        $(":text").placeholder();
+
+        //密码提示及输入切换
+        //其中提示用label而不是input，是避免切换时输入太快 缺失输入内容
+        var pwShow = $(".pwshow"),
+            pwHide = $(".pwhide"),
+            pwtxt = [];
+        var len = pwShow.length;
+        //label提示
+        for (var m = 0; m < len; m++) {
+            pwtxt.push($(pwShow[m]).html());
+        }
+
+        var iSp = function isSupport() {
+            if ("placeholder" in document.createElement("input")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        pwShow.click(function () {
+            $(this).hide().siblings("input").show().focus();
+        });
+        pwHide.blur(function () {
+            if ($(this).val() == "") {
+                $(this).hide().siblings("label").show();
+                $(".ibox").removeClass("onfocus");
+            }
+        });
+
+        //模拟input checkbox样式及功能
+        $(".cbox i").click(function () {
+            $(this).toggleClass("check");
+            //$(this).siblings("input").click();
+            if ($(this).hasClass("check")) {
+                $(this).siblings("input").prop("checked", "checked");
+                //console.log($(this).siblings("input").prop("checked"));
+            } else {
+                $(this).siblings("input").removeAttr("checked");
+            }
+        });
+
+
+        $(".ibox input").focus(function () {
+            $(".ibox").removeClass("onfocus");
+            $(this).parent().addClass("onfocus");
+        });
+    });
+</script>
 <script>
     //发送验证码
     function sendas() {
@@ -30,6 +279,7 @@
         });
         // settime(obj);
     }
+
     function settime(obj) { //发送验证码倒计时
         if (countdown == 0) {
             obj.attr('disabled', false);

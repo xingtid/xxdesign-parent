@@ -192,6 +192,76 @@ public class XWardrobeExample {
             return (Criteria) this;
         }
 
+        public Criteria andWNameIsNull() {
+            addCriterion("w_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameIsNotNull() {
+            addCriterion("w_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameEqualTo(String value) {
+            addCriterion("w_name =", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameNotEqualTo(String value) {
+            addCriterion("w_name <>", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameGreaterThan(String value) {
+            addCriterion("w_name >", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameGreaterThanOrEqualTo(String value) {
+            addCriterion("w_name >=", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameLessThan(String value) {
+            addCriterion("w_name <", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameLessThanOrEqualTo(String value) {
+            addCriterion("w_name <=", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameLike(String value) {
+            addCriterion("w_name like", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameNotLike(String value) {
+            addCriterion("w_name not like", value, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameIn(List<String> values) {
+            addCriterion("w_name in", values, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameNotIn(List<String> values) {
+            addCriterion("w_name not in", values, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameBetween(String value1, String value2) {
+            addCriterion("w_name between", value1, value2, "wName");
+            return (Criteria) this;
+        }
+
+        public Criteria andWNameNotBetween(String value1, String value2) {
+            addCriterion("w_name not between", value1, value2, "wName");
+            return (Criteria) this;
+        }
+
         public Criteria andWBroudIsNull() {
             addCriterion("w_broud is null");
             return (Criteria) this;

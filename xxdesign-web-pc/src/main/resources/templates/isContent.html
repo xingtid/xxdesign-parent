@@ -89,7 +89,7 @@
         $.post("/insertShare", $("#myInfo").serialize(), function (data) {
             if (data.rtnCode == 200) {
                 setTimeout(function () {
-                    location.href = "http://localhost:8088/getShare?cId=" + data.msg;
+                    location.href = "http://localhost:8088/getShare/" + data.msg;
                 }, 500);
 
             } else {

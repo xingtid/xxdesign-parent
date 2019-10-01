@@ -69,8 +69,10 @@
         $.post("baseLogin", $("#formlogin").serialize(), function (data) {
             if (data.rtnCode === 200) {
                 setTimeout(function () {
-
                     var ref = $("#ref").val();
+                    if (ref==="http://127.0.0.1:8088/login.html"){
+                        location.href = "http://127.0.0.1:8088/";
+                    }
                    location.href = ref;
                 }, 500);
             } else {

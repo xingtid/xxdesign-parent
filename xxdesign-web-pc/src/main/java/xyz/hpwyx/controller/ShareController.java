@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.hpwyx.IDutil.IDUtils;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.fegin.ShareServiceFigen;
@@ -32,6 +33,7 @@ public class ShareController {
         model.addAttribute ("share", xResult.getData ());
         return "share";
     }
+    @ResponseBody
     @RequestMapping(value = "/insertShare")
     public XResult insertShare(@RequestParam("sTitle")String title,@RequestParam("sContent")String content,  HttpSession session) {
         XUser user = (XUser) session.getAttribute ("USERINFO");

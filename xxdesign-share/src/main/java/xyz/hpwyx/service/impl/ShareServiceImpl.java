@@ -1,5 +1,6 @@
 package xyz.hpwyx.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ public class ShareServiceImpl implements ShareService {
 
     @Override
     public List<XShare> getList() {
+        PageHelper.startPage (0, 12);
         List<XShare> xShares = shareMapper.selectShareAndUser ();
         return xShares;
     }

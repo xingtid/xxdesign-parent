@@ -1,0 +1,20 @@
+.card-body p img{
+    width: 92%;
+    margin-bottom: 15px;
+    margin-top: 20px;
+
+}
+.card-body p{
+    text-align: center;
+    font-size: 16px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: normal;
+    text-indent: 2em;
+}
+.card-body{
+    padding-top: 20px;
+}

@@ -3,6 +3,7 @@
 <mapper namespace="xyz.hpwyx.mapper.XWardrobeMapper" >
   <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XWardrobe" >
     <id column="w_id" property="wId" jdbcType="INTEGER" />
+    <result column="w_name" property="wName" jdbcType="VARCHAR" />
     <result column="w_broud" property="wBroud" jdbcType="VARCHAR" />
     <result column="w_date" property="wDate" jdbcType="TIMESTAMP" />
     <result column="w_img" property="wImg" jdbcType="VARCHAR" />
@@ -76,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    w_id, w_broud, w_date, w_img, w_img2, w_img3, w_style, w_season, w_price, w_userid, 
-    w_mark, w_create_time, w_exx, w_exe
+    w_id, w_name, w_broud, w_date, w_img, w_img2, w_img3, w_style, w_season, w_price, 
+    w_userid, w_mark, w_create_time, w_exx, w_exe
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XWardrobeExample" >
     select
@@ -110,22 +111,27 @@
     </if>
   </delete>
   <insert id="insert" parameterType="xyz.hpwyx.pojo.XWardrobe" >
-    insert into x_wardrobe (w_id, w_broud, w_date, 
-      w_img, w_img2, w_img3, 
-      w_style, w_season, w_price, 
-      w_userid, w_mark, w_create_time, 
-      w_exx, w_exe)
-    values (#{wId,jdbcType=INTEGER}, #{wBroud,jdbcType=VARCHAR}, #{wDate,jdbcType=TIMESTAMP}, 
-      #{wImg,jdbcType=VARCHAR}, #{wImg2,jdbcType=VARCHAR}, #{wImg3,jdbcType=VARCHAR}, 
-      #{wStyle,jdbcType=VARCHAR}, #{wSeason,jdbcType=VARCHAR}, #{wPrice,jdbcType=REAL}, 
-      #{wUserid,jdbcType=INTEGER}, #{wMark,jdbcType=VARCHAR}, #{wCreateTime,jdbcType=DATE}, 
-      #{wExx,jdbcType=VARCHAR}, #{wExe,jdbcType=VARCHAR})
+    insert into x_wardrobe (w_id, w_name, w_broud, 
+      w_date, w_img, w_img2, 
+      w_img3, w_style, w_season, 
+      w_price, w_userid, w_mark, 
+      w_create_time, w_exx, w_exe
+      )
+    values (#{wId,jdbcType=INTEGER}, #{wName,jdbcType=VARCHAR}, #{wBroud,jdbcType=VARCHAR}, 
+      #{wDate,jdbcType=TIMESTAMP}, #{wImg,jdbcType=VARCHAR}, #{wImg2,jdbcType=VARCHAR}, 
+      #{wImg3,jdbcType=VARCHAR}, #{wStyle,jdbcType=VARCHAR}, #{wSeason,jdbcType=VARCHAR}, 
+      #{wPrice,jdbcType=REAL}, #{wUserid,jdbcType=INTEGER}, #{wMark,jdbcType=VARCHAR}, 
+      #{wCreateTime,jdbcType=DATE}, #{wExx,jdbcType=VARCHAR}, #{wExe,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XWardrobe" >
     insert into x_wardrobe
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="wId != null" >
         w_id,
+      </if>
+      <if test="wName != null" >
+        w_name,
       </if>
       <if test="wBroud != null" >
         w_broud,
@@ -170,6 +176,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="wId != null" >
         #{wId,jdbcType=INTEGER},
+      </if>
+      <if test="wName != null" >
+        #{wName,jdbcType=VARCHAR},
       </if>
       <if test="wBroud != null" >
         #{wBroud,jdbcType=VARCHAR},
@@ -224,6 +233,9 @@
       <if test="record.wId != null" >
         w_id = #{record.wId,jdbcType=INTEGER},
       </if>
+      <if test="record.wName != null" >
+        w_name = #{record.wName,jdbcType=VARCHAR},
+      </if>
       <if test="record.wBroud != null" >
         w_broud = #{record.wBroud,jdbcType=VARCHAR},
       </if>
@@ -271,6 +283,7 @@
   <update id="updateByExample" parameterType="map" >
     update x_wardrobe
     set w_id = #{record.wId,jdbcType=INTEGER},
+      w_name = #{record.wName,jdbcType=VARCHAR},
       w_broud = #{record.wBroud,jdbcType=VARCHAR},
       w_date = #{record.wDate,jdbcType=TIMESTAMP},
       w_img = #{record.wImg,jdbcType=VARCHAR},
@@ -291,6 +304,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XWardrobe" >
     update x_wardrobe
     <set >
+      <if test="wName != null" >
+        w_name = #{wName,jdbcType=VARCHAR},
+      </if>
       <if test="wBroud != null" >
         w_broud = #{wBroud,jdbcType=VARCHAR},
       </if>
@@ -335,7 +351,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XWardrobe" >
     update x_wardrobe
-    set w_broud = #{wBroud,jdbcType=VARCHAR},
+    set w_name = #{wName,jdbcType=VARCHAR},
+      w_broud = #{wBroud,jdbcType=VARCHAR},
       w_date = #{wDate,jdbcType=TIMESTAMP},
       w_img = #{wImg,jdbcType=VARCHAR},
       w_img2 = #{wImg2,jdbcType=VARCHAR},

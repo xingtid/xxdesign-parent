@@ -1,8 +1,12 @@
 package xyz.hpwyx.service;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.pojo.XWardrobe;
+
+import java.util.List;
 
 /**
  * @author tid
@@ -11,5 +15,7 @@ import xyz.hpwyx.pojo.XWardrobe;
 @RequestMapping("/wardrobe")
 public interface WardrobeService {
     @RequestMapping("/insertWard")
-    XResult insertWard(XWardrobe xWardrobe);
+    XResult insertWard(@RequestBody XWardrobe xWardrobe);
+    @RequestMapping("/getWardList")
+    List<XWardrobe> getWardList(@RequestParam("uId") Integer uId);
 }

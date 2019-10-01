@@ -22,8 +22,10 @@ import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.fegin.IndexServiceFigen;
 import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.iputil.GetIp;
+import xyz.hpwyx.json.JsonUtils;
 import xyz.hpwyx.pojo.XIndex;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.redis.RedisUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,20 +40,40 @@ import java.util.List;
 @Controller
 public class IndexController {
     @Autowired
+    RedisUtil redisUtil;
+    @Autowired
     private IndexServiceFigen indexServiceFigen;
     @Autowired
     private UserServiceFigen serviceFigen;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest reqest, HttpSession session) {
-        List<XIndex> xResult = indexServiceFigen.showPic ();
-        reqest.setAttribute ("index_pic1", xResult);
+
+        try {
+            String json3 = redisUtil.hget ("INDEX", "index_pic1");
+            if (StringUtils.isNotBlank (json3)) {
+                System.out.println ("取出缓存");
+                reqest.setAttribute ("index_pic1", JsonUtils.jsonToList (json3, XIndex.class));
+            }else {
+                List<XIndex> xResult = indexServiceFigen.showPic ();
+                reqest.setAttribute ("index_pic1", xResult);
+
+                redisUtil.hset ("INDEX", "index_pic1", JsonUtils.objectToJson (xResult));
+                redisUtil.expire ("INDEX", 20000, 0);
+            }
+        }catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+
         XResult xResult1 = indexServiceFigen.showShare ();
         reqest.setAttribute ("shareList", xResult1.getData ());
         List<DesignPojo> indexPojos = indexServiceFigen.showDesign ();
         reqest.setAttribute ("designList", indexPojos);
         List<XIndex> xIndices = indexServiceFigen.showService ();
         reqest.setAttribute ("serviceList", xIndices);
+
+
         // 1.从cookie中获取 token信息
         String token = CookieUtil.getUid (reqest, Constants.COOKIE_TOKEN);
 //        System.out.println ("token"+token);
