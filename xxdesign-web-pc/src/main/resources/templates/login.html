@@ -72,6 +72,8 @@
                     var ref = $("#ref").val();
                     if (ref==="http://127.0.0.1:8088/login.html"){
                         location.href = "http://127.0.0.1:8088/";
+                    }else if (ref === null){
+                        location.href ="http://127.0.0.1:8088/";
                     }
                    location.href = ref;
                 }, 500);

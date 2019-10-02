@@ -926,7 +926,8 @@ p.sub-tittle {
     border-radius: 4px;
     max-width: 550px;
     position: relative;
-    margin: 8em auto;
+    margin: 7em auto;
+    margin-top: 1em;
     padding: 3em 2em 2em;
 }
 
@@ -1108,7 +1109,7 @@ form#contactform1 {
     }
 
     .popup {
-        margin: 4em auto;
+        margin: 3em auto;
     }
 }
 

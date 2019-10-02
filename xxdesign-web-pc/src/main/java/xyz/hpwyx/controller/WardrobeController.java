@@ -42,7 +42,9 @@ public class WardrobeController {
     @RequestMapping(value = "/getWardList")
     public String getWardList(HttpSession session, Model model) {
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
-
+        if (userinfo == null){
+            return "login.html";
+        }
         List<XWardrobe> wardList = wardrobeFeign.getWardList (userinfo.getUId ());
         model.addAttribute ("wardrobe",wardList);
         return "wardrobe";

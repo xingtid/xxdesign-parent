@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>个人信息</title>
 
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/headandfoot.css">
@@ -25,16 +25,11 @@
                 <img th:src="${user.uEx1}"
                      height="120" width="120" alt="eyuo"><a href="" class="MAvaUp"><i class="Mphoto"></i></a></i>
             </div>
-            <div class="MAvaName"><span th:text="${user.uName}"></span>
-                <i class="MGenderMale"></i> </div>
-<!--            <div class="its_tags">-->
-<!--                <a href="/home/vip_show.php" target="_blank" title="VIP"><i class="vip"></i></a>-->
-<!--                <a href="/rudder/info.php" target="_blank" title="分舵"><i class="duo"></i>-->
-<!--                    <a href="/qa/expert_apply.php?type=1" target="_blank" title="指路人"><i class="zhiluren"></i></a>-->
-<!--            </div>-->
+            <div class="MAvaName"><span th:text="${user.uName}"></span></div>
             <div class="MAvaInfo clearfix MAvaMyInfo">
-                <span class="MAvaLevel flt1">等级：<a href="/rank/lv.php" title="Lv.3" target="_blank">Lv.3</a></span>
-                <span class="MAvaPlace flt1" title="苏州">现居：苏州</span> <span class="MAvaSet"><a title="设置" href="/setting/" target="_blank"></a></span>
+                <span class="MAvaLevel flt1">等级：<a href="#" target="_blank">Lv.3</a></span>
+                <span class="MAvaPlace flt1">现居：苏州</span>
+                <span class="MAvaPlace flt1"><a title="设置" href="#" target="_blank">修改</a></span>
             </div>
             <div class="MAvaProfile">
                 <div class="MProfile">
@@ -43,25 +38,28 @@
             </div>
             <div class="MAvaMore clearfix">
                 <div class="MAvaNums">
-                    <strong><a href="/friend/index/follow?uid=79963863" target="_blank">8</a></strong>
+                    <strong><a href="#" target="_blank">8</a></strong>
                     <p>关注</p>
                 </div>
                 <div class="MAvaNums">
-                    <strong><a href="/friend/index/follow?uid=79963863&flag=1" target="_blank">0</a></strong>
+                    <strong><a href="#" target="_blank">0</a></strong>
                     <p>粉丝</p>
                 </div>
-
+                <div class="MAvaNums">
+                    <strong><a href="#" target="_blank">0</a></strong>
+                    <p>粉丝</p>
+                </div>
             </div>
         </div>
 
-<!--        <div class="MWendaMod">-->
-<!--            <h3>我的问答荣誉</h3>-->
-<!--            <ul class="wendaHonor">-->
-<!--                <li><a class="zlr" href="/qa/expert_apply.php" target="_blank"><i></i>马蜂窝指路人</a></li>-->
-<!--                <li><a class="mdd-zlr" href="/qa/expert_apply.php?type=1" target="_blank"><i></i>目的地指路人</a></li>-->
-<!--                <li><a class="goldmaster" href=" http://www.mafengwo.cn/g/i/3136909.html" target="_blank"><i></i>金牌大师</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
+        <div class="MWendaMod">
+            <h3>我的问答荣誉</h3>
+            <ul class="wendaHonor">
+                <li><a class="zlr" href="#" target="_blank">指路人</a></li>
+                <li><a class="mdd-zlr" href="#" target="_blank">目的地指路人</a></li>
+                <li><a class="goldmaster" href="#" target="_blank">金牌大师</a></li>
+            </ul>
+        </div>
 
 
     </div>
