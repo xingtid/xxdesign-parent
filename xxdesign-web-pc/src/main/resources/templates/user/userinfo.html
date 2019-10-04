@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/headandfoot.css">
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="/css/cropper.min.css"/>
     <link href="/css/user/infor.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user/info.css" rel="stylesheet" type="text/css"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="main-top" id="home">
@@ -19,50 +21,7 @@
 </div>
 
 <div class="center">
-    <div class="side_bar flt1">
-        <div class="MAvatar">
-            <div class="MAvaImg hasAva">
-                <img th:src="${user.uEx1}"
-                     height="120" width="120" alt="eyuo"><a href="" class="MAvaUp"><i class="Mphoto"></i></a></i>
-            </div>
-            <div class="MAvaName"><span th:text="${user.uName}"></span></div>
-            <div class="MAvaInfo clearfix MAvaMyInfo">
-                <span class="MAvaLevel flt1">等级：<a href="#" target="_blank">Lv.3</a></span>
-                <span class="MAvaPlace flt1">现居：苏州</span>
-                <span class="MAvaPlace flt1"><a title="设置" href="#" target="_blank">修改</a></span>
-            </div>
-            <div class="MAvaProfile">
-                <div class="MProfile">
-                    <pre>哈哈哈哈</pre>
-                </div>
-            </div>
-            <div class="MAvaMore clearfix">
-                <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">8</a></strong>
-                    <p>关注</p>
-                </div>
-                <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">0</a></strong>
-                    <p>粉丝</p>
-                </div>
-                <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">0</a></strong>
-                    <p>粉丝</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="MWendaMod">
-            <h3>我的问答荣誉</h3>
-            <ul class="wendaHonor">
-                <li><a class="zlr" href="#" target="_blank">指路人</a></li>
-                <li><a class="mdd-zlr" href="#" target="_blank">目的地指路人</a></li>
-                <li><a class="goldmaster" href="#" target="_blank">金牌大师</a></li>
-            </ul>
-        </div>
-
-
-    </div>
+    <div th:replace="templates::userleft"></div>
     <div class="content flt2">
         <div class="achievement clearfix">
             <ul>
@@ -82,26 +41,158 @@
         <div class="wd-main">
             <div class="wd-navbar clearfix">
                 <ul class="wd-nav _j_qa_nav">
-                    <li class="on"><a href="/wenda/u/79963863/answer.html">我的回答</a></li>
-                    <li><a href="/wenda/u/79963863/question.html">我的提问</a></li>
-                    <li><a href="/wenda/u/79963863/solution.html">我来解答</a></li>
+                    <li class="on"><a href="/">我的信息</a></li>
+                    <li><a href="/getMsg">我的消息</a></li>
+                    <li><a href="/wenda/u/79963863/solution.html"></a></li>
 
                 </ul>
             </div>
 
-            <div class="wd-total">共有<span class="_j_total_item">0条</span>回答</div>
             <div class="wd-list _j_qa_list">
-                <div class="no_data">
-                    <img src="http://css.mafengwo.net/images/home_new2015/no_num.png" height="139" width="156" alt="">
-                    <p>这里的世界静悄悄</p>
+                <div class="form-control-sm">
+                <label>昵称: </label><input type="text">
+                </div>
+                <div class="form-control-sm">
+                <label> sfasd </label><input type="text">
+                </div>
+                <div class="form-control-sm">
+                <label> sfasd </label><input type="text">
                 </div>
 
+                <button class="btn">提交</button>
             </div>
             <div class="pagin" id="smallpager"></div>
         </div>
     </div>
 </div>
 </div>
+<!-- 修改头像 -->
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/cropper.js"></script>
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
+            <form style="display: none">
+                <input type="file">
+            </form>
+            <form class="avatar-form">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="avatar-body">
+                        <div class="avatar-upload">
+                            <input class="avatar-src" name="avatar_src" type="hidden">
+                            <input class="avatar-data" name="avatar_data" type="hidden">
+                            <label for="avatarInput" style="line-height: 35px;">图片上传</label>
+                            <button class="btn btn-danger" type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+                            <span id="avatar-name"></span>
+                            <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="avatar-wrapper"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="avatar-preview preview-lg" id="imageHead"></div>
+
+                            </div>
+                        </div>
+                        <div class="row avatar-btns">
+                            <div class="col-md-4">
+                                <div class="btn-group">
+                                    <button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
+                                </div>
+                            </div>
+                            <div class="col-md-5" style="text-align: right;">
+
+
+                                <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+<script type="text/javascript" src="/js/html2canvas.min.js"></script>
+<script type="text/javascript">
+    //做个下简易的验证  大小 格式
+    $('#avatarInput').on('change', function(e) {
+        let hit = document.getElementById("hint");
+        var filemaxsize = 1024 * 5;//5M
+        var target = $(e.target);
+        var Size = target[0].files[0].size / 1024;
+        if(Size > filemaxsize) {
+            hit.innerHTML = '图片过大，请重新选择!';
+            hint();
+            $(".avatar-wrapper").childre().remove;
+            return false;
+        }
+        if(!this.files[0].type.match(/image.*/)) {
+            hit.innerHTML = '请选择正确的图片!';
+            hint();
+        } else {
+            var filename = document.querySelector("#avatar-name");
+            var texts = document.querySelector("#avatarInput").value;
+            var teststr = texts; //你这里的路径写错了
+            testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
+            filename.innerHTML = testend;
+        }
+
+    });
+
+    $(".avatar-save").on("click", function() {
+        var img_lg = document.getElementById('imageHead');
+        // 截图小的显示框内的内容
+        html2canvas(img_lg, {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas) {
+                canvas.id = "mycanvas";
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL("image/jpeg");
+                dataUrl;
+                var newImg = document.createElement("img");
+                newImg.src = dataUrl;
+                imagesAjax(dataUrl)
+            }
+        });
+    });
+
+    function imagesAjax(src) {
+        var data = {};
+        data.img = src;
+        data.jid = $('#jid').val();
+        $.ajax({
+            url: "/updateHead",
+            data: data,
+            type: "POST",
+            dataType: 'json',
+            success: function(re) {
+                let hit = document.getElementById("hint");
+                if(re.status == '200') {
+                    $('.user_pic img').attr('src',src );
+                    hit.html("修改成功");
+                    hint();
+                    setTimeout(function () {
+                        location.reload();
+                    }, 800);
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

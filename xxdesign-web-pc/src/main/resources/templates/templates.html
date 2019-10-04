@@ -3,8 +3,45 @@
 
 <!-- head -->
 <header class="navigation" id="hea" th:fragment="head" style="top: 0">
+    <link rel="stylesheet" href="/css/message.css"/>
+    <script src="/js/message.js"></script>
+    <script th:inline="javascript">
 
+        function inita(){
+            console.log("inita");
+            MessagePlugin.init({
 
+                elem: "#message",
+                msgData: [[${session.msg}]],
+                noticeData: [[${session.note}]],
+                msgUnReadData:[[${session.msg1Size}]] ,
+                noticeUnReadData: [[${session.note1Size}]],
+                msgClick: function(obj) {
+                    location.href="https://127.0.0.1/getMsg"
+                },
+                noticeClick: function(obj) {
+                    location.href="https://127.0.0.1/getMsg"
+                },
+                allRead: function(obj) {
+                    alert("全部已读");
+                },
+                getNodeHtml: function(obj, node) {
+                    if (obj.readStatus == 0) {
+                        node.isRead = true;
+                    } else {
+                        node.isRead = false;
+                    }
+                    var html = "<p>"+ obj.text +"</p>";
+                    node.html = html;
+                    return node;
+                }
+            });
+        }
+        $(function(){
+            inita();
+        });
+
+    </script>
     <div class="container-fluid">
         <div class="header d-md-flex justify-content-between align-items-center py-3 px-xl-5 px-lg-3 px-2">
             <!-- logo -->
@@ -37,7 +74,10 @@
                         <li th:if="${session.USERINFO} eq null"><a href="login.html">登录</a>
                             <a href="register.html">注册</a></li>
                         <!--                        <li><a href="admin.html">后台</a></li>-->
+
+                        <li th:if="${session.USERINFO} ne null"> <div  id="message"></div></li>
                         <li th:if="${session.USERINFO} ne null" th:object="${session.USERINFO}">
+
                             <!-- 下拉 -->
                             <label for="drop-3" class="toggle toogle-2">获取灵感<span class="fa fa-angle-down"
                                                                                   aria-hidden="true"></span>
@@ -154,5 +194,54 @@
     <!-- move top icon -->
     <a href="#home" class="move-top text-center"></a>
     <!-- //move top icon -->
+</div>
+
+
+<div th:fragment="userleft">
+    <div class="side_bar flt1">
+        <div class="MAvatar">
+            <div class="MAvaImg hasAva">
+                <img th:src="${session.USERINFO.uEx1}"
+                     height="120" width="120" alt="eyuo"><a type="button" class="MAvaUp" data-toggle="modal" data-target="#avatar-modal"><i class="Mphoto"></i></a></i>
+            </div>
+            <div class="MAvaName"><span th:text="${session.USERINFO.uName}"></span></div>
+            <div class="MAvaInfo clearfix MAvaMyInfo">
+                <span class="MAvaLevel flt1">等级：<a href="#" target="_blank">Lv.3</a></span>
+                <span class="MAvaPlace flt1">现居：苏州</span>
+                <span class="MAvaPlace flt1"><spqn>会员</spqn></span>
+            </div>
+            <div class="MAvaProfile">
+                <div class="MProfile">
+                    <pre>个人说明</pre>
+                </div>
+            </div>
+            <div class="MAvaMore clearfix">
+                <div class="MAvaNums">
+                    <strong><a href="#" target="_blank">8</a></strong>
+                    <p>累计分享</p>
+                </div>
+                <div class="MAvaNums">
+                    <strong><a href="#" target="_blank">0</a></strong>
+                    <p>我的衣物</p>
+                </div>
+                <div class="MAvaNums">
+                    <strong><a href="#" target="_blank">0</a></strong>
+                    <p>消息通知</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="MWendaMod">
+            <h3>我的分享</h3>
+            <ul class="wendaHonor">
+                <li><a class="zlr" href="#" target="_blank">指路人</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
 </div>
 </html>

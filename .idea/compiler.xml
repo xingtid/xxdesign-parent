@@ -6,9 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="xxdesign-pc-web" />
         <module name="xxdesign-share" />
-        <module name="xxdesign-index" />
+        <module name="xxdesign-pc-web" />
         <module name="xxdesign-user" />
         <module name="xxdesign-admin" />
         <module name="xxdesign-common" />
@@ -18,6 +17,7 @@
         <module name="xxdesign-api-wardrobe" />
         <module name="xxdesign-api-admin" />
         <module name="xxdesign-message" />
+        <module name="xxdesign-index" />
         <module name="eureka-server" />
         <module name="xxdesign-api-share" />
         <module name="xxdesign-api-user" />

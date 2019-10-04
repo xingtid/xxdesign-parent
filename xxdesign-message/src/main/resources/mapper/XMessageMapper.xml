@@ -75,9 +75,22 @@
     m_id, m_send_id, m_besend_id, m_title, m_content, m_time, m_type, m_parent, m_mee, 
     m_mark
   </sql>
-
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from x_message
     where m_id = #{mId,jdbcType=INTEGER}
@@ -86,16 +99,21 @@
     delete from x_message
     where m_id = #{mId,jdbcType=INTEGER}
   </delete>
-
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XMessageExample" >
+    delete from x_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="xyz.hpwyx.pojo.XMessage" >
-    insert into x_message (m_id, m_send_id, m_besend_id, 
-      m_title, m_content, m_time, 
-      m_type, m_parent, m_mee, 
-      m_mark)
-    values (#{mId,jdbcType=INTEGER}, #{mSendId,jdbcType=INTEGER}, #{mBesendId,jdbcType=INTEGER}, 
-      #{mTitle,jdbcType=VARCHAR}, #{mContent,jdbcType=VARCHAR}, #{mTime,jdbcType=TIMESTAMP}, 
-      #{mType,jdbcType=INTEGER}, #{mParent,jdbcType=INTEGER}, #{mMee,jdbcType=VARCHAR}, 
-      #{mMark,jdbcType=VARCHAR})
+    insert into x_message (m_id, m_send_id, m_besend_id,
+                           m_title, m_content, m_time,
+                           m_type, m_parent, m_mee,
+                           m_mark)
+    values (#{mId,jdbcType=INTEGER}, #{mSendId,jdbcType=INTEGER}, #{mBesendId,jdbcType=INTEGER},
+            #{mTitle,jdbcType=VARCHAR}, #{mContent,jdbcType=VARCHAR}, #{mTime,jdbcType=TIMESTAMP},
+            #{mType,jdbcType=INTEGER}, #{mParent,jdbcType=INTEGER}, #{mMee,jdbcType=VARCHAR},
+            #{mMark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XMessage" >
     insert into x_message
@@ -164,17 +182,116 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XMessageExample" resultType="java.lang.Integer" >
+    select count(*) from x_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_message
+    <set >
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mSendId != null" >
+        m_send_id = #{record.mSendId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mBesendId != null" >
+        m_besend_id = #{record.mBesendId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mTitle != null" >
+        m_title = #{record.mTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mContent != null" >
+        m_content = #{record.mContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mTime != null" >
+        m_time = #{record.mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mType != null" >
+        m_type = #{record.mType,jdbcType=INTEGER},
+      </if>
+      <if test="record.mParent != null" >
+        m_parent = #{record.mParent,jdbcType=INTEGER},
+      </if>
+      <if test="record.mMee != null" >
+        m_mee = #{record.mMee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mMark != null" >
+        m_mark = #{record.mMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_message
+    set m_id = #{record.mId,jdbcType=INTEGER},
+    m_send_id = #{record.mSendId,jdbcType=INTEGER},
+    m_besend_id = #{record.mBesendId,jdbcType=INTEGER},
+    m_title = #{record.mTitle,jdbcType=VARCHAR},
+    m_content = #{record.mContent,jdbcType=VARCHAR},
+    m_time = #{record.mTime,jdbcType=TIMESTAMP},
+    m_type = #{record.mType,jdbcType=INTEGER},
+    m_parent = #{record.mParent,jdbcType=INTEGER},
+    m_mee = #{record.mMee,jdbcType=VARCHAR},
+    m_mark = #{record.mMark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XMessage" >
+    update x_message
+    <set >
+      <if test="mSendId != null" >
+        m_send_id = #{mSendId,jdbcType=INTEGER},
+      </if>
+      <if test="mBesendId != null" >
+        m_besend_id = #{mBesendId,jdbcType=INTEGER},
+      </if>
+      <if test="mTitle != null" >
+        m_title = #{mTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mContent != null" >
+        m_content = #{mContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mTime != null" >
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mType != null" >
+        m_type = #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mParent != null" >
+        m_parent = #{mParent,jdbcType=INTEGER},
+      </if>
+      <if test="mMee != null" >
+        m_mee = #{mMee,jdbcType=VARCHAR},
+      </if>
+      <if test="mMark != null" >
+        m_mark = #{mMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XMessage" >
     update x_message
     set m_send_id = #{mSendId,jdbcType=INTEGER},
-      m_besend_id = #{mBesendId,jdbcType=INTEGER},
-      m_title = #{mTitle,jdbcType=VARCHAR},
-      m_content = #{mContent,jdbcType=VARCHAR},
-      m_time = #{mTime,jdbcType=TIMESTAMP},
-      m_type = #{mType,jdbcType=INTEGER},
-      m_parent = #{mParent,jdbcType=INTEGER},
-      m_mee = #{mMee,jdbcType=VARCHAR},
-      m_mark = #{mMark,jdbcType=VARCHAR}
+        m_besend_id = #{mBesendId,jdbcType=INTEGER},
+        m_title = #{mTitle,jdbcType=VARCHAR},
+        m_content = #{mContent,jdbcType=VARCHAR},
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+        m_type = #{mType,jdbcType=INTEGER},
+        m_parent = #{mParent,jdbcType=INTEGER},
+        m_mee = #{mMee,jdbcType=VARCHAR},
+        m_mark = #{mMark,jdbcType=VARCHAR}
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="int">
+  select
+  <include refid="Base_Column_List"/>
+  from x_message
+  where m_besend_id=#{uId,jdbcType=INTEGER}
+</select>
 </mapper>

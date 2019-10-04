@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>个人信息</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link href="/css/user/infor.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/user/info.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="main-top" id="home">
+    <div th:replace="templates::head"></div>
+    <div class="banner_w3lspvt-2" style="background: url(/images/2.jpg) no-repeat center;">
+
+    </div>
+</div>
+
+<div class="center">
+    <div th:replace="templates::userleft"></div>
+    <div class="content flt2">
+        <div class="achievement clearfix">
+            <ul>
+                <li><a><strong>0</strong>
+                    <div>内容数</div>
+                </a></li>
+                <li>
+                    <strong class="goldmedal"><i></i>0</strong>
+                    <div>金牌回答</div>
+                </li>
+                <li><strong>0%</strong>
+                    <div>采纳率</div>
+                </li>
+            </ul>
+            <a class="btn" href="/wenda/publish.html">我要提问</a>
+        </div>
+        <div class="wd-main">
+            <div class="wd-navbar clearfix">
+                <ul class="wd-nav _j_qa_nav">
+                    <li class="on"><a href="/wenda/u/79963863/answer.html">我的回答</a></li>
+                    <li><a href="/wenda/u/79963863/question.html">我的提问</a></li>
+                    <li><a href="/wenda/u/79963863/solution.html">我来解答</a></li>
+
+                </ul>
+            </div>
+
+            <div class="wd-list _j_qa_list">
+                <!--                    <img src="http://css.mafengwo.net/images/home_new2015/no_num.png" height="139" width="156" alt="">-->
+                <!--                    <p>这里的世界静悄悄</p>-->
+                <div class="wd-item" >
+                    <a href="#" target="_blank" class="wd-btn-answer">删除</a>
+                    <div class="wd-title"><a  target="_blank"><span class="label-mdd">全球</span>有哪些地方是你去了以后会感叹“卧槽世界上还有这种地方”的？</a>
+                    </div>
+                    <div class="wd-detail">为自己挑选下一个旅行目的地，就想去那种出格的地方，特别美、特别奇怪、特别神奇都可以，求大神推荐自己去过的地方，谢谢！！</div>
+                    <div class="wd-meta">
+                        <div class="meta-pull">
+                            <span class="meta-item meta-time">2018-09-03 14:44</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pagin" id="smallpager"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -7583,7 +7583,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .wd-list {
-	border-top: 1px solid #e5e5e5;
+	/*border-top: 1px solid #e5e5e5;*/
 	margin: 0 -30px 0 0
 }
 
@@ -7601,7 +7601,16 @@ only screen and (min-device-pixel-ratio:2) {
 	font-size: 20px;
 	line-height: 36px
 }
-
+.wd-meta {
+	font-size: 12px;
+	color: #999;
+	line-height: 20px;
+	*zoom: 1;
+}
+wd-meta .meta-pull {
+	float: right;
+	margin-right: -5px;
+}
 .wd-title a {
 	color: #333
 }

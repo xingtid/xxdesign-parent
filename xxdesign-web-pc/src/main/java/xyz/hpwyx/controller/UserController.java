@@ -30,7 +30,7 @@ public class UserController {
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
         XUser userById = serviceFigen.findUserById (userinfo.getUId ());
         XUserInfo infoById = serviceFigen.findInfoById (userinfo.getUId ());
-        reqest.setAttribute ("user", userById);
+        session.setAttribute ("USERINFO", userById);
         reqest.setAttribute ("userinfo", infoById);
         return "user/userinfo";
     }

@@ -69,16 +69,19 @@
         $.post("baseLogin", $("#formlogin").serialize(), function (data) {
             if (data.rtnCode === 200) {
                 setTimeout(function () {
-                    var ref = $("#ref").val();
+                    var ref = null;
+                        ref = $("#ref").val();
+
                     if (ref==="http://127.0.0.1:8088/login.html"){
                         location.href = "http://127.0.0.1:8088/";
-                    }else if (ref === null){
+                    }else if (ref === null||ref ===""){
                         location.href ="http://127.0.0.1:8088/";
+                    }else {
+                        location.href = ref;
                     }
-                   location.href = ref;
                 }, 500);
             } else {
-                alert("a")
+                alert("登录失败")
             }
         });
     }
