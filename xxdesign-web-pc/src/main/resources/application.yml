@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://119.3.11.44:8761/eureka/
 BaseRemote:
   ribbon:
     ## 服务提供者的地址，不是服务注册中心的地址

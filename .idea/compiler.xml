@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="xxdesign-share" />
+        <module name="xxdesign-api-message" />
         <module name="xxdesign-pc-web" />
         <module name="xxdesign-user" />
         <module name="xxdesign-admin" />
         <module name="xxdesign-common" />
-        <module name="xxdesign-api-message" />
+        <module name="xxdesign-api-vip" />
         <module name="zuul-server" />
         <module name="xxdesign-api-index" />
         <module name="xxdesign-api-wardrobe" />
@@ -19,9 +19,11 @@
         <module name="xxdesign-message" />
         <module name="xxdesign-index" />
         <module name="eureka-server" />
-        <module name="xxdesign-api-share" />
+        <module name="xxdesign-share" />
+        <module name="xxdesign-vip" />
         <module name="xxdesign-api-user" />
         <module name="xxdesign-wardrobe" />
+        <module name="xxdesign-api-share" />
         <module name="xxdesign-admin-web" />
       </profile>
     </annotationProcessing>
@@ -41,6 +43,7 @@
       <module name="xxdesign-api-message" options="-parameters" />
       <module name="xxdesign-api-share" options="-parameters" />
       <module name="xxdesign-api-user" options="-parameters" />
+      <module name="xxdesign-api-vip" options="-parameters" />
       <module name="xxdesign-api-wardrobe" options="-parameters" />
       <module name="xxdesign-common" options="-parameters" />
       <module name="xxdesign-index" options="-parameters" />
@@ -49,6 +52,7 @@
       <module name="xxdesign-pc-web" options="-parameters" />
       <module name="xxdesign-share" options="-parameters" />
       <module name="xxdesign-user" options="-parameters" />
+      <module name="xxdesign-vip" options="-parameters" />
       <module name="xxdesign-wardrobe" options="-parameters" />
       <module name="xxdesign-web-admin" options="-parameters" />
       <module name="xxdesign-web-pc" options="-parameters" />

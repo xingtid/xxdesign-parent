@@ -4,6 +4,8 @@ package xyz.hpwyx.baseresult;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 /**
  * @author tid
  * @create 2019-09-19 10:24 上午
@@ -18,4 +20,5 @@ public class IndexPojo {
     private String i_parent;  //类型
     private String s_content;
     private Integer s_get_click;
+    private Date s_time;
 }

@@ -72,7 +72,7 @@
 							</div>
 							<div class="col-sm-6 col-8 info-commt text-right">
 								<ul class="blog_list">
-									<li>Jan 16, 2019</li>
+									<li th:text="${#dates.format(share.mTime,'yyyy-MM-dd')}">Jan 16, 2019</li>
 									<li class="mx-3">
 										<a href="#">
 											<span class="fa fa-heart-o mr-1"></span>30

@@ -14,13 +14,13 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <style>
         .banner_w3lspvt-2 {
-            background: url(../images/3.jpg) no-repeat center;
+            background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aChyAJ2YEAAEVMjXpbh4327.jpg) no-repeat center;
             background-size: cover;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             -ms-background-size: cover;
-            min-height: 150px;
+            min-height: 300px;
         }
     </style>
     <!-- Web-Fonts -->
@@ -48,10 +48,10 @@
 <!-- //page details -->
 
 <!-- Gallery -->
-<section class="gallery py-4" id="gallery">
+<section class="gallery" id="gallery">
     <div class="container py-md-5">
         <h3 class="tittle text-center font-weight-bold">我的衣物间</h3>
-        <p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">这里是你的已经上传过的衣物</p>
+        <p class="sub-tittle text-center mt-2  mb-4">这里是你的已经上传过的衣物</p>
         <div class="row news-grids no-gutters text-center">
             <div class="col-md-4 gal-img" th:each="wardrobe,userStat:${wardrobe}">
                 <a th:href="'#gal'+${userStat.index}"><img src="images/blog1.jpg" class="img-fluid"

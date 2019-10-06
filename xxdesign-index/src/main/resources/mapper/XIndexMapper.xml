@@ -271,7 +271,7 @@
     where i_id = #{iId,jdbcType=INTEGER}
   </update>
   <select id="findShare" resultType="xyz.hpwyx.baseresult.IndexPojo">
-    select   i_parent,s_id, s_content, s_img,s_title,s_get_click
+    select   i_parent,s_id, s_content, s_img,s_title,s_get_click,s_time
     from x_index x,x_share s where x.i_parent = s.s_id and x.i_type = 2
   </select>
   <select id="findDesigner" resultType="xyz.hpwyx.baseresult.DesignPojo">

@@ -24,12 +24,13 @@ import java.util.Map;
  **/
 @Controller
 public class MsgController {
-@Autowired
-private MsgServiceFigen msgServiceFigen;
+    @Autowired
+    private MsgServiceFigen msgServiceFigen;
+
     @RequestMapping("/getMsg")
     public String getMsg(HttpSession session, Model model) {
         XUser user = (XUser) session.getAttribute ("USERINFO");
-        if (user==null){
+        if (user == null) {
             return "login";
         }
         System.out.println ("getMsg");
@@ -40,35 +41,33 @@ private MsgServiceFigen msgServiceFigen;
     }
 
 
-
     @RequestMapping("/refresh")
     public XResult refresh(HttpSession session, Model model) {
-        session.setMaxInactiveInterval (60*60);
+        session.setMaxInactiveInterval (60 * 60);
         XUser user = (XUser) session.getAttribute ("USERTOKEN");
         List<XMessage> message = msgServiceFigen.getMessage (user.getUId (), 1);
         List<XMessage> message2 = msgServiceFigen.getMessage (user.getUId (), 2);
         List<Map<String, Object>> list = new ArrayList<> ();
-
         List<Map<String, Object>> list2 = new ArrayList<> ();
 
-        int i=0;
+        int i = 0;
         for (XMessage sMessage : message2) {
             Map<String, Object> map2 = new HashMap<> ();
             map2.put ("text", sMessage.getmTitle ());
             map2.put ("id", sMessage.getmId ());
             map2.put ("readStatus", sMessage.getmMark ());
-            if ("1".equals (sMessage.getmMark ())){
+            if ("1".equals (sMessage.getmMark ())) {
                 i++;
             }
             list2.add (map2);
         }
-        int j=0;
+        int j = 0;
         for (XMessage sMessage : message) {
             Map<String, Object> map = new HashMap<> ();
             map.put ("text", sMessage.getmTitle ());
             map.put ("id", sMessage.getmId ());
             map.put ("readStatus", sMessage.getmMark ());
-            if ("1".equals (sMessage.getmMark ())){
+            if ("1".equals (sMessage.getmMark ())) {
                 j++;
             }
             list.add (map);
@@ -80,38 +79,45 @@ private MsgServiceFigen msgServiceFigen;
         session.setAttribute ("note", list2);
         return XResult.isOk ();
     }
+
     @RequestMapping("/refreshA")
     @ResponseBody
-    public XResult refreshA(HttpSession session, Model model) {
-        XUser user = (XUser) session.getAttribute ("USERTOKEN");
+    public XResult refreshA(HttpSession session) {
+        System.out.println ("消息");
+        XUser user = (XUser) session.getAttribute ("USERINFO");
 
-        if (user == null){
+        if (user == null) {
             return XResult.isOk ();
         }
+        System.out.println (user.getUName ());
         List<XMessage> message = msgServiceFigen.getMessage (user.getUId (), 1);
         List<XMessage> message2 = msgServiceFigen.getMessage (user.getUId (), 2);
+        if (message.size () == 0) {
+            session.setAttribute ("msg1Size", 0);
+            session.setAttribute ("msg", null);
+        }
         List<Map<String, Object>> list = new ArrayList<> ();
 
         List<Map<String, Object>> list2 = new ArrayList<> ();
 
-        int i=0;
+        int i = 0;
         for (XMessage sMessage : message2) {
             Map<String, Object> map2 = new HashMap<> ();
             map2.put ("text", sMessage.getmTitle ());
             map2.put ("id", sMessage.getmId ());
             map2.put ("readStatus", sMessage.getmMark ());
-            if ("1".equals (sMessage.getmMark ())){
+            if ("1".equals (sMessage.getmMark ())) {
                 i++;
             }
             list2.add (map2);
         }
-        int j=0;
+        int j = 0;
         for (XMessage sMessage : message) {
             Map<String, Object> map = new HashMap<> ();
             map.put ("text", sMessage.getmTitle ());
             map.put ("id", sMessage.getmId ());
             map.put ("readStatus", sMessage.getmMark ());
-            if ("1".equals (sMessage.getmMark ())){
+            if ("1".equals (sMessage.getmMark ())) {
                 j++;
             }
             list.add (map);
@@ -132,6 +138,7 @@ private MsgServiceFigen msgServiceFigen;
         XResult result = msgServiceFigen.delMessage (mId);
         return result;
     }
+
     @RequestMapping("/touchMsg")
     @ResponseBody
     public XResult touchMsg(@RequestParam(value = "mId", required = false) int mId) {

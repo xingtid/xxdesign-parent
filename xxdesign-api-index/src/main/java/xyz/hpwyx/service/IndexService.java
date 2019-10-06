@@ -17,7 +17,7 @@ public interface IndexService {
     @RequestMapping("/showPic")
     List<XIndex> showPic();
     @RequestMapping("/showShare")
-    XResult showShare();
+    List<IndexPojo> showShare();
     @RequestMapping("/showDesign")
     List<DesignPojo> showDesign();
     @RequestMapping("/showService")

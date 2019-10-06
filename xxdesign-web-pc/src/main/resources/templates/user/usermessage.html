@@ -21,42 +21,30 @@
 <div class="center">
     <div th:replace="templates::userleft"></div>
     <div class="content flt2">
-        <div class="achievement clearfix">
-            <ul>
-                <li><a><strong>0</strong>
-                    <div>内容数</div>
-                </a></li>
-                <li>
-                    <strong class="goldmedal"><i></i>0</strong>
-                    <div>金牌回答</div>
-                </li>
-                <li><strong>0%</strong>
-                    <div>采纳率</div>
-                </li>
-            </ul>
-            <a class="btn" href="/wenda/publish.html">我要提问</a>
-        </div>
         <div class="wd-main">
             <div class="wd-navbar clearfix">
                 <ul class="wd-nav _j_qa_nav">
-                    <li class="on"><a href="/wenda/u/79963863/answer.html">我的回答</a></li>
-                    <li><a href="/wenda/u/79963863/question.html">我的提问</a></li>
-                    <li><a href="/wenda/u/79963863/solution.html">我来解答</a></li>
+                    <li class="on"><a href="/findMyInfo">我的信息</a></li>
+                    <li><a href="/getMsg">我的消息</a></li>
+                    <li><a href="/wenda/u/79963863/solution.html"></a></li>
 
                 </ul>
             </div>
 
             <div class="wd-list _j_qa_list">
-                <!--                    <img src="http://css.mafengwo.net/images/home_new2015/no_num.png" height="139" width="156" alt="">-->
-                <!--                    <p>这里的世界静悄悄</p>-->
-                <div class="wd-item" >
-                    <a href="#" target="_blank" class="wd-btn-answer">删除</a>
-                    <div class="wd-title"><a  target="_blank"><span class="label-mdd">全球</span>有哪些地方是你去了以后会感叹“卧槽世界上还有这种地方”的？</a>
+                <div class="no_data" th:if="${msgList.size()} eq 0">
+                                    <img src="http://css.mafengwo.net/images/home_new2015/no_num.png" height="139" width="156" alt="">
+                                    <p>这里的世界静悄悄</p>
+                </div>
+                <div class="wd-item" th:each=" msg:${msgList}">
+                    <a href="javascript(0)" target="_blank" class="wd-btn-answer" onclick="delmsg(this)"  th:data-id="${msg.mId}">删除</a>
+                    <div class="wd-title"><a  target="_blank"><span class="label-mdd">[通知]</span>
+                    <span th:text="${msg.mTitle}"></span></a>
                     </div>
-                    <div class="wd-detail">为自己挑选下一个旅行目的地，就想去那种出格的地方，特别美、特别奇怪、特别神奇都可以，求大神推荐自己去过的地方，谢谢！！</div>
+                    <div class="wd-detail" th:text="${msg.mContent}">为自己挑选下一个旅行目的地</div>
                     <div class="wd-meta">
                         <div class="meta-pull">
-                            <span class="meta-item meta-time">2018-09-03 14:44</span>
+                            <span class="meta-item meta-time"  th:text="${#dates.format(msg.mTime,'yyyy-MM-dd hh:mm')}">2018-09-03 14:44</span>
                         </div>
                     </div>
                 </div>
@@ -67,6 +55,25 @@
     </div>
 </div>
 </div>
+<script>
 
+    function delmsg(datae) {
+        var data = {};
+        data.mId = $(datae).attr("data-id");
+        $.ajax({
+            url: "/delMsg",
+            data: data,
+            type: "POST",
+            dataType: 'json',
+            success: function (re) {
+                if (re.status == 200) {
+                    location.reload()
+                } else {
+                    alert("删除失败")
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

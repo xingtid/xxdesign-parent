@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XVipMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XVip" >
+    <id column="v_id" property="vId" jdbcType="VARCHAR" />
+    <result column="v_uid" property="vUid" jdbcType="INTEGER" />
+    <result column="v_time_left" property="vTimeLeft" jdbcType="VARCHAR" />
+    <result column="v_time" property="vTime" jdbcType="TIMESTAMP" />
+    <result column="v_code" property="vCode" jdbcType="VARCHAR" />
+    <result column="v_level" property="vLevel" jdbcType="INTEGER" />
+    <result column="v_score" property="vScore" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    v_id, v_uid, v_time_left, v_time, v_code, v_level, v_score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XVipExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_vip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_vip
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from x_vip
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XVipExample" >
+    delete from x_vip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XVip" >
+    insert into x_vip (v_id, v_uid, v_time_left, 
+      v_time, v_code, v_level, 
+      v_score)
+    values (#{vId,jdbcType=VARCHAR}, #{vUid,jdbcType=INTEGER}, #{vTimeLeft,jdbcType=VARCHAR}, 
+      #{vTime,jdbcType=TIMESTAMP}, #{vCode,jdbcType=VARCHAR}, #{vLevel,jdbcType=INTEGER}, 
+      #{vScore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XVip" >
+    insert into x_vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vId != null" >
+        v_id,
+      </if>
+      <if test="vUid != null" >
+        v_uid,
+      </if>
+      <if test="vTimeLeft != null" >
+        v_time_left,
+      </if>
+      <if test="vTime != null" >
+        v_time,
+      </if>
+      <if test="vCode != null" >
+        v_code,
+      </if>
+      <if test="vLevel != null" >
+        v_level,
+      </if>
+      <if test="vScore != null" >
+        v_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vId != null" >
+        #{vId,jdbcType=VARCHAR},
+      </if>
+      <if test="vUid != null" >
+        #{vUid,jdbcType=INTEGER},
+      </if>
+      <if test="vTimeLeft != null" >
+        #{vTimeLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="vTime != null" >
+        #{vTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vCode != null" >
+        #{vCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vLevel != null" >
+        #{vLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vScore != null" >
+        #{vScore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XVipExample" resultType="java.lang.Integer" >
+    select count(*) from x_vip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_vip
+    <set >
+      <if test="record.vId != null" >
+        v_id = #{record.vId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vUid != null" >
+        v_uid = #{record.vUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vTimeLeft != null" >
+        v_time_left = #{record.vTimeLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vTime != null" >
+        v_time = #{record.vTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.vCode != null" >
+        v_code = #{record.vCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vLevel != null" >
+        v_level = #{record.vLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.vScore != null" >
+        v_score = #{record.vScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_vip
+    set v_id = #{record.vId,jdbcType=VARCHAR},
+      v_uid = #{record.vUid,jdbcType=INTEGER},
+      v_time_left = #{record.vTimeLeft,jdbcType=VARCHAR},
+      v_time = #{record.vTime,jdbcType=TIMESTAMP},
+      v_code = #{record.vCode,jdbcType=VARCHAR},
+      v_level = #{record.vLevel,jdbcType=INTEGER},
+      v_score = #{record.vScore,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XVip" >
+    update x_vip
+    <set >
+      <if test="vUid != null" >
+        v_uid = #{vUid,jdbcType=INTEGER},
+      </if>
+      <if test="vTimeLeft != null" >
+        v_time_left = #{vTimeLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="vTime != null" >
+        v_time = #{vTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vCode != null" >
+        v_code = #{vCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vLevel != null" >
+        v_level = #{vLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vScore != null" >
+        v_score = #{vScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XVip" >
+    update x_vip
+    set v_uid = #{vUid,jdbcType=INTEGER},
+      v_time_left = #{vTimeLeft,jdbcType=VARCHAR},
+      v_time = #{vTime,jdbcType=TIMESTAMP},
+      v_code = #{vCode,jdbcType=VARCHAR},
+      v_level = #{vLevel,jdbcType=INTEGER},
+      v_score = #{vScore,jdbcType=INTEGER}
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </update>
+</mapper>

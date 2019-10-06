@@ -33,9 +33,9 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public XResult showShare() {
+    public    List<IndexPojo> showShare() {
         List<IndexPojo> share = indexMapper.findShare ();
-        return XResult.isOk (share);
+        return share;
     }
 
     @Override

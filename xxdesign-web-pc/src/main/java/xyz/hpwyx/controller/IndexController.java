@@ -2,15 +2,9 @@ package xyz.hpwyx.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +43,7 @@ public class IndexController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest reqest, HttpSession session) {
 
+
         try {
             String json3 = redisUtil.hget ("INDEX", "index_pic1");
             if (StringUtils.isNotBlank (json3)) {
@@ -66,8 +61,9 @@ public class IndexController {
         }
 
 
-        XResult xResult1 = indexServiceFigen.showShare ();
-        reqest.setAttribute ("shareList", xResult1.getData ());
+        List<IndexPojo> indexPojos1 = indexServiceFigen.showShare ();
+
+        reqest.setAttribute ("shareList",indexPojos1);
         List<DesignPojo> indexPojos = indexServiceFigen.showDesign ();
         reqest.setAttribute ("designList", indexPojos);
         List<XIndex> xIndices = indexServiceFigen.showService ();

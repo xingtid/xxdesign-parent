@@ -82,6 +82,10 @@
         <artifactId>xxdesign-api-message</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
-
+    <dependency>
+        <groupId>xyz.hpwyx</groupId>
+        <artifactId>xxdesign-api-vip</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
 </dependencies>
 </project>

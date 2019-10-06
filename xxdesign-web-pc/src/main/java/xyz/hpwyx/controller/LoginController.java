@@ -40,6 +40,9 @@ public class LoginController {
     @Autowired
     UserServiceFigen serviceFigen;
 
+    @Autowired
+    MsgController msgController;
+
     @ResponseBody
     @RequestMapping(value = "/baseLogin", method = RequestMethod.POST)
     public XResult baseLogin(@RequestParam("uPhone") String phone, @RequestParam("uPassword") String password, HttpServletResponse response, HttpServletRequest request) {
@@ -81,6 +84,7 @@ public class LoginController {
         //3。将token 存在 cookie 中
         setCooke (membertoken, request, response);
         request.getSession ().setAttribute ("USERINFO", xUser);
+        msgController.refreshA (request.getSession ());
         return XResult.isOk (login);
     }
 

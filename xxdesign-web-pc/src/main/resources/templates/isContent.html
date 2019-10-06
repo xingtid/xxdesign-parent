@@ -15,6 +15,17 @@
     <script type="text/javascript" src="/simditor/js/uploader.js"></script>
     <script type="text/javascript" src="/simditor/js/simditor.js"></script>
     <script type="text/javascript" src="/simditor/js/simditor-dropzone.js"></script>
+<style>
+    .banner_w3lspvt-2 {
+        background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aBfKABSW1AAC6rDpaurs552.jpg) no-repeat center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height: 300px;
+    }
+</style>
 </head>
 <body>
 
@@ -36,10 +47,7 @@
 
     <form action="" method="post" id="myInfo">
         <dl class="clearfix" style="padding-left: 60px;padding: 20px">
-            <dt>文章标题：</dt>
-            <dd>
-                <input type="text" name="sTitle" autofocus="autofocus" placeholder="最大25个字"/>
-            </dd>
+            <div>文章标题： <input style="outline: none;" type="text" name="sTitle" autofocus="autofocus" placeholder="最大25个字"/></div>
 
         </dl>
         <div id="contextText">
@@ -48,7 +56,7 @@
 
         <input type="hidden" id="content" name="sContent" value=''>
         <div class="btn-sub">
-            <button type="button" class="btn button-style button-style mt-sm-5 mt-4" style="margin-left: 45%" onclick="insert()" >发布</button>
+            <button type="button" class="btn button-style mt-sm-5 mt-4" style="margin-left: 45%;padding:6px 30px ;margin-bottom: 40px" onclick="insert()" >发布</button>
         </div>
 	</form>
 <script>

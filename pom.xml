@@ -23,6 +23,8 @@
         <module>xxdesign-wardrobe</module>
         <module>xxdesign-api-message</module>
         <module>xxdesign-message</module>
+        <module>xxdesign-api-vip</module>
+        <module>xxdesign-vip</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

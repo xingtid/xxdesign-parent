@@ -19,6 +19,7 @@
             $('#hea').navfix(0, 999);
         });
     </script>
+
 </head>
 <body>
 <!-- header -->
@@ -82,8 +83,9 @@
                         <img th:src="${share.s_img}" style="width: 320px;height: 210px;object-fit: cover;" alt=""
                              class="img-fluid"/>
                     </a>
-                    <h3>13
-                        <span>Sep</span>
+                    <h3>
+                        <span  th:text="${#dates.format(share.s_time,'MM')}">Sep</span>月<span th:text="${#dates.format(share.s_time,'dd')}"></span>
+
                     </h3>
                 </div>
                 <div class="posts-w3ls-bottom py-4">
@@ -194,9 +196,9 @@
         <div class="row welcome-bottom text-center">
             <div class="col-lg-3 col-sm-6 px-2" th:each="service:${serviceList}">
                 <div class="welcome-grid bg-wh py-5 px-4">
-                    <img src="/images/wh1.jpg" alt="" class="img-fluid">
+                    <img src="/images/wh1.jpg" alt="" class="img-fluid" th:src="${service.iImg}">
                     <h4 class="mt-4 mb-3 text-bl" th:text="${service.iName}">Service 01</h4>
-                    <p>Quis nostrum ullam corporis suscipit.</p>
+                    <p th:text="${service.iMark}">Quis nostrum ullam corporis suscipit.</p>
                 </div>
             </div>
             <div class="text-center" style="margin-left: 80%;">
@@ -209,5 +211,6 @@
 
 <!-- footer -->
 <div th:replace="templates::footer"></div>
+
 </body>
 </html>
