@@ -38,5 +38,12 @@
         <artifactId>mybatis-spring-boot-starter</artifactId>
         <version>2.1.0</version>
     </dependency>
-</dependencies>
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.7.12.ALL</version>
+        </dependency>
+
+    </dependencies>
 </project>
