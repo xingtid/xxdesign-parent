@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XPayMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XPay" >
+    <id column="o_id" property="oId" jdbcType="INTEGER" />
+    <result column="o_typeId" property="oTypeid" jdbcType="INTEGER" />
+    <result column="o_platformorderId" property="oPlatformorderid" jdbcType="VARCHAR" />
+    <result column="o_price" property="oPrice" jdbcType="INTEGER" />
+    <result column="o_state" property="oState" jdbcType="INTEGER" />
+    <result column="o_userId" property="oUserid" jdbcType="INTEGER" />
+    <result column="o_date" property="oDate" jdbcType="DATE" />
+    <result column="o_mark" property="oMark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    o_id, o_typeId, o_platformorderId, o_price, o_state, o_userId, o_date, o_mark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XPayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_pay
+    where o_id = #{oId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_pay
+    where o_id = #{oId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XPayExample" >
+    delete from x_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XPay" >
+    insert into x_pay (o_id, o_typeId, o_platformorderId, 
+      o_price, o_state, o_userId, 
+      o_date, o_mark)
+    values (#{oId,jdbcType=INTEGER}, #{oTypeid,jdbcType=INTEGER}, #{oPlatformorderid,jdbcType=VARCHAR}, 
+      #{oPrice,jdbcType=INTEGER}, #{oState,jdbcType=INTEGER}, #{oUserid,jdbcType=INTEGER}, 
+      #{oDate,jdbcType=DATE}, #{oMark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XPay" >
+    insert into x_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        o_id,
+      </if>
+      <if test="oTypeid != null" >
+        o_typeId,
+      </if>
+      <if test="oPlatformorderid != null" >
+        o_platformorderId,
+      </if>
+      <if test="oPrice != null" >
+        o_price,
+      </if>
+      <if test="oState != null" >
+        o_state,
+      </if>
+      <if test="oUserid != null" >
+        o_userId,
+      </if>
+      <if test="oDate != null" >
+        o_date,
+      </if>
+      <if test="oMark != null" >
+        o_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="oTypeid != null" >
+        #{oTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="oPlatformorderid != null" >
+        #{oPlatformorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        #{oPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oState != null" >
+        #{oState,jdbcType=INTEGER},
+      </if>
+      <if test="oUserid != null" >
+        #{oUserid,jdbcType=INTEGER},
+      </if>
+      <if test="oDate != null" >
+        #{oDate,jdbcType=DATE},
+      </if>
+      <if test="oMark != null" >
+        #{oMark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XPayExample" resultType="java.lang.Integer" >
+    select count(*) from x_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_pay
+    <set >
+      <if test="record.oId != null" >
+        o_id = #{record.oId,jdbcType=INTEGER},
+      </if>
+      <if test="record.oTypeid != null" >
+        o_typeId = #{record.oTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.oPlatformorderid != null" >
+        o_platformorderId = #{record.oPlatformorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oPrice != null" >
+        o_price = #{record.oPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.oState != null" >
+        o_state = #{record.oState,jdbcType=INTEGER},
+      </if>
+      <if test="record.oUserid != null" >
+        o_userId = #{record.oUserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.oDate != null" >
+        o_date = #{record.oDate,jdbcType=DATE},
+      </if>
+      <if test="record.oMark != null" >
+        o_mark = #{record.oMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_pay
+    set o_id = #{record.oId,jdbcType=INTEGER},
+      o_typeId = #{record.oTypeid,jdbcType=INTEGER},
+      o_platformorderId = #{record.oPlatformorderid,jdbcType=VARCHAR},
+      o_price = #{record.oPrice,jdbcType=INTEGER},
+      o_state = #{record.oState,jdbcType=INTEGER},
+      o_userId = #{record.oUserid,jdbcType=INTEGER},
+      o_date = #{record.oDate,jdbcType=DATE},
+      o_mark = #{record.oMark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XPay" >
+    update x_pay
+    <set >
+      <if test="oTypeid != null" >
+        o_typeId = #{oTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="oPlatformorderid != null" >
+        o_platformorderId = #{oPlatformorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        o_price = #{oPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oState != null" >
+        o_state = #{oState,jdbcType=INTEGER},
+      </if>
+      <if test="oUserid != null" >
+        o_userId = #{oUserid,jdbcType=INTEGER},
+      </if>
+      <if test="oDate != null" >
+        o_date = #{oDate,jdbcType=DATE},
+      </if>
+      <if test="oMark != null" >
+        o_mark = #{oMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XPay" >
+    update x_pay
+    set o_typeId = #{oTypeid,jdbcType=INTEGER},
+      o_platformorderId = #{oPlatformorderid,jdbcType=VARCHAR},
+      o_price = #{oPrice,jdbcType=INTEGER},
+      o_state = #{oState,jdbcType=INTEGER},
+      o_userId = #{oUserid,jdbcType=INTEGER},
+      o_date = #{oDate,jdbcType=DATE},
+      o_mark = #{oMark,jdbcType=VARCHAR}
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+</mapper>

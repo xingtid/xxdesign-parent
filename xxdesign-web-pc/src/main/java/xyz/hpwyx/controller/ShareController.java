@@ -1,6 +1,8 @@
 package xyz.hpwyx.controller;
 
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.hpwyx.IDutil.IDUtils;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.fegin.ShareServiceFigen;
+import xyz.hpwyx.pojo.SearchResult;
 import xyz.hpwyx.pojo.XShare;
 import xyz.hpwyx.pojo.XUser;
 
+import javax.jms.Destination;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +29,8 @@ import java.util.List;
 public class ShareController {
     @Autowired
     private ShareServiceFigen shareServiceFigen;
-
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
     @RequestMapping(value = "/getShare/{sId}")
     public String toShare(@PathVariable Integer sId, Model model) {
         XResult xResult = shareServiceFigen.showShare (sId);
@@ -62,6 +67,9 @@ public class ShareController {
         System.out.println ();
         XResult xResult = shareServiceFigen.insertShare (xShare);
         xResult.setMsg (""+integer);
+        //ActivityMQ加入搜索域
+        Destination destination = new ActiveMQQueue ("Content_id");
+        jmsMessagingTemplate.convertAndSend (destination,  integer + "");
         return xResult;
     }
     @RequestMapping(value = "/getShareList")
@@ -69,5 +77,33 @@ public class ShareController {
         List<XShare> list = shareServiceFigen.getList ();
         model.addAttribute ("shareList",list);
         return "shareList";
+    }
+
+
+
+
+
+    @RequestMapping("/solr")
+    @ResponseBody
+    public XResult importAllContent() {
+
+        XResult result = shareServiceFigen.importAllItem ();
+        return result;
+    }
+
+    @RequestMapping("/search")
+    public String search(@RequestParam(value = "title",required=false) String title, Model model) throws Exception{
+        System.out.println (title);
+        SearchResult search = shareServiceFigen.search (title, 1, 24);
+        System.out.println (search.getItemList ().size ());
+        if (search.getItemList ().size ()==0){
+            return "quert2";
+        }
+        model.addAttribute ("query", title);
+        model.addAttribute ("CONTENT", search.getItemList ());
+        model.addAttribute ("totalPages", search.getTotalPages ());
+        model.addAttribute ("page", 1);
+
+        return "query";
     }
 }

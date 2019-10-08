@@ -13,6 +13,9 @@ spring:
    password: Hewenxing4316@
    url: jdbc:mysql://106.14.140.238:3306/xxDesign?characterEncoding=utf-8
    username: root
+  data:
+   solr:
+      host: http://101.132.118.88:8088/solr
 pagehelper:
   helper-dialect: mysql
   reasonable: true

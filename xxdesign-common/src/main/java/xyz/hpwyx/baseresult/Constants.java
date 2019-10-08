@@ -21,10 +21,18 @@ public interface Constants {
     Integer HTTP_RES_CODE_404 = 404;
     //发送邮件
     String MSG_EMAIL = "email";
-
+    // 支付token
+    String TOKEN_PAY = "TOKEN_pay";
+    // 用户有效期 90天
+    Long TOKEN_MEMBER_TIME = (long) (60 * 60 * 24 * 90);
+    int COOKIE_TOKEN_MEMBER_TIME = (60 * 60 * 24 * 90);
+    Long PAY_TOKEN_MEMBER_TIME =(long)  (60 * 15 );
     //TOKEN
     String TOKEN_MEMBER = "TOKEN_MEMBER";
 
     //Cookie
     String COOKIE_TOKEN = "cookie_token";
+
+    String PAY_SUCCESS = "success";
+    String PAY_FAIL = "fail";
 }

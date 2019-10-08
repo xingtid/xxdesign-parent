@@ -5,7 +5,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://119.3.11.44:8761/eureka/
-
+BaseRemote:
+  ribbon:
+    ## 服务提供者的地址，不是服务注册中心的地址
+    listOfServers: http://localhost:8078
 spring:
   application:
     name: admin-web

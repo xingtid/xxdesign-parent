@@ -17,4 +17,8 @@ public class TokenUtils {
     public static String getUserToken(){
         return Constants.TOKEN_MEMBER+"_"+ UUID.randomUUID ();
     }
+
+    public static String getPayToken() {
+        return Constants.TOKEN_PAY + "-" + UUID.randomUUID();
+    }
 }

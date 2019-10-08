@@ -29,4 +29,6 @@ public interface XShareMapper {
     XShare selectShareAndUserById(Integer sId);
 
     List<XShare> selectShareAndUser();
+    List<XShare> selectAllShareAndUser();
+    List<XShare> selectByKeyShareAndUser(String key);
 }

@@ -254,4 +254,14 @@
     from x_share s, x_user u where s.s_anth_id = u.u_id
 
   </select>
+  <select id="selectAllShareAndUser" resultMap="BaseUserResultMap">
+    select
+    <include refid="USERAD_SHARE"></include>
+    from x_share s, x_user u
+  </select>
+  <select id="selectByKeyShareAndUser" parameterType="string" resultMap="BaseUserResultMap">
+    select
+    <include refid="USERAD_SHARE"></include>
+    from x_share s, x_user u where s.s_title like CONCAT('%',#{key},'%')
+  </select>
 </mapper>
