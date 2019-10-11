@@ -311,3 +311,7 @@ img {
     width: 150px;
     height: auto;
 }
+.asterisk{
+    color: red;
+    margin-left: 3px;
+}

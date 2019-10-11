@@ -55,72 +55,62 @@
 </div>
 
 <div class="wjContent clear" id="survey_page">
-<!--    <div id="appearset_header">-->
-<!--        <div class="assess_header_div">-->
-<!--            <img src="http://cdn1.wenjuan.com/appear-PC-工作.png" class="header_img">-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div id="appearset_header">-->
+    <!--        <div class="assess_header_div">-->
+    <!--            <img src="http://cdn1.wenjuan.com/appear-PC-工作.png" class="header_img">-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <div class="content_box">
         <div class="wjtitle mtop project_title">
             <h1>
-                <p style="text-align: center;font-size: 20px;">员工满意度调查问卷</p>
+                <p style="text-align: center;font-size: 20px;">形象管理调查问卷</p>
             </h1>
         </div>
 
         <div id="question_box_fi" data-use-cache="false">
             <div class="wjques maxtop question" allow_null="1" questiontype="70">
-                <div class="title">第一部分：自身工作方面</div>
+                <div class="title">第一部分：个人基本信息</div>
             </div>
-            <div class="wjques maxtop question" id="sex" questiontype="2">
+            <div class="wjques maxtop question" id="sex">
                 <div class="title"><span class="answer_title"><span class="Qnum">1.</span>您的性别<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
                     <div id="sexerr" class="red"></div>
-                    <div class="icheckbox_div "><input type="radio" name="a" value="" id="nan" class="option"><label
+                    <div class="icheckbox_div "><input type="radio" name="uAge" id="nan" class="option"><label
                             for="nan" class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label">男</span></div>
                     </label></div>
-                    <div class="icheckbox_div "><input type="radio" name="a" value="" id="nv" class="option"><label
+                    <div class="icheckbox_div "><input type="radio" name="uAge" id="nv" class="option"><label
                             for="nv" class="option_cell"><span
                             class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">女</span></div>
+                        <div class="option_label_wrap"><span class="option_label">女</span></div>
                     </label></div>
                 </div>
             </div>
-
-            <div class="wjques maxtop question" id="age" questiontype="2">
+            <div class="wjques maxtop question" id="age" >
                 <div class="title"><span class="answer_title"><span class="Qnum">2.</span>您的年龄<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
-                    <div id="q3" class="red"></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="q4" class="option"><label for="q4" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">25岁以下</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="qq1"
-                                                                class="option"><label for="qq1"
-                                                                                      class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="">26-35岁</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="qq2"
-                                                                class="option"><label for="qq2"
-                                                                                      class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">36-45岁</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value=" " id="option_ "
-                                                                class="option"><label
-                            for="option_ " class="option_cell"><span class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_ ">45岁以上</span></div>
-                    </label></div>
+                    <div id="ageq" class="red"></div>
+                    <div class=""><input type="number" name="uAge" max="200" min="0"></div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="" questiontype="2">
+            <div class="wjques maxtop question" id="weight" >
+                <div class="title"><span class="answer_title"><span class="Qnum">3.</span>您的身高体重<span
+                        class="asterisk">*</span></span></div>
+                <div class="matrix">
+                    <div class="related-tip"></div>
+                    <div id="q3" class="red"></div>
+                    <div class="">身高：<input type="number" name="uHeight" max="200" min="0" style="margin: 4px">cm</div>
+                    <div class="">体重：<input type="number" name="uWeight" max="200" min="0" style="margin: 4px">kg</div>
+                </div>
+            </div>
+
+            <div class="wjques maxtop question" id="" >
                 <div class="title"><span class="answer_title"><span class="Qnum">3.</span>您的最高学历<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -162,12 +152,12 @@
 
                     </label>
                 </div>
-                <div class="icheckbox_div " style=""><input type="checkbox" name="   " value="" id="option_"
+                <div class="icheckbox_div " style=""><input type="checkbox" name="" value="" id="option_"
                                                             class="option"><label
                         for="option_" class="option_cell"><span class="check_box"></span>
                     <div class="option_label_wrap"><span class="option_label label_">领导认可</span></div>
                 </label></div>
-                <div class="icheckbox_div " style=""><input type="checkbox" name="   " value="" id="option_"
+                <div class="icheckbox_div " style=""><input type="checkbox" name="" value="" id="option_"
                                                             class="option"><label
                         for="option_" class="option_cell"><span class="check_box"></span>
                     <div class="option_label_wrap"><span class="option_label label_">其他</span><input type="text" name=""
@@ -294,23 +284,23 @@
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label label_">自由职业者</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
+                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
                                                                 class="option"><label for="option_" class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label label_">农林牧渔劳动者</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
+                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
                                                                 class="option"><label for="option_" class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label label_">退休</span></div>
 
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
+                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
                                                                 class="option"><label for="option_" class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label label_">其他职业人员（请注明）</span><input
                                 type="text" name=""
-                                id="option_open_" class="option_open"><span class="red" id="option_tip"></span></div>
+                                id="" class="option_open"><span class="red" id=""></span></div>
                     </label></div>
                 </div>
             </div>

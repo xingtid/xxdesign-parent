@@ -1,5 +1,6 @@
 package xyz.alipay.config;
 
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -27,10 +28,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoVMbMrTXCv7Fk1kObMbkPTTvJY+6jaf4nVX7G+/Sp+CT6yy4RAjOfVnnH4SCqL+GsbjUZZSLMkNoqSeO7cmr9njGDnvskJJZqhEGuEZlI1AtVHesnIrdKT9/nDA61z1+b4fVTz5TaJCsv8sWHUYYHx+ltc6TbACKQ0g2FR8SFvBI8o4ulHW4et0WAJwZ2g2lQ0NLxeCv3/DyQkeWWrtYmWb5GTN6lMK34uV8oUF2tZZGeQhg0Pfn8JuhyCM+bGCrMU+4quMH49XRCi9wLbwC6b+bk0MVs0DDvWHWtM1T+5UOZxhK5GMSy/uVR9V+JzC9fsHBfkTd+8GukUurRsN8SQIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://itmayiedu.s1.natapp.cc/alibaba/callBack/notifyUrl";
+    public static String notify_url = "http://xxdesign.vipgz2.idcfengye.com/callBack/notifyUrl";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://itmayiedu.s1.natapp.cc/alibaba/callBack/returnUrl";
+    public static String return_url = "http://xxdesign.vipgz2.idcfengye.com/callBack/returnUrl";
 
     // 签名方式
     public static String sign_type = "RSA2";

@@ -12,7 +12,7 @@ public interface XPayMapper {
 
     int deleteByExample(XPayExample example);
 
-    int deleteByPrimaryKey(Integer oId);
+    int deleteByPrimaryKey(String oId);
 
     int insert(XPay record);
 
@@ -20,7 +20,7 @@ public interface XPayMapper {
 
     List<XPay> selectByExample(XPayExample example);
 
-    XPay selectByPrimaryKey(Integer oId);
+    XPay selectByPrimaryKey(String oId);
 
     int updateByExampleSelective(@Param("record") XPay record, @Param("example") XPayExample example);
 

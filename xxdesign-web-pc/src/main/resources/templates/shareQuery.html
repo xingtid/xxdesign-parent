@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="个人形象设计中心"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link href="/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+</head>
+<body>
+<div class="main-top" id="home">
+    <div th:replace="templates::head"></div>
+    <div class="banner_w3lspvt-2" style="background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aBMSABWKyAAPsiYtCwKY015.jpg) ;">
+    </div>
+</div>
+<div class="blog-w3ls py-5" id="blog">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="row package-grids">
+            <div th:each="content:${CONTENT}" class="col-lg-4 posts-mobamus">
+                <div class="posts-top">
+                    <a th:href="@{'/getShare/'+${content.cId}}">
+                        <img th:src="${content.cImg}" style="width: 320px;height: 210px;object-fit: cover;" alt="" class="img-fluid"/>
+                    </a>
+                    <h3>13
+                        <span>Sep</span>
+                    </h3>
+                </div>
+                <div class="posts-w3ls-bottom py-4">
+                    <h4 class="mb-2" style="height: 60px;"><a href="share.html" th:text="${content.cTitle}">标题</a></h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-thumbs-up mr-1"></span><span th:text="${content.cGetClick}">123</span></a>
+                        </li>
+                        <li class="mx-3">
+                            <a href="#">
+                                <span class="fa fa-comments mr-1"></span>48 评论</a>
+                        </li>
+                    </ul>
+<!--                    <p class="mt-3">内容详细</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

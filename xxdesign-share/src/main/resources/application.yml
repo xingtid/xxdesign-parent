@@ -15,7 +15,7 @@ spring:
    username: root
   data:
    solr:
-      host: http://101.132.118.88:8088/solr
+      host: http://106.14.140.238:8089/solr
 pagehelper:
   helper-dialect: mysql
   reasonable: true

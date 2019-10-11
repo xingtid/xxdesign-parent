@@ -142,52 +142,62 @@ public class XPayExample {
             return (Criteria) this;
         }
 
-        public Criteria andOIdEqualTo(Integer value) {
+        public Criteria andOIdEqualTo(String value) {
             addCriterion("o_id =", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdNotEqualTo(Integer value) {
+        public Criteria andOIdNotEqualTo(String value) {
             addCriterion("o_id <>", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdGreaterThan(Integer value) {
+        public Criteria andOIdGreaterThan(String value) {
             addCriterion("o_id >", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOIdGreaterThanOrEqualTo(String value) {
             addCriterion("o_id >=", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdLessThan(Integer value) {
+        public Criteria andOIdLessThan(String value) {
             addCriterion("o_id <", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdLessThanOrEqualTo(Integer value) {
+        public Criteria andOIdLessThanOrEqualTo(String value) {
             addCriterion("o_id <=", value, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdIn(List<Integer> values) {
+        public Criteria andOIdLike(String value) {
+            addCriterion("o_id like", value, "oId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOIdNotLike(String value) {
+            addCriterion("o_id not like", value, "oId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOIdIn(List<String> values) {
             addCriterion("o_id in", values, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdNotIn(List<Integer> values) {
+        public Criteria andOIdNotIn(List<String> values) {
             addCriterion("o_id not in", values, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdBetween(Integer value1, Integer value2) {
+        public Criteria andOIdBetween(String value1, String value2) {
             addCriterion("o_id between", value1, value2, "oId");
             return (Criteria) this;
         }
 
-        public Criteria andOIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andOIdNotBetween(String value1, String value2) {
             addCriterion("o_id not between", value1, value2, "oId");
             return (Criteria) this;
         }
@@ -332,52 +342,52 @@ public class XPayExample {
             return (Criteria) this;
         }
 
-        public Criteria andOPriceEqualTo(Integer value) {
+        public Criteria andOPriceEqualTo(Double value) {
             addCriterion("o_price =", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceNotEqualTo(Integer value) {
+        public Criteria andOPriceNotEqualTo(Double value) {
             addCriterion("o_price <>", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceGreaterThan(Integer value) {
+        public Criteria andOPriceGreaterThan(Double value) {
             addCriterion("o_price >", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOPriceGreaterThanOrEqualTo(Double value) {
             addCriterion("o_price >=", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceLessThan(Integer value) {
+        public Criteria andOPriceLessThan(Double value) {
             addCriterion("o_price <", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andOPriceLessThanOrEqualTo(Double value) {
             addCriterion("o_price <=", value, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceIn(List<Integer> values) {
+        public Criteria andOPriceIn(List<Double> values) {
             addCriterion("o_price in", values, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceNotIn(List<Integer> values) {
+        public Criteria andOPriceNotIn(List<Double> values) {
             addCriterion("o_price not in", values, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceBetween(Integer value1, Integer value2) {
+        public Criteria andOPriceBetween(Double value1, Double value2) {
             addCriterion("o_price between", value1, value2, "oPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andOPriceNotBetween(Double value1, Double value2) {
             addCriterion("o_price not between", value1, value2, "oPrice");
             return (Criteria) this;
         }

@@ -55,6 +55,7 @@
                     <label for="drop" class="toggle">Menu</label>
                     <input type="checkbox" id="drop"/>
                     <ul class="menu">
+                        <li style="margin-right: 3px;"><input id="slow" class="input-search" type="text"><i class="fa fa-search" style="font-size: 18px; line-height: 30px;cursor: pointer" onclick="slowd()"></i> </a></li>
                         <li><a href="/" class="active">主页</a></li>
                         <li><a href="joinVIP.html">加入会员</a></li>
                         <li>
@@ -98,6 +99,19 @@
             <!-- //nav -->
         </div>
     </div>
+    <script>
+        var a = true;
+        function slowd() {
+            if (a === true) {
+                $("#slow").animate({"width": "100px"}, 500);
+                a = false;
+            }else {
+                $("#slow").animate({"width": "27px"}, 500);
+                a = true;
+            }
+
+        }
+    </script>
 </header>
 <!-- footer -->
 <div th:fragment="footer">
@@ -244,4 +258,5 @@
 
 
 </div>
+
 </html>

@@ -80,7 +80,7 @@ public class ShareServiceImpl implements ShareService {
         solrQuery.setRows (rows);
         //设置搜索域
         solrQuery.set ("df", "item_title");
-        solrQuery.set ("df", "item_title");
+        solrQuery.set ("df", "item_");
         SearchResult searchResult = searchDao.SearchResult (solrQuery);
         long recordCount = searchResult.getRecordCount ();
         int totle = (int) (recordCount / rows);

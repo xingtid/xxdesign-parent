@@ -40,6 +40,9 @@ public class IndexController {
     @Autowired
     private UserServiceFigen serviceFigen;
 
+    @Autowired
+    MsgController msgController;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest reqest, HttpSession session) {
 
@@ -59,7 +62,6 @@ public class IndexController {
         }catch (Exception e) {
             e.printStackTrace ();
         }
-
 
         List<IndexPojo> indexPojos1 = indexServiceFigen.showShare ();
 
@@ -81,6 +83,7 @@ public class IndexController {
 
             if (getuser != null) {
                 session.setAttribute ("USERINFO", getuser);
+                msgController.refreshA (reqest.getSession ());
             }
 
         }
@@ -99,6 +102,7 @@ public class IndexController {
             XUser getuser = getuser (responseBase);
             if (getuser != null) {
                 session.setAttribute ("USERINFO", getuser);
+                msgController.refreshA (request.getSession ());
                 return "redirect:/";
             }
         }

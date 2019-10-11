@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="xyz.hpwyx.mapper.XPayMapper" >
   <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XPay" >
-    <id column="o_id" property="oId" jdbcType="INTEGER" />
+    <id column="o_id" property="oId" jdbcType="VARCHAR" />
     <result column="o_typeId" property="oTypeid" jdbcType="INTEGER" />
     <result column="o_platformorderId" property="oPlatformorderid" jdbcType="VARCHAR" />
-    <result column="o_price" property="oPrice" jdbcType="INTEGER" />
+    <result column="o_price" property="oPrice" jdbcType="DOUBLE" />
     <result column="o_state" property="oState" jdbcType="INTEGER" />
     <result column="o_userId" property="oUserid" jdbcType="INTEGER" />
     <result column="o_date" property="oDate" jdbcType="DATE" />
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from x_pay
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from x_pay
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XPayExample" >
     delete from x_pay
@@ -106,8 +106,8 @@
     insert into x_pay (o_id, o_typeId, o_platformorderId, 
       o_price, o_state, o_userId, 
       o_date, o_mark)
-    values (#{oId,jdbcType=INTEGER}, #{oTypeid,jdbcType=INTEGER}, #{oPlatformorderid,jdbcType=VARCHAR}, 
-      #{oPrice,jdbcType=INTEGER}, #{oState,jdbcType=INTEGER}, #{oUserid,jdbcType=INTEGER}, 
+    values (#{oId,jdbcType=VARCHAR}, #{oTypeid,jdbcType=INTEGER}, #{oPlatformorderid,jdbcType=VARCHAR}, 
+      #{oPrice,jdbcType=DOUBLE}, #{oState,jdbcType=INTEGER}, #{oUserid,jdbcType=INTEGER}, 
       #{oDate,jdbcType=DATE}, #{oMark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XPay" >
@@ -140,7 +140,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="oId != null" >
-        #{oId,jdbcType=INTEGER},
+        #{oId,jdbcType=VARCHAR},
       </if>
       <if test="oTypeid != null" >
         #{oTypeid,jdbcType=INTEGER},
@@ -149,7 +149,7 @@
         #{oPlatformorderid,jdbcType=VARCHAR},
       </if>
       <if test="oPrice != null" >
-        #{oPrice,jdbcType=INTEGER},
+        #{oPrice,jdbcType=DOUBLE},
       </if>
       <if test="oState != null" >
         #{oState,jdbcType=INTEGER},
@@ -175,7 +175,7 @@
     update x_pay
     <set >
       <if test="record.oId != null" >
-        o_id = #{record.oId,jdbcType=INTEGER},
+        o_id = #{record.oId,jdbcType=VARCHAR},
       </if>
       <if test="record.oTypeid != null" >
         o_typeId = #{record.oTypeid,jdbcType=INTEGER},
@@ -184,7 +184,7 @@
         o_platformorderId = #{record.oPlatformorderid,jdbcType=VARCHAR},
       </if>
       <if test="record.oPrice != null" >
-        o_price = #{record.oPrice,jdbcType=INTEGER},
+        o_price = #{record.oPrice,jdbcType=DOUBLE},
       </if>
       <if test="record.oState != null" >
         o_state = #{record.oState,jdbcType=INTEGER},
@@ -205,10 +205,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update x_pay
-    set o_id = #{record.oId,jdbcType=INTEGER},
+    set o_id = #{record.oId,jdbcType=VARCHAR},
       o_typeId = #{record.oTypeid,jdbcType=INTEGER},
       o_platformorderId = #{record.oPlatformorderid,jdbcType=VARCHAR},
-      o_price = #{record.oPrice,jdbcType=INTEGER},
+      o_price = #{record.oPrice,jdbcType=DOUBLE},
       o_state = #{record.oState,jdbcType=INTEGER},
       o_userId = #{record.oUserid,jdbcType=INTEGER},
       o_date = #{record.oDate,jdbcType=DATE},
@@ -227,7 +227,7 @@
         o_platformorderId = #{oPlatformorderid,jdbcType=VARCHAR},
       </if>
       <if test="oPrice != null" >
-        o_price = #{oPrice,jdbcType=INTEGER},
+        o_price = #{oPrice,jdbcType=DOUBLE},
       </if>
       <if test="oState != null" >
         o_state = #{oState,jdbcType=INTEGER},
@@ -242,17 +242,17 @@
         o_mark = #{oMark,jdbcType=VARCHAR},
       </if>
     </set>
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XPay" >
     update x_pay
     set o_typeId = #{oTypeid,jdbcType=INTEGER},
       o_platformorderId = #{oPlatformorderid,jdbcType=VARCHAR},
-      o_price = #{oPrice,jdbcType=INTEGER},
+      o_price = #{oPrice,jdbcType=DOUBLE},
       o_state = #{oState,jdbcType=INTEGER},
       o_userId = #{oUserid,jdbcType=INTEGER},
       o_date = #{oDate,jdbcType=DATE},
       o_mark = #{oMark,jdbcType=VARCHAR}
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </update>
 </mapper>

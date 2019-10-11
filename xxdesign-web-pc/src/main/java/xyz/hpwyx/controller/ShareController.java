@@ -104,6 +104,6 @@ public class ShareController {
         model.addAttribute ("totalPages", search.getTotalPages ());
         model.addAttribute ("page", 1);
 
-        return "query";
+        return "shareQueyry";
     }
 }

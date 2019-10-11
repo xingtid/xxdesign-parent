@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/headandfoot.css">
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <style>
         .banner_w3lspvt-2 {
             background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aChyAJ2YEAAEVMjXpbh4327.jpg) no-repeat center;
@@ -28,16 +29,76 @@
     <div th:replace="templates::head"></div>
     <div class="banner_w3lspvt-2">
     </div>
-    <section class="gallery" id="gallery">
+    <div class="breadcrumb-mobamu">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.html">主页</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">会员</li>
+        </ol>
+    </div>
+
+    <section class="gallery" id="gallery" style="min-height: 500px;">
         <div class="container py-md-5">
+            <form id="form" action="/createOrder" method="post">
+                <input id="inp" type="hidden" value="9999" name="amount">
             <div class="row news-grids no-gutters text-center">
-                <div class="col-md-4 gal-img"><img src="/images/blog1.jpg" />
-                <a href="#">购买</a></div>
-                <div class="col-md-4 gal-img"><img src="/images/blog1.jpg" /></div>
-                <div class="col-md-4 gal-img"><img src="/images/blog1.jpg" /></div>
+
+                <div class="col-md-2 gal-img" style="padding: 20px;box-shadow: 4px 4px 10px #828282;margin: 20px;
+   border-radius: 5px;border: #1770ff 2px solid;">
+                    <div></div>
+                    <div style="margin-bottom: 20px">
+
+                        <h2 style="font-weight: 900;">一个月</h2>
+                        <span style="color: red;font-size: 18px;">29.9¥</span></div>
+                    <a class="btn btn-danger" href="#" style="background: #006fff;"  onclick="subb(29.9)">购买</a>
+                </div>
+
+                <div class="col-md-2 gal-img" style="padding: 20px;box-shadow: 4px 4px 10px #828282;margin: 20px;
+   border-radius: 5px;border: #ff1729 2px solid;">
+                    <div></div>
+                    <div style="margin-bottom: 20px">
+
+                        <h2 style="font-weight: 900;">三个月</h2>
+                        <span style="color: red;font-size: 18px;">69.9¥</span></div>
+                    <a class="btn btn-danger" href="#" style="background: #ff1729;"  onclick="subb(69.9)">购买</a>
+                </div>
+
+                <div class="col-md-2 gal-img" style="padding: 20px;box-shadow: 4px 4px 10px #828282;margin: 20px;
+   border-radius: 5px;border: #ff9117 2px solid;">
+                    <div></div>
+                    <div style="margin-bottom: 20px">
+                        <h2 style="font-weight: 900;">一年</h2>
+                        <span style="color: red;font-size: 18px;">229.9¥</span></div>
+                    <a class="btn btn-danger"  style="background:  #ff9117;"  onclick="subb(229.9)">购买</a>
+                </div>
+                <div class="col-md-2 gal-img" style="padding: 20px;box-shadow: 4px 4px 10px #828282;margin: 20px;
+   border-radius: 5px;border: #01ad00 2px solid;">
+                    <div></div>
+                    <div style="margin-bottom: 20px">
+
+                        <h2 style="font-weight: 900;">终身</h2>
+                        <span style="color: red;font-size: 18px;">699.9¥</span></div>
+                   <a class="btn btn-danger" href="javascript:subb(699.9)" style="background:#01ad00;" >购买 </a>
+                </div>
+
             </div>
+            </form>
         </div>
-    </section>
+
+        <div style="text-align: center">
+            <h3>当前仅支持支付宝付款</h3>
+        </div>
 </div>
+<!-- footer -->
+<div th:replace="templates::footer"></div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script>
+function subb(da) {
+    $("#inp").val(da)
+    $("#form").submit();
+}
+
+</script>
 </body>
 </html>

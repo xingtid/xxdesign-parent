@@ -3,13 +3,13 @@ package xyz.hpwyx.pojo;
 import java.util.Date;
 
 public class XPay {
-    private Integer oId;
+    private String oId;
 
     private Integer oTypeid;
 
     private String oPlatformorderid;
 
-    private Integer oPrice;
+    private Double oPrice;
 
     private Integer oState;
 
@@ -19,12 +19,12 @@ public class XPay {
 
     private String oMark;
 
-    public Integer getoId() {
+    public String getoId() {
         return oId;
     }
 
-    public void setoId(Integer oId) {
-        this.oId = oId;
+    public void setoId(String oId) {
+        this.oId = oId == null ? null : oId.trim();
     }
 
     public Integer getoTypeid() {
@@ -43,11 +43,11 @@ public class XPay {
         this.oPlatformorderid = oPlatformorderid == null ? null : oPlatformorderid.trim();
     }
 
-    public Integer getoPrice() {
+    public Double getoPrice() {
         return oPrice;
     }
 
-    public void setoPrice(Integer oPrice) {
+    public void setoPrice(Double oPrice) {
         this.oPrice = oPrice;
     }
 

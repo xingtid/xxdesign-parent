@@ -1,28 +1,31 @@
 package xyz.hpwyx.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
-import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.request.AlipayTradeAppPayRequest;
+import com.alipay.api.response.AlipayTradeAppPayResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.alipay.config.AlipayConfig;
-import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.mapper.XPayMapper;
 import xyz.hpwyx.mapper.XVipMapper;
 import xyz.hpwyx.pojo.XPay;
+import xyz.hpwyx.pojo.XVip;
+import xyz.hpwyx.pojo.XVipExample;
 import xyz.hpwyx.redis.RedisUtil;
 import xyz.hpwyx.service.VipService;
 import xyz.hpwyx.token.TokenUtils;
 
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * @author tid
@@ -30,13 +33,53 @@ import java.util.Map;
  **/
 @Slf4j
 @RestController
-public class VipServiceImpl  implements VipService {
+public class VipServiceImpl implements VipService {
     @Autowired
     private XVipMapper xVipMapper;
+    @Autowired
+    private XPayMapper xPayMapper;
 
     @Override
-    public XResult addVip() {
-        return null;
+    public XResult addPay(XPay xPay) {
+        int insert = xPayMapper.insert (xPay);
+        if (insert < 0) {
+
+            return XResult.failMsg ("订单插入失败");
+        }
+        return XResult.isOk ();
+    }
+
+    @Override
+    public List<XVip> findAllVip() {
+        XVipExample example= new XVipExample ();
+        List<XVip> xVips = xVipMapper.selectByExample (example);
+        return xVips;
+    }
+
+    @Override
+    public XResult addVIP(XVip xVip) {
+        int insert = xVipMapper.insert (xVip);
+        if (insert < 0) {
+
+            return XResult.failMsg ("会员插入失败");
+        }
+        return XResult.isOk ();
+    }
+
+    @Override
+    public XResult updatePay(XPay xPay) {
+        int i = xPayMapper.updateByPrimaryKey (xPay);
+        if (i < 0) {
+
+            return XResult.failMsg ("订单插入失败");
+        }
+        return XResult.isOk ();
+    }
+
+    @Override
+    public XPay getPayById(String id) {
+        XPay pay = xPayMapper.selectByPrimaryKey (id);
+        return pay;
     }
 
     @Autowired
@@ -44,172 +87,133 @@ public class VipServiceImpl  implements VipService {
     @Autowired
     private RedisUtil redisUtil;
 
-    // 创建支付令牌
+
     @Override
-    @RequestMapping("/createPayToken")
-    public XResult createToken(@RequestBody XPay paymentInfo) {
-        // 1.创建支付请求信息
-        Integer savePaymentType = paymentInfoDao.insert (paymentInfo);
-        if (savePaymentType <= 0) {
-            return XResult.failMsg ("创建支付订单支付失败");
-        }
-        // 2.生成对应的token
-        String payToken = TokenUtils.getPayToken();
-        // 3.存放在Redis中，key为 token value 支付id
-        redisUtil.set (payToken, paymentInfo.getoId () + "", 0);
-        // 4.返回token
-        JSONObject data = new JSONObject ();
-        data.put("payToken", payToken);
-        return XResult.isOk (data);
-    }
+    public String createOrder(@RequestParam("orderNo") String orderNo, @RequestParam("amount") double amount, @RequestParam("body") String body) throws AlipayApiException {
+        //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
+        AlipayClient alipayClient = new DefaultAlipayClient (AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+        AlipayTradeAppPayModel model = new AlipayTradeAppPayModel ();
+        model.setSubject (body);
+        model.setOutTradeNo (orderNo);
+        model.setTotalAmount (String.valueOf (amount));
+        model.setProductCode ("QUICK_MSECURITY_PAY");
+        model.setPassbackParams ("公用回传参数，如果请求时传递了该参数，则返回给商户时会回传该参数");
 
-    // 使用支付令牌查找支付信息
-    @Override
-    @RequestMapping("/findPayToken")
-    public XResult findPayToken(@RequestParam("payToken") String payToken) {
-        // 1.参数验证
-        if (StringUtils.isEmpty(payToken)) {
-            return XResult.failMsg ("tokne不能为空");
-        }
-        // 2.判断token有效期
-        // 3.使用token 查找redis 找到对应支付id
-        String payId = redisUtil.get (payToken,0);
-        if (StringUtils.isEmpty(payId)) {
-            return XResult.failMsg ("支付请求已经超时!");
-        }
-        // 4.使用支付id，进行下单
-        Integer payIDl = Integer.parseInt (payId);
-
-        // 5.使用支付id查询支付信息
-        XPay paymentInfo = paymentInfoDao.selectByPrimaryKey (payIDl);
-        if (paymentInfo == null) {
-            return XResult.failMsg ("未找到支付信息");
-        }
-        // 6.对接支付代码 返回提交支付from表单元素给客户端
-        // 获得初始化的AlipayClient
-        AlipayClient alipayClient = new DefaultAlipayClient (AlipayConfig.gatewayUrl, AlipayConfig.app_id,
-                AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key,
-                AlipayConfig.sign_type);
-
-        // 设置请求参数
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest ();
-        alipayRequest.setReturnUrl(AlipayConfig.return_url);
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-
-        // 付款金额，必填 企业金额
-        String total_amount = paymentInfo.getoPrice () + "";
-        // 商品描述，可空
-        // String body = new
-        // String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
-
-        alipayRequest.setBizContent("{\"out_trade_no\":\"" + "\"total_amount\":\"" + total_amount
-                + "\"," + "\","
-                // + "\"body\":\""+ body +"\","
-                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-
-        // 若想给BizContent增加其他可选请求参数，以增加自定义超时时间参数timeout_express来举例说明
-        // alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no
-        // +"\","
-        // + "\"total_amount\":\""+ total_amount +"\","
-        // + "\"subject\":\""+ subject +"\","
-        // + "\"body\":\""+ body +"\","
-        // + "\"timeout_express\":\"10m\","
-        // + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-        // 请求参数可查阅【电脑网站支付的API文档-alipay.trade.page.pay-请求参数】章节
-
-        // 请求
-        try {
-            String result = alipayClient.pageExecute(alipayRequest).getBody();
-            JSONObject data = new JSONObject ();
-            data.put("payHtml", result);
-            return XResult.isOk (data);
-        } catch (Exception e) {
-            return XResult.failMsg ("支付异常");
-        }
-
+        //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称：alipay.trade.app.pay
+        AlipayTradeAppPayRequest ali_request = new AlipayTradeAppPayRequest ();
+        ali_request.setBizModel (model);
+        ali_request.setNotifyUrl (AlipayConfig.notify_url);// 回调地址
+        ali_request.setReturnUrl (AlipayConfig.return_url);
+        AlipayTradeAppPayResponse ali_response = alipayClient.sdkExecute (ali_request);
+        //就是orderString 可以直接给客户端请求，无需再做处理。
+        return ali_response.getBody ();
     }
 
     @Override
-    public XResult synCallBack(@RequestParam Map<String, String> params) {
-        // 1.日志记录
-        log.info("#####支付宝同步通知synCallBack#####开始,params:{}", params);
-        // 2.验签操作
-        try {
-            boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key,
-                    AlipayConfig.charset, AlipayConfig.sign_type); // 调用SDK验证签名
-            log.info("#####支付宝同步通知signVerified:{}######", signVerified);
-            // ——请在这里编写您的程序（以下代码仅作参考）——
-            if (!signVerified) {
-                return XResult.failMsg ("验签失败!");
-            }
-            // 商户订单号
-            String outTradeNo = params.get("out_trade_no");
-            // 支付宝交易号
-            String tradeNo = params.get("trade_no");
-            // 付款金额
-            String totalAmount = params.get("total_amount");
-            JSONObject data = new JSONObject ();
-            data.put("outTradeNo", outTradeNo);
-            data.put("tradeNo", tradeNo);
-            data.put("totalAmount", totalAmount);
-            return XResult.isOk (data);
-        } catch (Exception e) {
-            log.error("####支付宝同步通知出现异常,ERROR:", e);
-            return XResult.failMsg ("系统错误!");
-        } finally {
-            log.info("#####支付宝同步通知synCallBack#####结束,params:{}", params);
-        }
+    public boolean notify(@RequestParam("tradeStatus") String tradeStatus, @RequestParam("orderNo") String orderNo, @RequestParam("tradeNo") String tradeNo) {
+        if ("TRADE_FINISHED".equals (tradeStatus)
+                || "TRADE_SUCCESS".equals (tradeStatus)) {
+            // 支付成功，根据业务逻辑修改相应数据的状态
+            System.out.println ("orderNo" + orderNo);
+            System.out.println ("tradeNo" + tradeNo);
+            XPay payById = xPayMapper.selectByPrimaryKey (orderNo);
+            payById.setoPlatformorderid (tradeNo);
+            payById.setoState (1);
+            xPayMapper.updateByPrimaryKey (payById);
 
+            XVipExample example = new XVipExample ();
+            XVipExample.Criteria criteria = example.createCriteria ();
+            criteria.andVUidEqualTo (payById.getoUserid ());
+            List<XVip> xVips = xVipMapper.selectByExample (example);
+            XVip vip = new XVip ();
+            int score = 0;
+            int left = 0;
+            if (xVips.size () > 0) {
+                vip = xVips.get (0);
+                score =vip.getvScore ();
+                left = Integer.parseInt (vip.getvTimeLeft ());
+            }else {
+                vip.setvId (TokenUtils.getUserToken ());
+                vip.setvLevel (1);
+            }
+            String aDouble = payById.getoPrice () + "";
+            System.out.println (aDouble);
+            int day = 0;
+            int pay =0;
+            /**
+             * 根据不同对价位开通不同时间段的会员
+             */
+            switch (aDouble) {
+                case "30.0":
+                    day = 31;
+                    pay = 30;
+                    break;
+                case "70.0":
+                    day = 90;
+                    pay = 70;
+                    break;
+                case "230.0":
+                    day = 365;
+                    pay = 230;
+                    break;
+                case "700.0":
+                    day = 999999;
+                    pay = 700;
+                    break;
+                default:
+                    day = 0;
+                    break;
+            }
+
+            vip.setvTime (new Date ());
+            vip.setvUid (payById.getoUserid ());
+            vip.setvScore (pay + score);
+            System.out.println ((left+ day)+"");
+            vip.setvTimeLeft ((left + day)+"");
+            if (xVips.size () > 0) {
+                xVipMapper.updateByPrimaryKey (vip);
+            }else {
+                xVipMapper.insert (vip);
+            }
+
+            return true;
+        }
+        System.out.println ("支付失败notify");
+        return false;
     }
 
     @Override
-    public String asynCallBack(@RequestParam Map<String, String> params) {
-        // 1.日志记录
-        log.info("#####支付宝异步通知synCallBack#####开始,params:{}", params);
-        // 2.验签操作
+    public boolean returnU(@RequestParam("tradeStatus") String tradeStatus, @RequestParam("orderNo") String orderNo, @RequestParam("tradeNo") String tradeNo) {
+        if ("TRADE_FINISHED".equals (tradeStatus)
+                || "TRADE_SUCCESS".equals (tradeStatus)) {
+            // 支付成功，根据业务逻辑修改相应数据的状态
+            System.out.println ("orderNo" + orderNo);
+            System.out.println ("tradeNo" + tradeNo);
+            return true;
+        }
+        System.out.println ("支付失败notify");
+        return false;
+    }
+
+    @Override
+    public boolean rsaCheckV1(HttpServletRequest request) {
         try {
-            boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key,
-                    AlipayConfig.charset, AlipayConfig.sign_type); // 调用SDK验证签名
-            log.info("#####支付宝异步通知signVerified:{}######", signVerified);
-            // ——请在这里编写您的程序（以下代码仅作参考）——
-            if (!signVerified) {
-                return Constants.PAY_FAIL;
-            }
-            // 商户订单号
-            String outTradeNo = params.get("out_trade_no");
-            XPay paymentInfo = null;
-            if (paymentInfo == null) {
-                return Constants.PAY_FAIL;
+            Map<String, String> params = new HashMap<> ();
+            Map<String, String[]> requestParams = request.getParameterMap ();
+            for (Iterator iter = requestParams.keySet ().iterator (); iter.hasNext (); ) {
+                String name = (String) iter.next ();
+                String[] values = requestParams.get (name);
+                String valueStr = "";
+                for (int i = 0; i < values.length; i++) {
+                    valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
+                }
+                params.put (name, valueStr);
             }
 
-            // 支付宝重试机制
-            Integer state = paymentInfo.getoState ();
-            if (state == 1) {
-                return Constants.PAY_SUCCESS;
-            }
-
-            // 支付宝交易号
-            String tradeNo = params.get("trade_no");
-            // 付款金额
-            // String totalAmount = params.get("total_amount");
-            // 判断实际付款金额与商品金额是否一致
-            // 修改 支付表状态
-            paymentInfo.setoState (1);// 标识为已经支付
-            paymentInfo.setoPlatformorderid (tradeNo);
-            // 手动 begin begin
-            Integer updateResult = paymentInfoDao.updateByPrimaryKey (paymentInfo);
-            if (updateResult <= 0) {
-                return Constants.PAY_FAIL;
-            }
-            // 调用订单接口通知 支付状态
-            // 手动 提交 comiit;
-            return Constants.PAY_SUCCESS;
-        } catch (Exception e) {
-            log.error("####支付宝异步通知出现异常,ERROR:", e);
-            // 回滚 手动回滚 rollback
-            return Constants.PAY_FAIL;
-        } finally {
-            log.info("#####支付宝异步通知synCallBack#####结束,params:{}", params);
+            boolean verifyResult = AlipaySignature.rsaCheckV1 (params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
+            return verifyResult;
+        } catch (AlipayApiException e) {
+            return false;
         }
     }
 

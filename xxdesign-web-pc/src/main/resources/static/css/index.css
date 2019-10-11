@@ -1528,5 +1528,19 @@ form#contactform1 {
         padding: 13px 22px;
     }
 }
+.input-search{
+    background: #ffffff8a;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    outline: none;
+    padding: 3px;
+    padding-left: 8px;
+    vertical-align: top;
+    margin-right: -21px;
+}
 
+.noactive-search{
+    width: 27px;
+}
 /* //responsive */
