@@ -2,9 +2,12 @@ package xyz.hpwyx.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.mapper.XDesignMapper;
 import xyz.hpwyx.mapper.XUserInfoMapper;
+import xyz.hpwyx.pojo.XDesign;
 import xyz.hpwyx.pojo.XUserInfo;
 import xyz.hpwyx.service.UserInfoService;
 
@@ -17,10 +20,12 @@ import xyz.hpwyx.service.UserInfoService;
 public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private XUserInfoMapper xUserInfoMapper;
+
+
     @Override
     public XResult insertUserOtherInfo(XUserInfo xUserInfo) {
         int insert = xUserInfoMapper.insert (xUserInfo);
-        if (insert>0){
+        if (insert > 0) {
             return XResult.isOk ();
         }
         return XResult.failNoMsg ();
@@ -28,7 +33,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public XResult findAllUser() {
-
         return null;
     }
+
 }

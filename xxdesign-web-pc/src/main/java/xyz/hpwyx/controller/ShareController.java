@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import xyz.hpwyx.IDutil.IDUtils;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.fegin.ShareServiceFigen;
@@ -33,9 +30,9 @@ public class ShareController {
     private JmsMessagingTemplate jmsMessagingTemplate;
     @RequestMapping(value = "/getShare/{sId}")
     public String toShare(@PathVariable Integer sId, Model model) {
-        XResult xResult = shareServiceFigen.showShare (sId);
+        XShare xResult = shareServiceFigen.showShare (sId);
         System.out.println (sId);
-        model.addAttribute ("share", xResult.getData ());
+        model.addAttribute ("share", xResult);
         return "share";
     }
     @ResponseBody
@@ -92,18 +89,18 @@ public class ShareController {
     }
 
     @RequestMapping("/search")
-    public String search(@RequestParam(value = "title",required=false) String title, Model model) throws Exception{
-        System.out.println (title);
-        SearchResult search = shareServiceFigen.search (title, 1, 24);
+    public String search(@RequestParam(value = "key",required=false) String key, Model model) throws Exception{
+        System.out.println (key);
+        SearchResult search = shareServiceFigen.search (key, 1, 24);
         System.out.println (search.getItemList ().size ());
         if (search.getItemList ().size ()==0){
-            return "quert2";
+            return "shareQuery";
         }
-        model.addAttribute ("query", title);
+        model.addAttribute ("query", key);
         model.addAttribute ("CONTENT", search.getItemList ());
         model.addAttribute ("totalPages", search.getTotalPages ());
         model.addAttribute ("page", 1);
 
-        return "shareQueyry";
+        return "shareQuery";
     }
 }

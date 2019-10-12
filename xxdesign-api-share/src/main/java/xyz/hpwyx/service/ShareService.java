@@ -21,7 +21,7 @@ public interface ShareService {
      * @return
      */
     @RequestMapping("/getShare")
-    XResult showShare(@RequestParam("sId")Integer sId);
+    XShare showShare(@RequestParam("sId")Integer sId);
 
     /**
      * 根据类型获取文章列表

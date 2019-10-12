@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.pojo.XDesign;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.pojo.XUserInfo;
 
@@ -51,6 +52,13 @@ public interface UserService {
     XResult findOpenIdUser(@RequestParam("openId") String openId);
 
     /**
+     * 判断是否是会员
+     * @param sId
+     * @return
+     */
+    @RequestMapping("/isVip")
+    XResult isVip(@RequestParam("sId") String sId);
+    /**
      * qq登录
      * @param user
      * @return
@@ -60,4 +68,8 @@ public interface UserService {
 
     @RequestMapping("/changeStates")
      XResult changeStates(@RequestParam("state") String states);
+
+
+    @RequestMapping("/findByUId")
+    XDesign findByUId(@RequestParam("id") Integer id);
 }

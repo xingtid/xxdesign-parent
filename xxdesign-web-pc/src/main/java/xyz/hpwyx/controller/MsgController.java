@@ -89,7 +89,6 @@ public class MsgController {
         if (user == null) {
             return XResult.isOk ();
         }
-        System.out.println (user.getUName ());
         List<XMessage> message = msgServiceFigen.getMessage (user.getUId (), 1);
         List<XMessage> message2 = msgServiceFigen.getMessage (user.getUId (), 2);
         if (message.size () == 0) {
@@ -127,7 +126,6 @@ public class MsgController {
         session.setAttribute ("msg", list);
         session.setAttribute ("note1Size", i);
         session.setAttribute ("note", list2);
-        System.out.println ("a");
         return XResult.isOk ();
     }
 

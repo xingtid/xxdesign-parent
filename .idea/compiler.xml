@@ -9,11 +9,13 @@
         <module name="xxdesign-api-message" />
         <module name="xxdesign-pc-web" />
         <module name="xxdesign-user" />
+        <module name="xxdesign-certified" />
         <module name="xxdesign-admin" />
         <module name="xxdesign-api-index" />
         <module name="xxdesign-common" />
         <module name="xxdesign-api-vip" />
         <module name="zuul-server" />
+        <module name="xxdesign-api-certified" />
         <module name="xxdesign-index" />
         <module name="xxdesign-api-wardrobe" />
         <module name="xxdesign-api-admin" />
@@ -39,12 +41,14 @@
       <module name="xxdesign-admin" options="-parameters" />
       <module name="xxdesign-admin-web" options="-parameters" />
       <module name="xxdesign-api-admin" options="-parameters" />
+      <module name="xxdesign-api-certified" options="-parameters" />
       <module name="xxdesign-api-index" options="-parameters" />
       <module name="xxdesign-api-message" options="-parameters" />
       <module name="xxdesign-api-share" options="-parameters" />
       <module name="xxdesign-api-user" options="-parameters" />
       <module name="xxdesign-api-vip" options="-parameters" />
       <module name="xxdesign-api-wardrobe" options="-parameters" />
+      <module name="xxdesign-certified" options="-parameters" />
       <module name="xxdesign-common" options="-parameters" />
       <module name="xxdesign-index" options="-parameters" />
       <module name="xxdesign-message" options="-parameters" />

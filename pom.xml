@@ -25,6 +25,8 @@
         <module>xxdesign-message</module>
         <module>xxdesign-api-vip</module>
         <module>xxdesign-vip</module>
+        <module>xxdesign-api-certified</module>
+        <module>xxdesign-certified</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

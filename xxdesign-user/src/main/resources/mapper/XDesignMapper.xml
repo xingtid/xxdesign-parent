@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XDesignMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XDesign" >
+    <id column="d_id" property="dId" jdbcType="INTEGER" />
+    <result column="d_star" property="dStar" jdbcType="VARCHAR" />
+    <result column="d_describe" property="dDescribe" jdbcType="VARCHAR" />
+    <result column="d_local" property="dLocal" jdbcType="VARCHAR" />
+    <result column="d_head" property="dHead" jdbcType="VARCHAR" />
+    <result column="d_weixin" property="dWeixin" jdbcType="VARCHAR" />
+    <result column="d_photo" property="dPhoto" jdbcType="VARCHAR" />
+    <result column="d_style" property="dStyle" jdbcType="VARCHAR" />
+    <result column="d_ex1" property="dEx1" jdbcType="VARCHAR" />
+    <result column="d_ex2" property="dEx2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    d_id, d_star, d_describe, d_local, d_head, d_weixin, d_photo, d_style, d_ex1, d_ex2
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_design
+    where d_id = #{dId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_design
+    where d_id = #{dId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XDesign" >
+    insert into x_design (d_id, d_star, d_describe, 
+      d_local, d_head, d_weixin, 
+      d_photo, d_style, d_ex1, 
+      d_ex2)
+    values (#{dId,jdbcType=INTEGER}, #{dStar,jdbcType=VARCHAR}, #{dDescribe,jdbcType=VARCHAR}, 
+      #{dLocal,jdbcType=VARCHAR}, #{dHead,jdbcType=VARCHAR}, #{dWeixin,jdbcType=VARCHAR}, 
+      #{dPhoto,jdbcType=VARCHAR}, #{dStyle,jdbcType=VARCHAR}, #{dEx1,jdbcType=VARCHAR}, 
+      #{dEx2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XDesign" >
+    insert into x_design
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dId != null" >
+        d_id,
+      </if>
+      <if test="dStar != null" >
+        d_star,
+      </if>
+      <if test="dDescribe != null" >
+        d_describe,
+      </if>
+      <if test="dLocal != null" >
+        d_local,
+      </if>
+      <if test="dHead != null" >
+        d_head,
+      </if>
+      <if test="dWeixin != null" >
+        d_weixin,
+      </if>
+      <if test="dPhoto != null" >
+        d_photo,
+      </if>
+      <if test="dStyle != null" >
+        d_style,
+      </if>
+      <if test="dEx1 != null" >
+        d_ex1,
+      </if>
+      <if test="dEx2 != null" >
+        d_ex2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dId != null" >
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="dStar != null" >
+        #{dStar,jdbcType=VARCHAR},
+      </if>
+      <if test="dDescribe != null" >
+        #{dDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="dLocal != null" >
+        #{dLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="dHead != null" >
+        #{dHead,jdbcType=VARCHAR},
+      </if>
+      <if test="dWeixin != null" >
+        #{dWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="dPhoto != null" >
+        #{dPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="dStyle != null" >
+        #{dStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="dEx1 != null" >
+        #{dEx1,jdbcType=VARCHAR},
+      </if>
+      <if test="dEx2 != null" >
+        #{dEx2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XDesign" >
+    update x_design
+    <set >
+      <if test="dStar != null" >
+        d_star = #{dStar,jdbcType=VARCHAR},
+      </if>
+      <if test="dDescribe != null" >
+        d_describe = #{dDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="dLocal != null" >
+        d_local = #{dLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="dHead != null" >
+        d_head = #{dHead,jdbcType=VARCHAR},
+      </if>
+      <if test="dWeixin != null" >
+        d_weixin = #{dWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="dPhoto != null" >
+        d_photo = #{dPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="dStyle != null" >
+        d_style = #{dStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="dEx1 != null" >
+        d_ex1 = #{dEx1,jdbcType=VARCHAR},
+      </if>
+      <if test="dEx2 != null" >
+        d_ex2 = #{dEx2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XDesign" >
+    update x_design
+    set d_star = #{dStar,jdbcType=VARCHAR},
+      d_describe = #{dDescribe,jdbcType=VARCHAR},
+      d_local = #{dLocal,jdbcType=VARCHAR},
+      d_head = #{dHead,jdbcType=VARCHAR},
+      d_weixin = #{dWeixin,jdbcType=VARCHAR},
+      d_photo = #{dPhoto,jdbcType=VARCHAR},
+      d_style = #{dStyle,jdbcType=VARCHAR},
+      d_ex1 = #{dEx1,jdbcType=VARCHAR},
+      d_ex2 = #{dEx2,jdbcType=VARCHAR}
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+</mapper>

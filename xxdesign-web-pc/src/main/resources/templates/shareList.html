@@ -18,6 +18,15 @@
     <div class="banner_w3lspvt-2" style="background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aBMSABWKyAAPsiYtCwKY015.jpg) ;">
     </div>
 </div>
+
+<div class="breadcrumb-mobamu" >
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">主页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page" >文章列表</li>
+    </ol>
+</div>
 <div class="blog-w3ls py-5" id="blog">
     <div class="container py-xl-5 py-lg-3">
         <div class="row package-grids">
@@ -26,8 +35,7 @@
                     <a th:href="@{'/getShare/'+${share.sId}}">
                         <img th:src="${share.sImg}" style="width: 320px;height: 210px;object-fit: cover;" alt="" class="img-fluid"/>
                     </a>
-                    <h3>13
-                        <span>Sep</span>
+                    <h3><span  th:text="${#dates.format(share.sTime,'MM')}">Sep</span><span style="    font-size: 7px;">月</span><span th:text="${#dates.format(share.sTime,'dd')}"></span>
                     </h3>
                 </div>
                 <div class="posts-w3ls-bottom py-4">
@@ -45,7 +53,10 @@
 <!--                    <p class="mt-3">内容详细</p>-->
                 </div>
             </div>
+
+
         </div>
+        <div>下一页</div>
     </div>
 </div>
 </body>

@@ -43,7 +43,7 @@
     padding: 0 6px;
     font-size: 12px;
     text-align: center;
-    background-color: #FF5722;
+    background-color: #8c28ff;
     color: #fff;
     border-radius: 10px;
     line-height: 16px;
@@ -176,7 +176,10 @@
 }
 
 .message-content-list, .message-content-list li{
+    display: contents;
     width: 96%;
+    top: 0;
+    background: white;
 }
 
 .message-content-list li{

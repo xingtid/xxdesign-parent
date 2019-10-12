@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>成为设计师</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="/css/dropzone.min.css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/other.js"></script>
+    <script src="/js/dropzone.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    //两种配置方式，第一种，表单上传时的配置方式，可以打开form表单的注释，myAwesomeDropzone是表单的id
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 10,// MB
+        addRemoveLinks: true,
+        dictResponseError: '文件上传失败!'
+    };
+</script>
+<body>
+
+<!-- main banner -->
+<div class="main-top" id="home">
+    <div th:replace="templates::head"></div>
+    <!-- banner -->
+    <div class="banner_w3lspvt-2">
+
+    </div>
+    <!-- //banner -->
+</div>
+<!-- //main banner -->
+
+<!-- page details -->
+<div class="breadcrumb-mobamu">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">主页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">提交证明</li>
+    </ol>
+</div>
+<!-- //page details -->
+
+<!-- booking form -->
+<div class="register-w3 py-5">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">提交证明</h3>
+        <p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">
+            在这里，你可以上传你的资格认证，或者相关截图
+            <br>
+            等待人工审核
+        </p>
+
+        <div>
+            <label>证明图片</label>
+            <form style="background-color:rgba(255,255,255,0);width:auto;border:2px dashed rgba(0,135,247,0.45);
+    border-radius: 10px;" action="/uploadImg"
+                  class="dropzone needsclick dz-clickable" id="demo-upload">
+                <div class="dz-message needsclick">
+                    <span class="note needsclick">(点击或者拖拽到此处上传)</span>
+                </div>
+            </form>
+        </div>
+        <div class="comment-top mt-5">
+            <div class="comment-bottom mobamuinfo_mail_grid_right">
+                <form id="info" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            <label>证明名称</label>
+                            <input class="form-control" type="text" name="wName" placeholder="输入名称" required="">
+                        </div>
+                        <div class="col-lg-4 form-group date-plu">
+                            <label>从事时间</label>
+                            <input  type="date" name="date" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            <label>申请类别</label>
+                            <select class="form-control" name="wSeason">
+                                <option value="zg">有相关资格证</option>
+                                <option value="bz">博主或者相关自媒体</option>
+                                <option value="xx">线下从事相关工作</option>
+                                <option value="gf">官方推荐</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <label>风格</label>
+                            <input  type="text" name="date" required="">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 form-group">
+                        <label>介绍以及备注</label>
+                        <textarea class="form-control" name="wMark" placeholder="你自己的生活态度？"></textarea>
+                    </div>
+                    <button type="submit" class="btn submit mt-3">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //booking form -->
+
+<div th:replace="templates::footer"></div>
+
+<script>
+    $.post("/insertWard", $("#info").serialize(), function (data) {
+        if (data.rtnCode === 200) {
+            setTimeout(function () {
+
+                location.href = "http://localhost:8088/getWardList";
+            }, 500);
+        } else {
+            alert("a")
+        }
+    });
+</script>
+</body>
+
+</html>

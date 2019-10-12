@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import xyz.hpwyx.IDutil.IDUtils;
 import xyz.hpwyx.baseresult.Constants;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.mapper.XDesignMapper;
 import xyz.hpwyx.mapper.XUserInfoMapper;
 import xyz.hpwyx.mapper.XUserMapper;
+import xyz.hpwyx.pojo.XDesign;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.pojo.XUserExample;
 import xyz.hpwyx.pojo.XUserInfo;
@@ -38,6 +40,8 @@ public class UserServiceImpl implements UserService {
     XUserMapper xUserMapper;
     @Autowired
     XUserInfoMapper xUserInfoMapper;
+    @Autowired
+    private XDesignMapper xDesignMapper;
     @Override
     public XResult baseLogin(@RequestBody XUser user) {
         String phone = user.getUPhone ();
@@ -98,7 +102,7 @@ public class UserServiceImpl implements UserService {
         user.setUId (integer);
         Integer re = xUserMapper.insert (user);
         XUserInfo xUserInfo = new XUserInfo ();
-        xUserInfo.setuId (integer);
+        xUserInfo.setUId (integer);
         xUserInfoMapper.insert (xUserInfo);
         if (re <= 0) {
             return XResult.failMsg ("注册失败");
@@ -139,6 +143,12 @@ public class UserServiceImpl implements UserService {
         //自动登录
         XResult responseBase = setLogin (user);
         return responseBase;
+    }
+
+    @Override
+    public XResult isVip(String sId) {
+
+        return null;
     }
 
     @Override
@@ -194,5 +204,11 @@ public class UserServiceImpl implements UserService {
         JSONObject jsonObject = new JSONObject ();
         jsonObject.put ("token", userToken);
         return XResult.isOk (jsonObject);
+    }
+
+    @Override
+    public XDesign findByUId(@RequestParam("id") Integer id) {
+        XDesign xDesign = xDesignMapper.selectByPrimaryKey (id);
+        return xDesign;
     }
 }

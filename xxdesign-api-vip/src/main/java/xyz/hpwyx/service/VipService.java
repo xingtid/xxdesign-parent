@@ -39,6 +39,13 @@ public interface VipService {
     XResult addVIP(@RequestBody XVip xVip);
 
     /**
+     * 添加会员
+     * @return
+     */
+    @RequestMapping("/updateVIP")
+    String updateVIP(@RequestParam("uId") Integer uId);
+
+    /**
      * 更新订单状态
      * @return
      */

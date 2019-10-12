@@ -1,0 +1,22 @@
+server:
+  port: 8768
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://119.3.11.44:8761/eureka/,http://106.14.140.238:8761/eureka/
+    fetch-registry: false
+spring:
+  application:
+    name: certified
+  datasource:
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   password: Hewenxing4316@
+   url: jdbc:mysql://106.14.140.238:3306/xxDesign?characterEncoding=utf-8
+   username: root
+ribbon:
+  eureka:
+    enabled: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: xyz.hpwyx.pojo

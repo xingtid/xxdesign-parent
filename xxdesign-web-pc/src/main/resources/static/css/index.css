@@ -161,7 +161,11 @@ a.move-top {
 
 .w3ls_banner_txt {
     margin-top: 13.5em;
-    max-width: 400px;
+    max-width: 300px;
+    text-align: center;
+    padding: 50px 0px;
+    background: rgba(0, 0, 0, 0.14);
+    color: white;
 }
 
 .w3ls_banner_txt p {
@@ -929,6 +933,7 @@ p.sub-tittle {
     margin: 7em auto;
     margin-top: 1em;
     padding: 3em 2em 2em;
+    text-align: center;
 }
 
 .popup .close {
@@ -1528,19 +1533,5 @@ form#contactform1 {
         padding: 13px 22px;
     }
 }
-.input-search{
-    background: #ffffff8a;
-    border: none;
-    border-radius: 10px;
-    width: 100px;
-    outline: none;
-    padding: 3px;
-    padding-left: 8px;
-    vertical-align: top;
-    margin-right: -21px;
-}
 
-.noactive-search{
-    width: 27px;
-}
 /* //responsive */

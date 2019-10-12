@@ -30,9 +30,9 @@ public class ShareServiceImpl implements ShareService {
     @Autowired
     private XShareMapper shareMapper;
     @Override
-    public XResult showShare(@RequestParam("sId")Integer sId) {
+    public XShare showShare(@RequestParam("sId")Integer sId) {
         XShare xShare = shareMapper.selectShareAndUserById (sId);
-        return XResult.isOk (xShare);
+        return xShare;
     }
 
     @Override
@@ -80,7 +80,6 @@ public class ShareServiceImpl implements ShareService {
         solrQuery.setRows (rows);
         //设置搜索域
         solrQuery.set ("df", "item_title");
-        solrQuery.set ("df", "item_");
         SearchResult searchResult = searchDao.SearchResult (solrQuery);
         long recordCount = searchResult.getRecordCount ();
         int totle = (int) (recordCount / rows);

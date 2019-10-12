@@ -5,32 +5,17 @@
     <title>Booking Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8"/>
-    <meta name="keywords" content=""/>
-    <!-- //page details -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="Cache-Control" CONTENT="no-cache">
-
     <meta http-equiv="Expires" content="0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
-    <title>调查</title>
+    <title>形象管理调查问卷</title>
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
-    <meta name="description" content="">
-    <link href="/css/question.css" rel="stylesheet">
-
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="/css/headandfoot.css">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/question.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
 
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
@@ -55,21 +40,16 @@
 </div>
 
 <div class="wjContent clear" id="survey_page">
-    <!--    <div id="appearset_header">-->
-    <!--        <div class="assess_header_div">-->
-    <!--            <img src="http://cdn1.wenjuan.com/appear-PC-工作.png" class="header_img">-->
-    <!--        </div>-->
-    <!--    </div>-->
 
     <div class="content_box">
         <div class="wjtitle mtop project_title">
             <h1>
-                <p style="text-align: center;font-size: 20px;">形象管理调查问卷</p>
+                <p style="text-align: center;font-size: 22px;color: black;">形象管理调查问卷</p>
             </h1>
         </div>
 
-        <div id="question_box_fi" data-use-cache="false">
-            <div class="wjques maxtop question" allow_null="1" questiontype="70">
+        <div id="question_box">
+            <div class="wjques maxtop question">
                 <div class="title">第一部分：个人基本信息</div>
             </div>
             <div class="wjques maxtop question" id="sex">
@@ -90,16 +70,16 @@
                     </label></div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="age" >
+            <div class="wjques maxtop question" id="age">
                 <div class="title"><span class="answer_title"><span class="Qnum">2.</span>您的年龄<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
                     <div id="ageq" class="red"></div>
-                    <div class=""><input type="number" name="uAge" max="200" min="0"></div>
+                    <div class=""><input type="number" name="uAge" max="200" min="0"> 岁</div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="weight" >
+            <div class="wjques maxtop question" id="weight">
                 <div class="title"><span class="answer_title"><span class="Qnum">3.</span>您的身高体重<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -109,72 +89,107 @@
                     <div class="">体重：<input type="number" name="uWeight" max="200" min="0" style="margin: 4px">kg</div>
                 </div>
             </div>
-
-            <div class="wjques maxtop question" id="" >
-                <div class="title"><span class="answer_title"><span class="Qnum">3.</span>您的最高学历<span
+            <div class="wjques maxtop question" id="position">
+                <div class="title"><span class="answer_title"><span class="Qnum">4.</span>您目前的职业是？<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
-                    <div id="" class="red"></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="qq4"
-                                                                class="option"><label for="qq4"
-                                                                                      class="option_cell"><span
+                    <div class="red"></div>
+                    <div class="icheckbox_div"><input type="radio" name="position" value="" id="position_zf"
+                                                      class="option"><label for="position_zf" class="option_cell"><span
                             class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">大专</span></div>
+                        <div class="option_label_wrap"><span class="option_label ">政府/机关干部/公务员</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="  " id="q6"
-                                                                class="option"><label for="q6 "
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_glz"
+                                                                class="option"><label for="position_glz"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label  ">博士及以上</span></div>
+                        <div class="option_label_wrap"><span class="option_label ">企业管理者（包括基层及中高层管理者）</span></div>
+                    </label></div>
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_pt"
+                                                                class="option"><label for="position_pt"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label ">普通职员（办公室/写字楼工作人员）</span></div>
+                    </label></div>
+
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_gt"
+                                                                class="option"><label for="position_gt"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label">个体经营者/承包商</span></div>
+                    </label></div>
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_zy"
+                                                                class="option"><label for="position_zy"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label ">自由职业者</span></div>
+                    </label></div>
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_nm"
+                                                                class="option"><label for="position_nm"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label ">农林牧渔劳动者</span></div>
+                    </label></div>
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_tx"
+                                                                class="option"><label for="position_tx"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label ">退休</span></div>
+
+                    </label></div>
+                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_other"
+                                                                class="option"><label for="position_other"
+                                                                                      class="option_cell"><span
+                            class="radio_box"></span>
+                        <div class="option_label_wrap"><span class="option_label ">其他职业人员（请注明）</span><input
+                                type="text" name="position_other"
+                                id="position_other_in" class="option_open"><span class="red"></span></div>
                     </label></div>
                 </div>
             </div>
+            <div class="wjques maxtop question">
+                <div class="title">第二部分：个人色彩性格分析</div>
+            </div>
+            <div class="wjques maxtop question" id="color">
+                <div class="title"><span class="answer_title"><span class="Qnum">5.</span>您喜欢的颜色？<span
+                        class="asterisk">*</span></span></div>
+                <div class="matrix">
+                    <div class="related-tip"></div>
+                    <div id="posi" class="red"></div>
+                    <div class="icheckbox_div"><input type="radio" name="color" id="color_red" class="option">
+                        <label for="color_red" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label" style="color: red">红色</span></div>
+                        </label></div>
+                    <div class="icheckbox_div"><input type="radio" name="color" id="color_blue" class="option">
+                        <label for="color_red" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label" style="color: blue">蓝色</span>
+                            </div>
+                        </label></div>
+                </div>
+            </div>
 
-            <div class="wjques maxtop question" id="   " questiontype="3">
+            <div class="wjques maxtop question">
                 <div class="title"><span class="answer_title"><span
                         class="Qnum">5.</span>您认为以下哪3种方式最能提高您的工作积极性和创造性？<span class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
                     <div id="" class="red"></div>
 
-                    <div class="icheckbox_div " style=""><input type="checkbox" name="   " value="" id=""
-                                                                class="option"><label for=""
+                    <div class="icheckbox_div " style=""><input type="checkbox" name="a"  id="ad"
+                                                                class="option"><label for="ad"
                                                                                       class="option_cell"><span
                             class="check_box"></span>
                         <div class="option_label_wrap"><span class="option_label ">给予挑战性的工作</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="checkbox" name="   " value="" id="q5"
-                                                                class="option"><label
-                            for="q5" class="option_cell"><span class="check_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">给予更多培训机会</span></div>
-                    </label></div>
 
-                    </label>
                 </div>
-                <div class="icheckbox_div " style=""><input type="checkbox" name="" value="" id="option_"
-                                                            class="option"><label
-                        for="option_" class="option_cell"><span class="check_box"></span>
-                    <div class="option_label_wrap"><span class="option_label label_">领导认可</span></div>
-                </label></div>
-                <div class="icheckbox_div " style=""><input type="checkbox" name="" value="" id="option_"
-                                                            class="option"><label
-                        for="option_" class="option_cell"><span class="check_box"></span>
-                    <div class="option_label_wrap"><span class="option_label label_">其他</span><input type="text" name=""
-                                                                                                     id="option_open_"
-                                                                                                     class="option_open"><span
-                            class="red" id="option_tip"></span></div>
-                </label></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="content_box">
-        <div id="question_box" data-use-cache="false">
-            <div class="wjques maxtop question" id="qq7" allow_null="1" questiontype="70">
+            </div>
+            <div class="wjques maxtop question" id="qq7">
                 <div class="title">第四部分：合理化建议</div>
             </div>
-            <div class="wjques maxtop question" id="" questiontype="6">
+            <div class="wjques maxtop question" id="">
                 <div class="title"><span class="answer_title"><span class="Qnum">6.</span>你认为公司目前的福利政策还需进行哪方面的改善？<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -185,7 +200,7 @@
                         <span class="red unique_tip" style="display:none;" id="qe">填写的内容已存在</span></div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="qqq" questiontype="6">
+            <div class="wjques maxtop question" id="qqq">
                 <div class="title"><span class="answer_title"><span class="Qnum">7.</span>你对所在团队有哪些建议？<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -195,7 +210,7 @@
                         <span class="red unique_tip" style="display:none;" id="asd">填写的内容已存在</span></div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="" questiontype="2">
+            <div class="wjques maxtop question" id="">
                 <div class="title"><span class="answer_title"><span class="Qnum">8.</span>请选择以下图片<span class="asterisk">*</span></span>
                 </div>
                 <div class="matrix">
@@ -232,7 +247,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="f" questiontype="3">
+            <div class="wjques maxtop question" id="f">
                 <div class="title"><span class="answer_title"><span class="Qnum">9.</span>请选择以下选项 (多选)<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -251,60 +266,8 @@
                     </label></div>
                 </div>
             </div>
-            <div class="wjques maxtop question" id="" questiontype="2">
-                <div class="title"><span class="answer_title"><span class="Qnum">10.</span>您目前的职业是？<span
-                        class="asterisk">*</span></span></div>
-                <div class="matrix">
-                    <div class="related-tip"></div>
-                    <div id="" class="red"></div>
 
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">政府/机关干部/公务员</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">企业管理者（包括基层及中高层管理者）</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">普通职员（办公室/写字楼工作人员）</span></div>
-                    </label></div>
-
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">个体经营者/承包商</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id="option_"
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">自由职业者</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">农林牧渔劳动者</span></div>
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">退休</span></div>
-
-                    </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="" value="" id=""
-                                                                class="option"><label for="option_" class="option_cell"><span
-                            class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label label_">其他职业人员（请注明）</span><input
-                                type="text" name=""
-                                id="" class="option_open"><span class="red" id=""></span></div>
-                    </label></div>
-                </div>
-            </div>
-            <div class="wjques maxtop question" questiontype="95">
+            <div class="wjques maxtop question">
                 <div class="title"><span class="answer_title"><span class="Qnum">11.</span>请上传文件<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
@@ -314,16 +277,16 @@
                         </label></div>
                 </div>
             </div>
-        </div>
 
-
-        <div class="maxtop btns" id="control_panel">
-            <div class="WJButton wj_color" id="next_button" style="">&nbsp;提交&nbsp;</div>
-            <div class="WJButton wj_color" id="confirm_verify_btn" style="display:none;">确认</div>
+            <div class="maxtop btns" id="control_panel">
+                <div class="WJButton wj_color" id="next_button" style="">&nbsp;提交&nbsp;</div>
+                <div class="WJButton wj_color" id="confirm_verify_btn" style="display:none;">确认</div>
+            </div>
         </div>
     </div>
+
+
 </div>
-<!-- //booking form -->
 <!-- footer -->
 <div th:replace="templates::footer"></div>
 </body>

@@ -39,7 +39,7 @@
                 </div>
                 <div class="main-two-w3ls">
                     <div class="left-side-forget">
-                       <a href="http://127.0.0.1:8088/localQQlogin"> <div  class="qq"></div></a>
+                       <a href="http://localhost:8088/localQQlogin"> <div  class="qq"></div></a>
                     </div>
                     <div class="right-side-forget">
                         <a href="#" class="for">忘记密码?</a>
@@ -72,10 +72,10 @@
                     var ref = null;
                         ref = $("#ref").val();
 
-                    if (ref==="http://127.0.0.1:8088/login.html"){
-                        location.href = "http://127.0.0.1:8088/";
+                    if (ref==="http://localhost:8088/login.html"){
+                        location.href = "http://localhost:8088/";
                     }else if (ref === null||ref ===""){
-                        location.href ="http://127.0.0.1:8088/";
+                        location.href ="http://localhost:8088/";
                     }else {
                         location.href = ref;
                     }

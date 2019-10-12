@@ -644,6 +644,20 @@ h4.sub-con-fo {
 .cpy-right p a:hover {
     color: #ff6b6b;
 }
+.input-search{
+    background: #ffffff8a;
+    border: none;
+    border-radius: 10px;
+    width: 27px;
+    outline: none;
+    padding: 3px;
+    padding-left: 8px;
+    vertical-align: top;
+    margin-right: -21px;
+}
 
+.noactive-search{
+    width: 27px;
+}
 /* //copyright */
 /* //footer */

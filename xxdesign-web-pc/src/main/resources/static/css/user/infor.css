@@ -6174,3 +6174,20 @@ form {
 	top: 58px;
 	cursor: pointer
 }
+.table_info{
+	width: 67px;
+	text-align: right;
+	margin-right: 8px;
+}
+.btn_id{
+	float: right;
+	margin-top: 5px;
+	width: 140px;
+	height: 40px;
+	background-color: #ff9d00;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	font-size: 16px;
+}

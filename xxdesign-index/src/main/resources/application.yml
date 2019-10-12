@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://119.3.11.44:8761/eureka/
+      defaultZone: http://119.3.11.44:8761/eureka/,http://106.14.140.238:8761/eureka/
     fetch-registry: false
 spring:
   application:

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.hpwyx.mapper.XCertifiedMapper" >
+  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XCertified" >
+    <id column="r_id" property="rId" jdbcType="INTEGER" />
+    <result column="r_name" property="rName" jdbcType="VARCHAR" />
+    <result column="r_time" property="rTime" jdbcType="TIMESTAMP" />
+    <result column="r_type" property="rType" jdbcType="INTEGER" />
+    <result column="r_mark" property="rMark" jdbcType="VARCHAR" />
+    <result column="r_img" property="rImg" jdbcType="VARCHAR" />
+    <result column="r_ex" property="rEx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    r_id, r_name, r_time, r_type, r_mark, r_img, r_ex
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XCertifiedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_certified
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_certified
+    where r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_certified
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XCertifiedExample" >
+    delete from x_certified
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xyz.hpwyx.pojo.XCertified" >
+    insert into x_certified (r_id, r_name, r_time, 
+      r_type, r_mark, r_img, 
+      r_ex)
+    values (#{rId,jdbcType=INTEGER}, #{rName,jdbcType=VARCHAR}, #{rTime,jdbcType=TIMESTAMP}, 
+      #{rType,jdbcType=INTEGER}, #{rMark,jdbcType=VARCHAR}, #{rImg,jdbcType=VARCHAR}, 
+      #{rEx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XCertified" >
+    insert into x_certified
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        r_id,
+      </if>
+      <if test="rName != null" >
+        r_name,
+      </if>
+      <if test="rTime != null" >
+        r_time,
+      </if>
+      <if test="rType != null" >
+        r_type,
+      </if>
+      <if test="rMark != null" >
+        r_mark,
+      </if>
+      <if test="rImg != null" >
+        r_img,
+      </if>
+      <if test="rEx != null" >
+        r_ex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="rName != null" >
+        #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rTime != null" >
+        #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rType != null" >
+        #{rType,jdbcType=INTEGER},
+      </if>
+      <if test="rMark != null" >
+        #{rMark,jdbcType=VARCHAR},
+      </if>
+      <if test="rImg != null" >
+        #{rImg,jdbcType=VARCHAR},
+      </if>
+      <if test="rEx != null" >
+        #{rEx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XCertifiedExample" resultType="java.lang.Integer" >
+    select count(*) from x_certified
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_certified
+    <set >
+      <if test="record.rId != null" >
+        r_id = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rName != null" >
+        r_name = #{record.rName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rTime != null" >
+        r_time = #{record.rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rType != null" >
+        r_type = #{record.rType,jdbcType=INTEGER},
+      </if>
+      <if test="record.rMark != null" >
+        r_mark = #{record.rMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rImg != null" >
+        r_img = #{record.rImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rEx != null" >
+        r_ex = #{record.rEx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_certified
+    set r_id = #{record.rId,jdbcType=INTEGER},
+      r_name = #{record.rName,jdbcType=VARCHAR},
+      r_time = #{record.rTime,jdbcType=TIMESTAMP},
+      r_type = #{record.rType,jdbcType=INTEGER},
+      r_mark = #{record.rMark,jdbcType=VARCHAR},
+      r_img = #{record.rImg,jdbcType=VARCHAR},
+      r_ex = #{record.rEx,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XCertified" >
+    update x_certified
+    <set >
+      <if test="rName != null" >
+        r_name = #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rTime != null" >
+        r_time = #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rType != null" >
+        r_type = #{rType,jdbcType=INTEGER},
+      </if>
+      <if test="rMark != null" >
+        r_mark = #{rMark,jdbcType=VARCHAR},
+      </if>
+      <if test="rImg != null" >
+        r_img = #{rImg,jdbcType=VARCHAR},
+      </if>
+      <if test="rEx != null" >
+        r_ex = #{rEx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XCertified" >
+    update x_certified
+    set r_name = #{rName,jdbcType=VARCHAR},
+      r_time = #{rTime,jdbcType=TIMESTAMP},
+      r_type = #{rType,jdbcType=INTEGER},
+      r_mark = #{rMark,jdbcType=VARCHAR},
+      r_img = #{rImg,jdbcType=VARCHAR},
+      r_ex = #{rEx,jdbcType=VARCHAR}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+</mapper>

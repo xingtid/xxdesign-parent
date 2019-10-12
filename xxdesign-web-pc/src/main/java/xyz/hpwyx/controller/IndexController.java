@@ -15,6 +15,7 @@ import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.fegin.IndexServiceFigen;
 import xyz.hpwyx.fegin.UserServiceFigen;
+import xyz.hpwyx.fegin.VipServiceFigen;
 import xyz.hpwyx.iputil.GetIp;
 import xyz.hpwyx.json.JsonUtils;
 import xyz.hpwyx.pojo.XIndex;
@@ -39,6 +40,10 @@ public class IndexController {
     private IndexServiceFigen indexServiceFigen;
     @Autowired
     private UserServiceFigen serviceFigen;
+
+    @Autowired
+    private VipServiceFigen vipServiceFigen;
+
 
     @Autowired
     MsgController msgController;
@@ -71,7 +76,6 @@ public class IndexController {
         List<XIndex> xIndices = indexServiceFigen.showService ();
         reqest.setAttribute ("serviceList", xIndices);
 
-
         // 1.从cookie中获取 token信息
         String token = CookieUtil.getUid (reqest, Constants.COOKIE_TOKEN);
 //        System.out.println ("token"+token);
@@ -83,9 +87,16 @@ public class IndexController {
 
             if (getuser != null) {
                 session.setAttribute ("USERINFO", getuser);
+                //获取消息
                 msgController.refreshA (reqest.getSession ());
+                String s = vipServiceFigen.updateVIP (getuser.getUId ());
+                int i = Integer.parseInt (s);
+                if(i>0){
+                    reqest.getSession ().setAttribute ("VIP",1);
+                }else {
+                    reqest.getSession ().setAttribute ("VIP",0);
+                }
             }
-
         }
         return "index";
     }
@@ -102,6 +113,13 @@ public class IndexController {
             XUser getuser = getuser (responseBase);
             if (getuser != null) {
                 session.setAttribute ("USERINFO", getuser);
+                String s = vipServiceFigen.updateVIP (getuser.getUId ());
+                int i = Integer.parseInt (s);
+                if(i>0){
+                    request.getSession ().setAttribute ("VIP",1);
+                }else {
+                    request.getSession ().setAttribute ("VIP",0);
+                }
                 msgController.refreshA (request.getSession ());
                 return "redirect:/";
             }
@@ -109,6 +127,13 @@ public class IndexController {
         return "login";
     }
 
+    /**
+     * 全局跳转方法
+     * @param page
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping("/{page}")
     public String showPage(@PathVariable String page, HttpServletRequest request, Model model) {
         String ipAddress = GetIp.getIpAddress (request);

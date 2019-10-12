@@ -39,20 +39,20 @@ public class VipController {
      */
     @RequestMapping("/createOrder")
     @ResponseBody
-    public String createOrder(double amount, HttpServletResponse response, HttpSession session)throws Exception {
+    public String createOrder(double amount, HttpServletResponse response, HttpSession session) throws Exception {
 
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
-        if (userinfo==null){
+        if (userinfo == null) {
             return "login.html";
         }
         AlipayClient alipayClient = new DefaultAlipayClient (AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-        AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
+        AlipayTradeAppPayModel model = new AlipayTradeAppPayModel ();
 
         //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称：alipay.trade.app.pay
-        AlipayTradeAppPayRequest ali_request = new AlipayTradeAppPayRequest();
-        ali_request.setBizModel(model);
+        AlipayTradeAppPayRequest ali_request = new AlipayTradeAppPayRequest ();
+        ali_request.setBizModel (model);
         // 回调地址
-        ali_request.setNotifyUrl(AlipayConfig.notify_url);
+        ali_request.setNotifyUrl (AlipayConfig.notify_url);
         //就是orderString 可以直接给客户端请求，无需再做处理。
 
         String orderNo = TokenUtils.getPayToken ();
@@ -63,23 +63,23 @@ public class VipController {
         pay.setoPrice (amount);
         pay.setoTypeid (3);
         pay.setoUserid (userinfo.getUId ());
-        System.out.println ("no"+orderNo);
+        System.out.println ("no" + orderNo);
         vipServiceFigen.addPay (pay);
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-        alipayRequest.setReturnUrl(AlipayConfig.return_url); //同步通知url
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);//异步通知url
-        alipayRequest.setBizContent("{\"out_trade_no\":\""+ orderNo +"\","
-                + "\"total_amount\":\""+ amount +"\","
-                + "\"subject\":\""+ "subject" +"\","
-                + "\"body\":\""+ "会员支付" +"\","
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest ();
+        alipayRequest.setReturnUrl (AlipayConfig.return_url); //同步通知url
+        alipayRequest.setNotifyUrl (AlipayConfig.notify_url);//异步通知url
+        alipayRequest.setBizContent ("{\"out_trade_no\":\"" + orderNo + "\","
+                + "\"total_amount\":\"" + amount + "\","
+                + "\"subject\":\"" + "subject" + "\","
+                + "\"body\":\"" + "会员支付" + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 
         String webForm = "";//输出页面的表单
-        webForm = alipayClient.pageExecute(alipayRequest).getBody();
-        response.setContentType("text/html;charset=" + AlipayConfig.charset);
-        response.getWriter().write(webForm);//直接将完整的表单html输出到页面
-        response.getWriter().flush();
-        response.getWriter().close();
+        webForm = alipayClient.pageExecute (alipayRequest).getBody ();
+        response.setContentType ("text/html;charset=" + AlipayConfig.charset);
+        response.getWriter ().write (webForm);//直接将完整的表单html输出到页面
+        response.getWriter ().flush ();
+        response.getWriter ().close ();
         return webForm;
     }
 
@@ -91,24 +91,22 @@ public class VipController {
      */
     @ResponseBody
     @RequestMapping("/callBack/notifyUrl")
-    public String notify(HttpServletRequest request,HttpSession session) {
+    public String notify(HttpServletRequest request, HttpSession session) {
         // 验证签名
         boolean flag = rsaCheck (request);
         if (flag) {
-            String tradeStatus = request.getParameter("trade_status"); // 交易状态
-            String outTradeNo = request.getParameter("out_trade_no"); // 商户订单号
-            String tradeNo = request.getParameter("trade_no"); // 支付宝订单号
+            String tradeStatus = request.getParameter ("trade_status"); // 交易状态
+            String outTradeNo = request.getParameter ("out_trade_no"); // 商户订单号
+            String tradeNo = request.getParameter ("trade_no"); // 支付宝订单号
             /**
              * 还可以从request中获取更多有用的参数，自己尝试
              */
-            boolean notify = vipServiceFigen.notify(tradeStatus, outTradeNo, tradeNo);
-            if(notify){
+            boolean notify = vipServiceFigen.notify (tradeStatus, outTradeNo, tradeNo);
+            if (notify) {
                 XUser userinfo = (XUser) session.getAttribute ("USERINFO");
-                if (userinfo==null){
+                if (userinfo == null) {
                     return "fail";
                 }
-
-
                 return "success";
             }
         }
@@ -117,34 +115,35 @@ public class VipController {
 
     /**
      * 同步
+     *
      * @param request
      * @param session
      * @return
      */
     @RequestMapping("/callBack/returnUrl")
-    public String returnUrl(HttpServletRequest request,HttpSession session) {
+    public String returnUrl(HttpServletRequest request, HttpSession session) {
         // 验证签名
         boolean flag = rsaCheck (request);
 
-
-                return "success";
+        return "success";
 
     }
-    public boolean rsaCheck( HttpServletRequest request){
+
+    public boolean rsaCheck(HttpServletRequest request) {
         try {
             Map<String, String> params = new HashMap<> ();
-            Map<String, String[]> requestParams = request.getParameterMap();
-            for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
-                String name = (String) iter.next();
-                String[] values = requestParams.get(name);
+            Map<String, String[]> requestParams = request.getParameterMap ();
+            for (Iterator iter = requestParams.keySet ().iterator (); iter.hasNext (); ) {
+                String name = (String) iter.next ();
+                String[] values = requestParams.get (name);
                 String valueStr = "";
                 for (int i = 0; i < values.length; i++) {
                     valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
                 }
-                params.put(name, valueStr);
+                params.put (name, valueStr);
             }
 
-            boolean verifyResult = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
+            boolean verifyResult = AlipaySignature.rsaCheckV1 (params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
             return verifyResult;
         } catch (AlipayApiException e) {
             return false;

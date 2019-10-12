@@ -67,6 +67,17 @@ public class VipServiceImpl implements VipService {
     }
 
     @Override
+    public String updateVIP(@RequestParam("uId") Integer uId){
+
+        XVipExample example = new XVipExample ();
+        XVipExample.Criteria criteria = example.createCriteria ();
+        criteria.andVUidEqualTo (uId);
+        List<XVip> xVips = xVipMapper.selectByExample (example);
+
+        return xVips.get (0).getvTimeLeft ();
+    }
+
+    @Override
     public XResult updatePay(XPay xPay) {
         int i = xPayMapper.updateByPrimaryKey (xPay);
         if (i < 0) {

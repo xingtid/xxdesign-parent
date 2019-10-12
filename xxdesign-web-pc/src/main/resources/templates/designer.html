@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>设计师</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link href="/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+</head>
+<body>
+<!-- header -->
+<div th:replace="templates::head"></div>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- banner -->
+    <div class="banner_w3lspvt-2"></div>
+    <!-- //banner -->
+</div>
+<!-- //main banner -->
+
+<!-- page details -->
+<div class="breadcrumb-mobamu">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">主页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">设计师</li>
+    </ol>
+</div>
+<!-- //page details -->
+
+<div class="col-lg-10 col-md-6 team-gd-info mt-md-0 mt-5" style="margin-left: 9%;">
+    <div class="team-gd">
+        <div class="team-img mb-4" style="text-align: center">
+            <img th:src="${design.dHead}" class="img-fluid" alt="user-image">
+        </div>
+        <div class="team-info " style="padding: 2em">
+            <h2 style="text-align: center"><span th:text="${user.uName}">名称</span>     <span class="sub-tittle-team" style="display: contents" th:text="${design.dLocal}">上海</span></h2>
+                <span class="sub-tittle-team"
+                      style="color: black;float: right">微信联系设计师（请备注你的用户名）</span><span th:text="${design.dWeixin}"></span>
+            善于风格<span th:text="${design.dStyle}"></span>
+            <h3></h3>
+            <p  style="margin-top: 20px;text-indent: 2em;" th:text="${design.dDescribe}">afasdf</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

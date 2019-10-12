@@ -26,6 +26,7 @@
     <!-- Web-Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
     <!-- //Web-Fonts -->
 </head>
 
@@ -65,9 +66,10 @@
 <!-- popup-->
 <div th:each="wardrobe,userStat:${wardrobe}" th:id="'gal'+${userStat.index}" class="pop-overlay animate">
     <div class="popup">
-        <img style="max-height:740px " src="images/blog1.jpg" alt="Popup Image" class="img-fluid"
+        <img style="max-height:640px " src="images/blog1.jpg" alt="Popup Image" class="img-fluid"
              th:src="${wardrobe.wImg}"/>
         <p th:text="${wardrobe.wName}"></p>
+        <p style="color: blueviolet;">季节：<span style="color: #0042ff" th:text="${wardrobe.wSeason}"></span> 价格：<span th:text="${wardrobe.wPrice}+' ¥'" style="color: red"></span></p>
         <a class="close" href="#">&times;</a>
     </div>
 </div>

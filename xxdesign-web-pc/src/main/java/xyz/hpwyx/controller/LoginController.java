@@ -19,6 +19,7 @@ import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.cookie.CookieUtils;
 import xyz.hpwyx.fegin.UserServiceFigen;
+import xyz.hpwyx.fegin.VipServiceFigen;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.redis.RedisUtil;
 
@@ -39,7 +40,8 @@ public class LoginController {
     private RedisUtil redisUtil;
     @Autowired
     UserServiceFigen serviceFigen;
-
+    @Autowired
+    VipServiceFigen vipServiceFigen;
     @Autowired
     MsgController msgController;
 
@@ -65,12 +67,20 @@ public class LoginController {
         try {
             subject.login (token);
             System.out.println("isAuthen:"+subject.isAuthenticated());
+
         } catch (UnknownAccountException e) {
             return XResult.build (400, "用户名不存在", null);
         } catch (IncorrectCredentialsException e) {
             return XResult.build (400, "密码错误", null);
         }
         XUser xUser = serviceFigen.findUserByPhone (token.getUsername ());
+        String s = vipServiceFigen.updateVIP (xUser.getUId ());
+        int i = Integer.parseInt (s);
+        if(i>0){
+            request.getSession ().setAttribute ("VIP",1);
+        }else {
+            request.getSession ().setAttribute ("VIP",0);
+        }
         XResult login = serviceFigen.baseLogin (xUser);
         // 判断
         if (!login.getRtnCode ().equals (200)) {
