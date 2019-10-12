@@ -7,7 +7,10 @@ import org.springframework.web.multipart.MultipartFile;
 import xyz.hpwyx.fastDFS.FastDFSClient;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,7 +21,7 @@ import java.io.IOException;
 public class picController {
     @ResponseBody
     @RequestMapping(value = "/uploadImg")
-    public void upLoadImg(MultipartFile file, HttpServletResponse response) throws IOException {
+    public void upLoadImg(MultipartFile file, HttpServletResponse response, HttpSession session) throws IOException {
         try {
             FastDFSClient fastDFSClient = new FastDFSClient ("/config/client.conf");
             //取扩展名
@@ -27,11 +30,22 @@ public class picController {
             //得到一个图片的地址和文件名
             String urla = fastDFSClient.uploadFile (file.getBytes (), extName);
             urla = "http://www.hpwyx.xyz:81/" + urla;
-            System.out.println ("图片地址："+urla);
-            response.getWriter().write (urla);
-        }catch (Exception e) {
+            System.out.println ("图片地址：" + urla);
+            List<String> img = (List<String>) session.getAttribute ("img");
+            if (img != null) {
+                System.out.println (img.get (0));
+                img.add (urla);
+                session.setAttribute ("img",img);
+            } else {
+                List<String> imgList = new ArrayList<> ();
+                imgList.add (urla);
+                session.setAttribute ("img",imgList);
+            }
+
+            response.getWriter ().write (urla);
+        } catch (Exception e) {
             e.printStackTrace ();
-            response.getWriter().write (e.toString ());
+            response.getWriter ().write (e.toString ());
         }
     }
 }

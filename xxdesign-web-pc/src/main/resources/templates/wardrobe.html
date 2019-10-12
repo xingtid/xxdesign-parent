@@ -56,7 +56,10 @@
         <div class="row news-grids no-gutters text-center">
             <div class="col-md-4 gal-img" th:each="wardrobe,userStat:${wardrobe}">
                 <a th:href="'#gal'+${userStat.index}"><img src="images/blog1.jpg" class="img-fluid"
-                                                           th:src="${wardrobe.wImg}">
+                                                           th:src="${wardrobe.wImg}" style="width: 370px;
+    height: 500px;
+    object-fit: cover;
+}">
                 </a>
             </div>
 

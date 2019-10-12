@@ -78,33 +78,33 @@
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <label>证明名称</label>
-                            <input class="form-control" type="text" name="wName" placeholder="输入名称" required="">
+                            <input class="form-control" type="text" name="rName" placeholder="输入名称" required="">
                         </div>
                         <div class="col-lg-4 form-group date-plu">
                             <label>从事时间</label>
-                            <input  type="date" name="date" required="">
+                            <input type="date" name="date" required="">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <label>申请类别</label>
-                            <select class="form-control" name="wSeason">
-                                <option value="zg">有相关资格证</option>
-                                <option value="bz">博主或者相关自媒体</option>
-                                <option value="xx">线下从事相关工作</option>
-                                <option value="gf">官方推荐</option>
+                            <select class="form-control" name="rType">
+                                <option value="1">有相关资格证</option>
+                                <option value="2">博主或者相关自媒体</option>
+                                <option value="3">线下从事相关工作</option>
+                                <option value="4">官方推荐</option>
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
-                            <label>风格</label>
-                            <input  type="text" name="date" required="">
+                            <label>喜欢的风格</label>
+                            <input type="text" name="rEx" required="">
                         </div>
                     </div>
                     <div class="col-lg-8 form-group">
                         <label>介绍以及备注</label>
-                        <textarea class="form-control" name="wMark" placeholder="你自己的生活态度？"></textarea>
+                        <textarea class="form-control" name="rMark" placeholder="你自己的生活态度？"></textarea>
                     </div>
-                    <button type="submit" class="btn submit mt-3">保存</button>
+                    <button type="button" class="btn submit mt-3" onclick="add()">保存</button>
                 </form>
             </div>
         </div>
@@ -115,16 +115,18 @@
 <div th:replace="templates::footer"></div>
 
 <script>
-    $.post("/insertWard", $("#info").serialize(), function (data) {
-        if (data.rtnCode === 200) {
-            setTimeout(function () {
+    function add() {
+        $.post("/addCertified", $("#info").serialize(), function (data) {
+            if (data.rtnCode === 200) {
+                setTimeout(function () {
 
-                location.href = "http://localhost:8088/getWardList";
-            }, 500);
-        } else {
-            alert("a")
-        }
-    });
+                    location.href = "http://localhost:8088/findMyInfo";
+                }, 500);
+            } else {
+                alert("a")
+            }
+        });
+    }
 </script>
 </body>
 

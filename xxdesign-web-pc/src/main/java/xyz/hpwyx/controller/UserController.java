@@ -28,6 +28,9 @@ public class UserController {
     public String index(HttpServletRequest reqest, HttpSession session) {
 
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
+        if (userinfo == null){
+            return "login.html";
+        }
         XUser userById = serviceFigen.findUserById (userinfo.getUId ());
         XUserInfo infoById = serviceFigen.findInfoById (userinfo.getUId ());
         session.setAttribute ("USERINFO", userById);

@@ -72,7 +72,18 @@
                                 <li><a href="#price" class="drop-text">我的喜欢</a></li>
                             </ul>
                         </li>
-                        <li><a href="/getWardList">我的衣柜</a></li>
+                        <li>
+
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-5" class="toggle toogle-2">share<span class="fa fa-angle-down"
+                                                                                   aria-hidden="true"></span>
+                            </label>
+                            <a href="/getWardList">我的衣柜 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-5"/>
+                            <ul>
+                                <li><a href="iswardrobe.html" class="drop-text">放入衣柜</a></li>
+                            </ul>
+                           </li>
 
                         <li th:if="${session.USERINFO} eq null"><a href="login.html">登录</a>
                             <a href="register.html">注册</a></li>

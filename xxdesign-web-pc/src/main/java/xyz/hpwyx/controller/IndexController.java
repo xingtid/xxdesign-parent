@@ -153,7 +153,7 @@ public class IndexController {
             model.addAttribute ("REFERER", url);
             return "login";
         }
-
+        request.getSession ().removeAttribute ("img");
         return page;
     }
 
@@ -164,6 +164,7 @@ public class IndexController {
         String url = request.getHeader ("REFERER");
         System.out.println (url);
         System.out.println ("page:" + page);
+        request.getSession ().removeAttribute ("img");
         model.addAttribute ("REFERER", url);
         return path + "/" + page;
     }

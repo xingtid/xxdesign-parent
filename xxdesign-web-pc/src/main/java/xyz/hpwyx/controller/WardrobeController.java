@@ -30,11 +30,25 @@ public class WardrobeController {
     @ResponseBody
     public XResult insertWard(XWardrobe xWardrobe, @RequestParam("date") String date, HttpSession session) throws ParseException {
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
+        if (userinfo==null){
+            return XResult.failMsg ("未登录");
+        }
         System.out.println ("date::"+date);
         SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
         Date parse = format.parse (date);
         xWardrobe.setWUserid (userinfo.getUId ());
         xWardrobe.setWCreateTime (parse);
+        List<String> img = (List<String>) session.getAttribute ("img");
+            if (img.size ()==1) {
+                xWardrobe.setWImg (img.get (0));
+            }else if(img.size () == 2) {
+                xWardrobe.setWImg (img.get (0));
+                xWardrobe.setWImg2 (img.get (1));
+            }else {
+                xWardrobe.setWImg (img.get (0));
+                xWardrobe.setWImg2 (img.get (1));
+                xWardrobe.setWImg3 (img.get (2));
+            }
         XResult xResult = wardrobeFeign.insertWard (xWardrobe);
         return xResult;
     }

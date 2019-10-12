@@ -134,7 +134,7 @@
                         <label>介绍以及备注</label>
                         <textarea class="form-control" name="wMark" placeholder="你喜欢这件衣服么？"></textarea>
                     </div>
-                    <button type="submit" class="btn submit mt-3">保存</button>
+                    <button type="button" class="btn submit mt-3" onclick="insert()">保存</button>
                 </form>
             </div>
         </div>
@@ -145,16 +145,20 @@
 <div th:replace="templates::footer"></div>
 
 <script>
-    $.post("/insertWard", $("#info").serialize(), function (data) {
-        if (data.rtnCode === 200) {
-            setTimeout(function () {
+    function insert(){
 
-                location.href = "http://localhost:8088/getWardList";
-            }, 500);
-        } else {
-            alert("a")
-        }
-    });
+        $.post("/insertWard", $("#info").serialize(), function (data) {
+            if (data.rtnCode === 200) {
+                setTimeout(function () {
+
+                    location.href = "http://localhost:8088/getWardList";
+                }, 500);
+            } else {
+                alert("a")
+            }
+        });
+    }
+
 </script>
 </body>
 
