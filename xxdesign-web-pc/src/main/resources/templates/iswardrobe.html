@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml" style="font-size: 16px">
 
 <head>
     <title>添加衣物</title>
@@ -143,18 +143,19 @@
 <!-- //booking form -->
 
 <div th:replace="templates::footer"></div>
-
+<script src="/js/jqAlert2.js"></script>
 <script>
     function insert(){
 
         $.post("/insertWard", $("#info").serialize(), function (data) {
             if (data.rtnCode === 200) {
+                jqAlert.Confirm('添加成功',2000)
                 setTimeout(function () {
 
                     location.href = "http://localhost:8088/getWardList";
                 }, 500);
             } else {
-                alert("a")
+                jqAlert.Confirm('网络异常',2000)
             }
         });
     }

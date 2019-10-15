@@ -29,8 +29,9 @@ import java.util.List;
 public class ShareServiceImpl implements ShareService {
     @Autowired
     private XShareMapper shareMapper;
+
     @Override
-    public XShare showShare(@RequestParam("sId")Integer sId) {
+    public XShare showShare(@RequestParam("sId") Integer sId) {
         XShare xShare = shareMapper.selectShareAndUserById (sId);
         return xShare;
     }
@@ -45,7 +46,7 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public XResult insertShare(XShare xShare) {
         int insert = shareMapper.insert (xShare);
-        if (insert<0){
+        if (insert < 0) {
             return XResult.failMsg ("插入失败");
         }
         return XResult.isOk ();
@@ -54,9 +55,9 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public XResult delShare(Integer sId) {
         int i = shareMapper.deleteByPrimaryKey (sId);
-        if (i<0){
+        if (i < 0) {
             return XResult.failNoMsg ();
-        }else {
+        } else {
             return XResult.isOk ();
         }
     }
@@ -71,8 +72,9 @@ public class ShareServiceImpl implements ShareService {
     private SearchDao searchDao;
     @Autowired
     private SolrClient solrServer;
+
     @Override
-    public SearchResult search(@RequestParam("keyword")String keyword,@RequestParam("page") int page, @RequestParam("rows")int rows) throws Exception {
+    public SearchResult search(@RequestParam("keyword") String keyword, @RequestParam("page") int page, @RequestParam("rows") int rows) throws Exception {
         SolrQuery solrQuery = new SolrQuery ();
         solrQuery.setQuery (keyword);
         if (page <= 0) page = 1;
@@ -104,8 +106,8 @@ public class ShareServiceImpl implements ShareService {
                 document.addField ("item_title", sContent.getsTitle ());
                 document.addField ("item_image", sContent.getsImg ());
                 document.addField ("item_get_click", sContent.getsGetClick ());
-                document.addField ("item_user_name",sContent.getxUser ().getUName ());
-                document.addField ("item_user_img",sContent.getxUser ().getUEx1 ());
+                document.addField ("item_user_name", sContent.getxUser ().getUName ());
+                document.addField ("item_user_img", sContent.getxUser ().getUEx1 ());
                 //把文档对象写入索引库
                 solrServer.add (document);
             }
@@ -114,7 +116,34 @@ public class ShareServiceImpl implements ShareService {
             return XResult.isOk ();
         } catch (Exception e) {
             e.printStackTrace ();
-            return XResult.build (500, "异常",null);
+            return XResult.build (500, "异常", null);
         }
+    }
+
+    @Override
+    public Integer shareCount(@RequestParam("type") String type) {
+        int i = 0;
+        if ("null".equals (type)) {
+            i = shareMapper.countByExample (null);
+        } else {
+            XShareExample example = new XShareExample ();
+            XShareExample.Criteria criteria = example.createCriteria ();
+            criteria.andSType1EqualTo (type);
+            i = shareMapper.countByExample (example);
+        }
+        return i;
+    }
+
+    @Override
+    public List<XShare> findShareByUId(@RequestParam("uId")Integer uId) {
+        XShareExample example = new XShareExample ();
+        XShareExample.Criteria criteria = example.createCriteria ();
+        criteria.andSAnthIdEqualTo (uId);
+        List<XShare> xShares = shareMapper.selectByExample (example);
+        for (XShare xShare : xShares) {
+            xShare.setsContent ("");
+
+        }
+        return xShares;
     }
 }

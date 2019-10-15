@@ -103,8 +103,10 @@
                             <ul style="top: 35px;width: 100px">
                                 <li style="width: 80px;font-size: 13px"><a style="color: orange;" href="/findMyInfo" class="drop-text" th:text="*{uName}">个人信息</a>
                                 </li>
-                                <li style="width: 80px"><a href="#blog" class="drop-text"  th:if="${session.VIP} eq '0'">我的信息</a></li>
-                                <li style="width: 80px"><a href="#blog" class="drop-text"  th:if="${session.VIP} eq '1'">VIP会员</a></li>
+                                <li style="width: 80px;font-size: 13px"><a style="color: orange;" href="question.html" class="drop-text">个人定制</a>
+                                </li>
+                                <li style="width: 80px"><a href="/findMyInfo" class="drop-text"  th:if="${session.VIP} eq '0'">我的信息</a></li>
+                                <li style="width: 80px"><a href="#vip" class="drop-text"  th:if="${session.VIP} eq '1'">VIP会员</a></li>
                                 <li style="width: 80px"><a href="/loginOut" class="drop-text">退出</a></li>
                             </ul>
                     </ul>
@@ -237,7 +239,6 @@
     <!-- //move top icon -->
 </div>
 
-
 <div th:fragment="userleft">
     <div class="side_bar flt1">
         <div class="MAvatar">
@@ -247,10 +248,10 @@
             </div>
             <div class="MAvaName"><span th:text="${session.USERINFO.uName}"></span></div>
             <div class="MAvaInfo clearfix MAvaMyInfo">
-                <span class="MAvaLevel flt1">等级：<a href="#" target="_blank">Lv.3</a></span>
-                <span class="MAvaPlace flt1">现居：苏州</span>
+                <span class="MAvaLevel flt1">等级：<a href="#" target="_blank"><span>无</span></a></span>
+                <span class="MAvaPlace flt1">现居：<span th:text="${session.userinfo.uCity}"></span></span>
                 <span class="MAvaPlace flt1"><spqn th:if="${session.VIP} eq 1">会员</spqn></span>
-                <span class="MAvaPlace flt1"><spqn th:if="${session.VIP} eq 0"><a href="joinVIP.html">开通会员</a></spqn></span>
+                <span class="MAvaPlace flt1"  th:if="${session.VIP} eq 0"><spqn><a href="joinVIP.html">开通会员</a></spqn></span>
             </div>
             <div class="MAvaProfile">
                 <div class="MProfile">
@@ -259,7 +260,7 @@
             </div>
             <div class="MAvaMore clearfix">
                 <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">8</a></strong>
+                    <strong><a href="#" target="_blank" th:text="${session.share.size()}">0</a></strong>
                     <p>累计分享</p>
                 </div>
                 <div class="MAvaNums">
@@ -267,7 +268,7 @@
                     <p>我的衣物</p>
                 </div>
                 <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">0</a></strong>
+                    <strong><a href="/getMsg" target="_blank" th:text="${session.msg1Size}">0</a></strong>
                     <p>消息通知</p>
                 </div>
             </div>
@@ -277,7 +278,9 @@
         <div class="MWendaMod">
             <h3>我的文章</h3>
             <ul class="wendaHonor">
-                <li><a class="zlr" href="#" target="_blank">指路人</a></li>
+                <li th:if="${session.share.size()} eq 0">暂无文章</li>
+                <li th:each="c:${session.share}" ><a th:text="${c.sTitle}"  th:href="@{'/getShare/'+${s.sId}}"></a></li>
+
             </ul>
         </div>
     </div>

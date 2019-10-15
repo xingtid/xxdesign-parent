@@ -1,330 +1,371 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.hpwyx.mapper.XUserMapper" >
-  <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XUser" >
-    <id column="u_id" property="uId" jdbcType="INTEGER" />
-    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
-    <result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
-    <result column="u_name" property="uName" jdbcType="VARCHAR" />
-    <result column="u_openid" property="uOpenid" jdbcType="VARCHAR" />
-    <result column="u_ip" property="uIp" jdbcType="VARCHAR" />
-    <result column="u_create_at" property="uCreateAt" jdbcType="TIMESTAMP" />
-    <result column="u_login_at" property="uLoginAt" jdbcType="TIMESTAMP" />
-    <result column="u_isdesign" property="uIsdesign" jdbcType="VARCHAR" />
-    <result column="u_ex1" property="uEx1" jdbcType="VARCHAR" />
-    <result column="u_ex2" property="uEx2" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="xyz.hpwyx.mapper.XUserMapper">
+    <resultMap id="BaseResultMap" type="xyz.hpwyx.pojo.XUser">
+        <id column="u_id" property="uId" jdbcType="INTEGER"/>
+        <result column="u_password" property="uPassword" jdbcType="VARCHAR"/>
+        <result column="u_phone" property="uPhone" jdbcType="VARCHAR"/>
+        <result column="u_name" property="uName" jdbcType="VARCHAR"/>
+        <result column="u_openid" property="uOpenid" jdbcType="VARCHAR"/>
+        <result column="u_ip" property="uIp" jdbcType="VARCHAR"/>
+        <result column="u_create_at" property="uCreateAt" jdbcType="TIMESTAMP"/>
+        <result column="u_login_at" property="uLoginAt" jdbcType="TIMESTAMP"/>
+        <result column="u_isdesign" property="uIsdesign" jdbcType="VARCHAR"/>
+        <result column="u_ex1" property="uEx1" jdbcType="VARCHAR"/>
+        <result column="u_ex2" property="uEx2" jdbcType="VARCHAR"/>
+        <collection property="xUserInfo" ofType="xyz.hpwyx.pojo.XUserInfo">
+            <id column="u_id" property="uId" jdbcType="INTEGER"/>
+            <result column="u_email" property="uEmail" jdbcType="VARCHAR"/>
+            <result column="u_sex" property="uSex" jdbcType="CHAR"/>
+            <result column="u_age" property="uAge" jdbcType="INTEGER"/>
+            <result column="u_city" property="uCity" jdbcType="VARCHAR"/>
+            <result column="u_face" property="uFace" jdbcType="VARCHAR"/>
+            <result column="u_style1" property="uStyle1" jdbcType="VARCHAR"/>
+            <result column="u_style2" property="uStyle2" jdbcType="VARCHAR"/>
+            <result column="u_style3" property="uStyle3" jdbcType="VARCHAR"/>
+            <result column="u_height" property="uHeight" jdbcType="INTEGER"/>
+            <result column="u_weight" property="uWeight" jdbcType="INTEGER"/>
+            <result column="u_skin" property="uSkin" jdbcType="VARCHAR"/>
+            <result column="u_hair" property="uHair" jdbcType="VARCHAR"/>
+            <result column="u_position" property="uPosition" jdbcType="VARCHAR"/>
+            <result column="u_photo" property="uPhoto" jdbcType="VARCHAR"/>
+            <result column="u_other" property="uOther" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="xDesign" ofType="xyz.hpwyx.pojo.XDesign">
+            <id column="d_id" property="dId" jdbcType="INTEGER"/>
+            <result column="d_star" property="dStar" jdbcType="VARCHAR"/>
+            <result column="d_describe" property="dDescribe" jdbcType="VARCHAR"/>
+            <result column="d_local" property="dLocal" jdbcType="VARCHAR"/>
+            <result column="d_head" property="dHead" jdbcType="VARCHAR"/>
+            <result column="d_weixin" property="dWeixin" jdbcType="VARCHAR"/>
+            <result column="d_photo" property="dPhoto" jdbcType="VARCHAR"/>
+            <result column="d_style" property="dStyle" jdbcType="VARCHAR"/>
+            <result column="d_ex1" property="dEx1" jdbcType="VARCHAR"/>
+            <result column="d_ex2" property="dEx2" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    u_id, u_password, u_phone, u_name, u_openid, u_ip, u_create_at, u_login_at, u_isdesign, 
+        </where>
+    </sql>
+    <sql id="Base_Column_List_Info_Design">
+        u.u_id, u_password, u_phone, u_name, u_openid, u_ip, u_create_at, u_login_at, u_isdesign,
+    u_ex1, u_ex2,d_id, d_star, d_describe, d_local, d_head, d_weixin, d_photo, d_style, d_ex1, d_ex2,
+ i.u_id, u_email, u_sex, u_age, u_city, u_face, u_style1, u_style2, u_style3, u_height,
+    u_weight, u_skin, u_hair, u_position, u_photo, u_other
+    </sql>
+
+    <sql id="Base_Column_List">
+        u_id, u_password, u_phone, u_name, u_openid, u_ip, u_create_at, u_login_at, u_isdesign,
     u_ex1, u_ex2
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XUserExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from x_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPhoneAndPassword" resultMap="BaseResultMap" parameterType="string">
-    select
-    <include refid="Base_Column_List" />
-    from x_user
-    where u_phone = #{uPhone,jdbcType=VARCHAR}
-    and u_password = #{uPassword,jdbcType=VARCHAR}
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from x_user
-    where u_id = #{uId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from x_user
-    where u_id = #{uId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="xyz.hpwyx.pojo.XUserExample" >
-    delete from x_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="xyz.hpwyx.pojo.XUser" >
-    insert into x_user (u_id, u_password, u_phone, 
-      u_name, u_openid, u_ip, 
-      u_create_at, u_login_at, u_isdesign, 
-      u_ex1, u_ex2)
-    values (#{uId,jdbcType=INTEGER}, #{uPassword,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR}, 
-      #{uName,jdbcType=VARCHAR}, #{uOpenid,jdbcType=VARCHAR}, #{uIp,jdbcType=VARCHAR}, 
-      #{uCreateAt,jdbcType=TIMESTAMP}, #{uLoginAt,jdbcType=TIMESTAMP}, #{uIsdesign,jdbcType=VARCHAR}, 
-      #{uEx1,jdbcType=VARCHAR}, #{uEx2,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XUser" >
-    insert into x_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uId != null" >
-        u_id,
-      </if>
-      <if test="uPassword != null" >
-        u_password,
-      </if>
-      <if test="uPhone != null" >
-        u_phone,
-      </if>
-      <if test="uName != null" >
-        u_name,
-      </if>
-      <if test="uOpenid != null" >
-        u_openid,
-      </if>
-      <if test="uIp != null" >
-        u_ip,
-      </if>
-      <if test="uCreateAt != null" >
-        u_create_at,
-      </if>
-      <if test="uLoginAt != null" >
-        u_login_at,
-      </if>
-      <if test="uIsdesign != null" >
-        u_isdesign,
-      </if>
-      <if test="uEx1 != null" >
-        u_ex1,
-      </if>
-      <if test="uEx2 != null" >
-        u_ex2,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uId != null" >
-        #{uId,jdbcType=INTEGER},
-      </if>
-      <if test="uPassword != null" >
-        #{uPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="uPhone != null" >
-        #{uPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="uName != null" >
-        #{uName,jdbcType=VARCHAR},
-      </if>
-      <if test="uOpenid != null" >
-        #{uOpenid,jdbcType=VARCHAR},
-      </if>
-      <if test="uIp != null" >
-        #{uIp,jdbcType=VARCHAR},
-      </if>
-      <if test="uCreateAt != null" >
-        #{uCreateAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uLoginAt != null" >
-        #{uLoginAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uIsdesign != null" >
-        #{uIsdesign,jdbcType=VARCHAR},
-      </if>
-      <if test="uEx1 != null" >
-        #{uEx1,jdbcType=VARCHAR},
-      </if>
-      <if test="uEx2 != null" >
-        #{uEx2,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="xyz.hpwyx.pojo.XUserExample" resultType="java.lang.Integer" >
-    select count(*) from x_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update x_user
-    <set >
-      <if test="record.uId != null" >
-        u_id = #{record.uId,jdbcType=INTEGER},
-      </if>
-      <if test="record.uPassword != null" >
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="xyz.hpwyx.pojo.XUserExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from x_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPhoneAndPassword" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from x_user
+        where u_phone = #{uPhone,jdbcType=VARCHAR}
+        and u_password = #{uPassword,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from x_user
+        where u_id = #{uId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from x_user
+        where u_id = #{uId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="xyz.hpwyx.pojo.XUser">
+        insert into x_user (u_id, u_password, u_phone,
+                            u_name, u_openid, u_ip,
+                            u_create_at, u_login_at, u_isdesign,
+                            u_ex1, u_ex2)
+        values (#{uId,jdbcType=INTEGER}, #{uPassword,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR},
+                #{uName,jdbcType=VARCHAR}, #{uOpenid,jdbcType=VARCHAR}, #{uIp,jdbcType=VARCHAR},
+                #{uCreateAt,jdbcType=TIMESTAMP}, #{uLoginAt,jdbcType=TIMESTAMP}, #{uIsdesign,jdbcType=VARCHAR},
+                #{uEx1,jdbcType=VARCHAR}, #{uEx2,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="xyz.hpwyx.pojo.XUser">
+        insert into x_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uId != null">
+                u_id,
+            </if>
+            <if test="uPassword != null">
+                u_password,
+            </if>
+            <if test="uPhone != null">
+                u_phone,
+            </if>
+            <if test="uName != null">
+                u_name,
+            </if>
+            <if test="uOpenid != null">
+                u_openid,
+            </if>
+            <if test="uIp != null">
+                u_ip,
+            </if>
+            <if test="uCreateAt != null">
+                u_create_at,
+            </if>
+            <if test="uLoginAt != null">
+                u_login_at,
+            </if>
+            <if test="uIsdesign != null">
+                u_isdesign,
+            </if>
+            <if test="uEx1 != null">
+                u_ex1,
+            </if>
+            <if test="uEx2 != null">
+                u_ex2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uId != null">
+                #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="uPassword != null">
+                #{uPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="uName != null">
+                #{uName,jdbcType=VARCHAR},
+            </if>
+            <if test="uOpenid != null">
+                #{uOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="uIp != null">
+                #{uIp,jdbcType=VARCHAR},
+            </if>
+            <if test="uCreateAt != null">
+                #{uCreateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uLoginAt != null">
+                #{uLoginAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uIsdesign != null">
+                #{uIsdesign,jdbcType=VARCHAR},
+            </if>
+            <if test="uEx1 != null">
+                #{uEx1,jdbcType=VARCHAR},
+            </if>
+            <if test="uEx2 != null">
+                #{uEx2,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="xyz.hpwyx.pojo.XUserExample" resultType="java.lang.Integer">
+        select count(*) from x_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update x_user
+        <set>
+            <if test="record.uId != null">
+                u_id = #{record.uId,jdbcType=INTEGER},
+            </if>
+            <if test="record.uPassword != null">
+                u_password = #{record.uPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uPhone != null">
+                u_phone = #{record.uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uName != null">
+                u_name = #{record.uName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uOpenid != null">
+                u_openid = #{record.uOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uIp != null">
+                u_ip = #{record.uIp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uCreateAt != null">
+                u_create_at = #{record.uCreateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.uLoginAt != null">
+                u_login_at = #{record.uLoginAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.uIsdesign != null">
+                u_isdesign = #{record.uIsdesign,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uEx1 != null">
+                u_ex1 = #{record.uEx1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uEx2 != null">
+                u_ex2 = #{record.uEx2,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update x_user
+        set u_id = #{record.uId,jdbcType=INTEGER},
         u_password = #{record.uPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uPhone != null" >
         u_phone = #{record.uPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uName != null" >
         u_name = #{record.uName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uOpenid != null" >
         u_openid = #{record.uOpenid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uIp != null" >
         u_ip = #{record.uIp,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uCreateAt != null" >
         u_create_at = #{record.uCreateAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.uLoginAt != null" >
         u_login_at = #{record.uLoginAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.uIsdesign != null" >
         u_isdesign = #{record.uIsdesign,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uEx1 != null" >
         u_ex1 = #{record.uEx1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uEx2 != null" >
-        u_ex2 = #{record.uEx2,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update x_user
-    set u_id = #{record.uId,jdbcType=INTEGER},
-      u_password = #{record.uPassword,jdbcType=VARCHAR},
-      u_phone = #{record.uPhone,jdbcType=VARCHAR},
-      u_name = #{record.uName,jdbcType=VARCHAR},
-      u_openid = #{record.uOpenid,jdbcType=VARCHAR},
-      u_ip = #{record.uIp,jdbcType=VARCHAR},
-      u_create_at = #{record.uCreateAt,jdbcType=TIMESTAMP},
-      u_login_at = #{record.uLoginAt,jdbcType=TIMESTAMP},
-      u_isdesign = #{record.uIsdesign,jdbcType=VARCHAR},
-      u_ex1 = #{record.uEx1,jdbcType=VARCHAR},
-      u_ex2 = #{record.uEx2,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XUser" >
-    update x_user
-    <set >
-      <if test="uPassword != null" >
-        u_password = #{uPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="uPhone != null" >
-        u_phone = #{uPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="uName != null" >
-        u_name = #{uName,jdbcType=VARCHAR},
-      </if>
-      <if test="uOpenid != null" >
-        u_openid = #{uOpenid,jdbcType=VARCHAR},
-      </if>
-      <if test="uIp != null" >
-        u_ip = #{uIp,jdbcType=VARCHAR},
-      </if>
-      <if test="uCreateAt != null" >
-        u_create_at = #{uCreateAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uLoginAt != null" >
-        u_login_at = #{uLoginAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uIsdesign != null" >
-        u_isdesign = #{uIsdesign,jdbcType=VARCHAR},
-      </if>
-      <if test="uEx1 != null" >
-        u_ex1 = #{uEx1,jdbcType=VARCHAR},
-      </if>
-      <if test="uEx2 != null" >
-        u_ex2 = #{uEx2,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where u_id = #{uId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XUser" >
-    update x_user
-    set u_password = #{uPassword,jdbcType=VARCHAR},
-      u_phone = #{uPhone,jdbcType=VARCHAR},
-      u_name = #{uName,jdbcType=VARCHAR},
-      u_openid = #{uOpenid,jdbcType=VARCHAR},
-      u_ip = #{uIp,jdbcType=VARCHAR},
-      u_create_at = #{uCreateAt,jdbcType=TIMESTAMP},
-      u_login_at = #{uLoginAt,jdbcType=TIMESTAMP},
-      u_isdesign = #{uIsdesign,jdbcType=VARCHAR},
-      u_ex1 = #{uEx1,jdbcType=VARCHAR},
-      u_ex2 = #{uEx2,jdbcType=VARCHAR}
-    where u_id = #{uId,jdbcType=INTEGER}
-  </update>
-  <select id="findOpenIdUser" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from x_user
-    where u_openid = #{uOpenId,jdbcType=VARCHAR}
-  </select>
-  <select id="findByPhone" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from x_user
-    where u_phone = #{uPhone,jdbcType=VARCHAR}
-  </select>
-  <update id="updateOpenIdUser" >
-    update x_user
-    set  u_openid = #{uOpenid,jdbcType=VARCHAR}
-    where u_id = #{uId,jdbcType=INTEGER}
-  </update>
+        u_ex2 = #{record.uEx2,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="xyz.hpwyx.pojo.XUser">
+        update x_user
+        <set>
+            <if test="uPassword != null">
+                u_password = #{uPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                u_phone = #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="uName != null">
+                u_name = #{uName,jdbcType=VARCHAR},
+            </if>
+            <if test="uOpenid != null">
+                u_openid = #{uOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="uIp != null">
+                u_ip = #{uIp,jdbcType=VARCHAR},
+            </if>
+            <if test="uCreateAt != null">
+                u_create_at = #{uCreateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uLoginAt != null">
+                u_login_at = #{uLoginAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uIsdesign != null">
+                u_isdesign = #{uIsdesign,jdbcType=VARCHAR},
+            </if>
+            <if test="uEx1 != null">
+                u_ex1 = #{uEx1,jdbcType=VARCHAR},
+            </if>
+            <if test="uEx2 != null">
+                u_ex2 = #{uEx2,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where u_id = #{uId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="xyz.hpwyx.pojo.XUser">
+        update x_user
+        set u_password  = #{uPassword,jdbcType=VARCHAR},
+            u_phone     = #{uPhone,jdbcType=VARCHAR},
+            u_name      = #{uName,jdbcType=VARCHAR},
+            u_openid    = #{uOpenid,jdbcType=VARCHAR},
+            u_ip        = #{uIp,jdbcType=VARCHAR},
+            u_create_at = #{uCreateAt,jdbcType=TIMESTAMP},
+            u_login_at  = #{uLoginAt,jdbcType=TIMESTAMP},
+            u_isdesign  = #{uIsdesign,jdbcType=VARCHAR},
+            u_ex1       = #{uEx1,jdbcType=VARCHAR},
+            u_ex2       = #{uEx2,jdbcType=VARCHAR}
+        where u_id = #{uId,jdbcType=INTEGER}
+    </update>
+    <select id="findOpenIdUser" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from x_user
+        where u_openid = #{uOpenId,jdbcType=VARCHAR}
+    </select>
+    <select id="findByPhone" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from x_user
+        where u_phone = #{uPhone,jdbcType=VARCHAR}
+    </select>
+    <update id="updateOpenIdUser">
+        update x_user
+        set u_openid = #{uOpenid,jdbcType=VARCHAR}
+        where u_id = #{uId,jdbcType=INTEGER}
+    </update>
+    <select id="findAllUserInfoAndDesign" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_Info_Design"/>
+        from x_user u,x_user_info i,x_design d
+        where u.u_id = i.u_id and u.u_id = d.d_id
+    </select>
 </mapper>

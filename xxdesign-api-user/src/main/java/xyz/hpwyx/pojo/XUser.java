@@ -21,4 +21,6 @@ public class XUser {
     private String uIsdesign;
     private String uEx1;
     private String uEx2;
+    private XDesign xDesign;
+    private XUserInfo xUserInfo;
 }

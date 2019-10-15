@@ -113,17 +113,18 @@
 <!-- //booking form -->
 
 <div th:replace="templates::footer"></div>
-
+<script src="/js/jqAlert2.js"></script>
 <script>
     function add() {
         $.post("/addCertified", $("#info").serialize(), function (data) {
             if (data.rtnCode === 200) {
+                jqAlert.Confirm('申请成功',2000)
                 setTimeout(function () {
 
                     location.href = "http://localhost:8088/findMyInfo";
                 }, 500);
             } else {
-                alert("a")
+                jqAlert.Confirm('网络异常',2000)
             }
         });
     }

@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
     XUserInfoMapper xUserInfoMapper;
     @Autowired
     private XDesignMapper xDesignMapper;
+
     @Override
     public XResult baseLogin(@RequestBody XUser user) {
         String phone = user.getUPhone ();
@@ -60,6 +61,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<XUser> getDesignList() {
+        List<XUser> allUserInfoAndDesign = xUserMapper.findAllUserInfoAndDesign ();
+
+        return allUserInfoAndDesign;
+    }
+
+    @Override
     public XUser findUserByPhone(@RequestParam String phone) {
         XUser byPhone = xUserMapper.findByPhone (phone);
 
@@ -74,16 +82,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public XUser findUserById(@RequestParam("id")Integer id) {
+    public XUser findUserById(@RequestParam("id") Integer id) {
         XUser xUser = xUserMapper.selectByPrimaryKey (id);
         return xUser;
     }
 
     @Override
-    public XUserInfo findInfoById(@RequestParam("id") Integer id){
+    public XUserInfo findInfoById(@RequestParam("id") Integer id) {
         XUserInfo xUserInfo = xUserInfoMapper.selectByPrimaryKey (id);
         return xUserInfo;
     }
+
     @Override
     public XResult regUser(XUser user) {
         String password = user.getUPassword () + "+1998";
@@ -103,6 +112,7 @@ public class UserServiceImpl implements UserService {
         Integer re = xUserMapper.insert (user);
         XUserInfo xUserInfo = new XUserInfo ();
         xUserInfo.setUId (integer);
+        xUserInfo.setUCity ("江苏");
         xUserInfoMapper.insert (xUserInfo);
         if (re <= 0) {
             return XResult.failMsg ("注册失败");
@@ -112,7 +122,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public XResult findByToken(@RequestParam("token")  String token) {
+    public XResult findByToken(@RequestParam("token") String token) {
         if (StringUtils.isEmpty (token)) {
             return XResult.failMsg ("token不能为空");
         }
@@ -185,6 +195,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public int countBy(@RequestParam("type") String type) {
+        XUserExample example = new XUserExample ();
+        XUserExample.Criteria criteria = example.createCriteria ();
+        criteria.andUIsdesignEqualTo (type);
+        int i = xUserMapper.countByExample (example);
+        return i;
+    }
 
     /**
      * 放入redis

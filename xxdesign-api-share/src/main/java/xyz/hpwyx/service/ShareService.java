@@ -60,4 +60,9 @@ public interface ShareService {
     @RequestMapping("/importAllItem")
     XResult importAllItem();
 
+    @RequestMapping("/shareCount")
+    Integer shareCount(@RequestParam("type")String type);
+
+    @RequestMapping("/findShareByUId")
+    List<XShare> findShareByUId(@RequestParam("uId")Integer uId);
 }

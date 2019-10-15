@@ -2,8 +2,11 @@ package xyz.hpwyx.service;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.pojo.XCertified;
+
+import java.util.List;
 
 /**
  * @author tid
@@ -13,4 +16,10 @@ import xyz.hpwyx.pojo.XCertified;
 public interface CertifiedService {
     @RequestMapping("/insertCertified")
     XResult insertCertified(@RequestBody XCertified xCertified);
+
+    @RequestMapping("/findCertified")
+    List<XCertified> findCertified();
+
+    @RequestMapping("/changeErtified")
+   XResult changeErtified(@RequestParam("id")int id);
 }

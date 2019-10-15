@@ -40,15 +40,38 @@
             <img th:src="${design.dHead}" class="img-fluid" alt="user-image">
         </div>
         <div class="team-info " style="padding: 2em">
-            <h2 style="text-align: center"><span th:text="${user.uName}">名称</span>     <span class="sub-tittle-team" style="display: contents" th:text="${design.dLocal}">上海</span></h2>
-                <span class="sub-tittle-team"
-                      style="color: black;float: right">微信联系设计师（请备注你的用户名）</span><span th:text="${design.dWeixin}"></span>
-            善于风格<span th:text="${design.dStyle}"></span>
+            <h2 style="text-align: center"><span th:text="${user.uName}">名称</span> <span class="sub-tittle-team" style="display: contents" th:text="${design.dLocal}">上海</span>
+            </h2>
+            <span class="sub-tittle-team"
+                  style="color: black;float: right">微信联系设计师（请备注你的用户名）<span th:text="${design.dWeixin}"
+                                                                           style="color: red"></span></span>
+            善于风格:<span th:text="${design.dStyle}"></span>
             <h3></h3>
-            <p  style="margin-top: 20px;text-indent: 2em;" th:text="${design.dDescribe}">afasdf</p>
+            <p style="margin-top: 20px;text-indent: 2em;font-size: 16px" th:text="${design.dDescribe}">afasdf</p>
+
+            <div style="text-align: center;margin-top: 20px">
+                <img th:src="${design.dPhoto}">
+            </div>
         </div>
     </div>
+    <div> <span onclick="sendMsg()" style="position: absolute;
+    top: 10%;
+    padding: 10px;
+    cursor: pointer;">发送预约消息</span></div>
 </div>
-
+<script xmlns:th="http://www.w3.org/1999/xhtml">
+    function sendMsg() {
+        if ([[${session.USERINFO}]] ===null){
+            alert("请先登录")
+        }
+        var msg="邀请你当设计师";
+        var id = [[${design.dId}]]
+        $.get("/insertMsg/"+id+"/"+msg,  function () {
+            // hit.innerHTML = "验证码已发送";
+            alert("a")
+            // hint()
+        });
+    }
+</script>
 </body>
 </html>

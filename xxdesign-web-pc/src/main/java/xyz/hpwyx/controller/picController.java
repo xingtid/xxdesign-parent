@@ -41,7 +41,6 @@ public class picController {
                 imgList.add (urla);
                 session.setAttribute ("img",imgList);
             }
-
             response.getWriter ().write (urla);
         } catch (Exception e) {
             e.printStackTrace ();

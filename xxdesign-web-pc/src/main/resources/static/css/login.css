@@ -405,7 +405,7 @@ a.for {
 /*--responsive--*/
 @media (max-width: 1920px) {
 .mid-class{
-    width: 67em;
+    width: 43em;
 }
     .img-right-side,
     .txt-left-side {
@@ -435,7 +435,7 @@ a.for {
 
 @media (max-width: 1680px) {
     .mid-class{
-        width: 63em;
+        width: 42em;
     }
     button[type=button] {
         padding: 15px 19px;
@@ -444,17 +444,17 @@ a.for {
 
     .img-right-side,
     .txt-left-side {
-        padding: 4.5em 4.5em 3.5em;
+        padding: 2.5em 3.5em 2.5em;
     }
 
     .copyrigh-wthree {
-        padding: 4em 0em 4.5em;
+        padding: 3em 0em 3.5em;
     }
 
     .img-right-side h3,
     .txt-left-side h2 {
-        font-size: 24px;
-        margin-bottom: 33px;
+        font-size: 23px;
+        margin-bottom: 32px;
     }
     .form-left-to-w3l span {
         font-size: 20px;
@@ -467,7 +467,7 @@ a.for {
 @media (max-width: 1600px) {
 
     .mid-class{
-        width: 62em;
+        width: 44em;
     }
     .img-right-side,
     .txt-left-side {
@@ -510,33 +510,9 @@ a.for {
     }
 }
 
-@media (max-width: 1440px) {
-    .mid-class{
-        width: 55em;
-    }
-
-    .w3layouts-two-grids {
-        width: 68%;
-    }
-
-    .img-right-side,
-    .txt-left-side {
-        padding: 3.5em 3.7em 3em;
-    }
-
-    .img-right-side p,
-    .txt-left-side p {
-        margin-bottom: 43px;
-    }
-
-    .form-left-to-w3l span {
-        font-size: 18px;
-    }
-}
-
 @media (max-width: 1366px) {
     .mid-class{
-        width: 52em;
+        width: 48em;
     }
     .img-right-side,
     .txt-left-side {
@@ -555,7 +531,7 @@ a.for {
 @media (max-width: 1280px) {
 
     .mid-class{
-        width: 50em;
+        width: 48em;
     }
     .w3layouts_more-buttn h3 {
         margin-top: 40px;
@@ -570,30 +546,9 @@ a.for {
     }
 }
 
-@media (max-width: 1080px) {
-
-    .mid-class{
-        width: 50em;
-    }
-    .w3layouts-two-grids {
-        width: 82%;
-    }
-
-    .img-right-side,
-    .txt-left-side {
-        padding: 3.2em 3em 2.7em;
-    }
-
-    .img-right-side h3,
-    .txt-left-side h2 {
-        font-size: 21px;
-        margin-bottom: 24px;
-    }
-}
-
 @media (max-width: 1050px) {
     .mid-class{
-        width: 49em;
+        width: 55em;
     }
     .form-left-to-w3l {
         margin: 0px 0px 22px;
@@ -610,7 +565,7 @@ a.for {
 
 @media (max-width: 1024px) {
     .mid-class{
-        width: 50em;
+        width: 61em;
     }
     .w3layouts-two-grids {
         width: 88%;
@@ -628,7 +583,7 @@ a.for {
 
 @media (max-width: 991px) {
     .mid-class{
-        width: 49em;
+        width: 60em;
     }
     .w3layouts-two-grids {
         width: 89%;
@@ -649,7 +604,7 @@ a.for {
 
 @media (max-width: 900px) {
     .mid-class{
-        width: 48em;
+        width: 64em;
     }
 
     .img-right-side,
@@ -668,7 +623,7 @@ a.for {
 
 @media (max-width: 800px) {
     .mid-class {
-        width: 35em;
+        width: 44em;
     }
     button[type=submit], button[type=button] {
         padding: 12px 20px;
@@ -699,7 +654,7 @@ a.for {
 
 @media (max-width: 768px) {
     .mid-class {
-        width: 32em;
+        width: 42em;
     }
     .img-right-side,
     .txt-left-side {
@@ -712,23 +667,10 @@ a.for {
     }
 }
 
-@media (max-width: 767px) {
-    .mid-class {
-        width: 30em;
-    }
-
-    button[type=submit], button[type=button] {
-        padding: 11px 20px;
-    }
-
-    .copyrigh-wthree {
-        padding: 2.1em 0em 3.5em;
-    }
-}
 
 @media (max-width: 736px) {
     .mid-class {
-        width: 25.3em;
+        width: 40em;
     }
     .w3layouts-two-grids {
         width: 70%;
@@ -739,21 +681,7 @@ a.for {
     }
 }
 
-@media (max-width: 667px) {
 
-    .img-right-side,
-    .txt-left-side {
-        padding: 2.4em 4em 2.2em;
-    }
-
-    .w3layouts-two-grids {
-        width: 72%;
-    }
-
-    h1.error {
-        font-size: 33px;
-    }
-}
 
 @media (max-width: 640px) {
 
@@ -767,29 +695,7 @@ a.for {
     }
 }
 
-@media (max-width: 600px) {
 
-    .w3layouts-two-grids {
-        width: 77%;
-    }
-
-    .w3layouts_more-buttn h3 {
-        margin-top: 29px;
-    }
-}
-
-@media (max-width: 568px) {
-
-    .img-right-side h3,
-    .txt-left-side h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .w3layouts-two-grids {
-        width: 78%;
-    }
-}
 
 @media (max-width: 480px) {
 

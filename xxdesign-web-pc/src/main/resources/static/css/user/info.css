@@ -334,7 +334,7 @@ body:before {
 .notes_list dt .note_up {
 	width: 50px;
 	height: 50px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: 0 -138px;
 	position: absolute;
 	left: 30px;
@@ -409,7 +409,7 @@ body:before {
 	width: 9px;
 	height: 9px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -64px -124px;
 	margin-right: 3px
 }
@@ -506,7 +506,7 @@ body:before {
 	display: inline-block;
 	width: 19px;
 	height: 19px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	float: left;
 	margin: 14px 0 0 15px;
 	_margin-left: 7px
@@ -643,7 +643,7 @@ body:before {
 	width: 8px;
 	height: 13px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -90px -39px;
 	float: right;
 	margin-top: 13px;
@@ -754,7 +754,7 @@ body:before {
 	left: 30px;
 	width: 17px;
 	height: 16px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: 0 -506px
 }
 
@@ -798,7 +798,7 @@ body:before {
 .answer_word .answer_tag i {
 	width: 21px;
 	height: 19px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: 0 -189px;
 	float: left;
 	margin-top: 3px;
@@ -883,7 +883,7 @@ li.more:hover .tags_link:before {
 	content: '';
 	width: 123px;
 	height: 152px;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -1px -463px;
 	position: absolute;
 	left: 25px;
@@ -1067,7 +1067,7 @@ li.more:hover .tags_link:before {
 }
 
 .MAvaMyInfo span {
-	padding: 0 10px 0 7px
+	padding: 0 6px 0 7px
 }
 
 .MAvaMyInfo .MAvaSet {
@@ -1080,7 +1080,7 @@ li.more:hover .tags_link:before {
 .MAvaMyInfo .MAvaSet a {
 	width: 17px;
 	height: 17px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	/*background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');*/
 	background-position: -108px -146px;
 	display: inline-block;
 	vertical-align: middle
@@ -1181,7 +1181,7 @@ li.more:hover .tags_link:before {
 	width: 8px;
 	height: 6px;
 	position: absolute;
-	background: url(/images/home_new2015/ico_sprite_v8.png) no-repeat
+	background: url(http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png) no-repeat
 }
 
 .MAvaProfile .MProfile:before {
@@ -1470,7 +1470,7 @@ li.more:hover .tags_link:before {
 	margin-bottom: 10px;
 	width: 48px;
 	height: 48px;
-	background-image: url('/images/home_new2015/honor_sprite.png')
+	background-image: url('http://images.mafengwo.net/images/home_new2015/honor_sprite.png')
 }
 
 .MHonList li i.i1 {
@@ -1833,7 +1833,7 @@ li.more:hover .tags_link:before {
 .MJoinDetail li span i {
 	font-size: 0;
 	line-height: 0;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	display: inline-block;
 	vertical-align: middle
 }
@@ -2090,7 +2090,7 @@ li.more:hover .tags_link:before {
 @media only screen and (-webkit-min-device-pixel-ratio:2),
 only screen and (min-device-pixel-ratio:2) {
 	.music_botton a {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -120px -100px
 	}
@@ -2803,7 +2803,7 @@ screen\9 {
 	width: 102px;
 	height: 18px;
 	position: relative;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -146px;
 	float: left
 }
@@ -2814,7 +2814,7 @@ screen\9 {
 	position: absolute;
 	left: 0;
 	top: 0;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -169px
 }
 
@@ -2847,7 +2847,7 @@ screen\9 {
 .MLittleClose {
 	width: 19px;
 	height: 20px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -68px;
 	position: absolute;
 	right: 12px;
@@ -2867,7 +2867,7 @@ screen\9 {
 	width: 12px;
 	height: 7px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -93px -60px;
 	margin-left: 5px;
 	vertical-align: middle
@@ -2891,7 +2891,7 @@ li:hover .MUpMore,
 .MNext {
 	width: 20px;
 	height: 20px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -47px -39px;
 	display: inline-block;
 	margin: 0 10px;
@@ -2928,7 +2928,7 @@ li:hover .MUpMore,
 	height: 18px;
 	background-position: -23px -39px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	cursor: pointer
 }
 
@@ -2948,7 +2948,7 @@ li:hover .MUpMore,
 	width: 8px;
 	height: 13px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -90px -39px
 }
 
@@ -2975,7 +2975,7 @@ li:hover .MUpMore,
 
 .MInfoNum i {
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -124px;
 	width: 18px;
 	height: 16px;
@@ -2999,7 +2999,7 @@ li:hover .MUpMore,
 .MDing a {
 	width: 37px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -90px;
 	text-align: center;
 	font-size: 18px;
@@ -3021,7 +3021,7 @@ li:hover .MUpMore,
 }
 
 .MAvaTagzhiluren {
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	position: absolute;
 	z-index: 21
 }
@@ -3081,7 +3081,7 @@ li:hover .MUpMore,
 	width: 24px;
 	height: 20px;
 	background-position: 0 -215px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	display: inline-block
 }
 
@@ -3091,7 +3091,7 @@ li:hover .MUpMore,
 	width: 20px;
 	height: 20px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -236px
 }
 
@@ -3233,7 +3233,7 @@ li:hover .MUpMore,
 (-webkit-min-device-pixel-ratio:1.25),
 (min-device-pixel-ratio:1.25) {
 	.MInfoNum i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -102px -152px
 	}
@@ -3248,7 +3248,7 @@ li:hover .MUpMore,
 
 	.MPrev2,
 	.MNext2 {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -60px -191px
 	}
@@ -3272,7 +3272,7 @@ li:hover .MUpMore,
 
 	.MPrev,
 	.MNext {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -177px -241px
 	}
@@ -3299,14 +3299,14 @@ li:hover .MUpMore,
 
 	.MIcoAuthent {
 		height: 23px;
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -174px -187px
 	}
 
 	.MGenderMale,
 	.MGenderFemale {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -174px -210px
 	}
@@ -3343,7 +3343,7 @@ li:hover .MUpMore,
 	width: 40px;
 	height: 20px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: 0 -460px;
 	margin-right: 3px
 }
@@ -3372,7 +3372,7 @@ li:hover .MUpMore,
 
 .its_tags .admin {
 	width: 60px;
-	background: url('/images/home_new2015/admin.gif')
+	background: url('http://images.mafengwo.net/images/home_new2015/admin.gif')
 }
 
 .its_tags .dian {
@@ -3426,11 +3426,11 @@ li:hover .MUpMore,
 }
 
 .banner .home_default_bg {
-	background-image: url('/images/home_new2015/index_banner_bg.jpg')
+	background-image: url('http://images.mafengwo.net/images/home_new2015/index_banner_bg.jpg')
 }
 
 .banner .home_default_bg1 {
-	background-image: url('/images/home_new2015/banner_default1.jpg')
+	background-image: url('http://images.mafengwo.net/images/home_new2015/banner_default1.jpg')
 }
 
 .banner .center {
@@ -3459,7 +3459,7 @@ li:hover .MUpMore,
 
 .banner .bg_up_btn i,
 .banner .bg_btn i {
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -251px 0;
 	margin-right: 15px
 }
@@ -3519,7 +3519,7 @@ li:hover .MUpMore,
 	width: 24px;
 	height: 20px;
 	background-position: 0 -215px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	display: inline-block
 }
 
@@ -3528,7 +3528,7 @@ li:hover .MUpMore,
 }
 
 .banner_note {
-	background-image: url('/images/home_new2015/banner_note.gif')
+	background-image: url('http://images.mafengwo.net/images/home_new2015/banner_note.gif')
 }
 
 
@@ -3558,7 +3558,7 @@ li:hover .MUpMore,
 	position: absolute;
 	width: 28px;
 	height: 18px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -128px -146px
 }
 
@@ -3607,7 +3607,7 @@ li:hover .MUpMore,
 	position: absolute;
 	left: 15px;
 	top: 15px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -108px -144px
 }
 
@@ -3671,7 +3671,7 @@ li:hover .MUpMore,
 	position: relative;
 	height: 90px;
 	margin-bottom: 20px;
-	background: url(/images/home_new2015/newer-guide-b.png) no-repeat center center/100% 100%;
+	background: url(http://images.mafengwo.net/images/home_new2015/newer-guide-b.png) no-repeat center center/100% 100%;
 	cursor: pointer
 }
 
@@ -3714,7 +3714,7 @@ li:hover .MUpMore,
 .main_links li i {
 	width: 45px;
 	height: 46px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	display: inline-block;
 	position: relative
 }
@@ -3796,7 +3796,7 @@ li:hover .MUpMore,
 .open_corner a {
 	width: 100%;
 	height: 100%;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -138px -243px;
 	position: relative;
 	overflow: hidden;
@@ -3864,7 +3864,7 @@ li:hover .MUpMore,
 	content: '';
 	width: 127px;
 	height: 156px;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -463px -401px;
 	position: absolute;
 	left: -5px;
@@ -3876,7 +3876,7 @@ li:hover .MUpMore,
 	content: '';
 	width: 243px;
 	height: 104px;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -210px -453px;
 	position: absolute;
 	left: 7px;
@@ -3887,7 +3887,7 @@ li:hover .MUpMore,
 	content: '';
 	width: 123px;
 	height: 152px;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -1px -463px;
 	position: absolute;
 	left: 25px;
@@ -4062,7 +4062,7 @@ li:hover .MUpMore,
 	margin: 0 0 0 10px;
 	width: 16px;
 	height: 16px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat -140px -40px;
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat -140px -40px;
 	vertical-align: baseline
 }
 
@@ -4106,7 +4106,7 @@ li:hover .MUpMore,
 	width: 21px;
 	height: 17px;
 	float: left;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -23px -190px;
 	margin-right: 5px;
 	margin-top: 4px
@@ -4145,7 +4145,7 @@ li:hover .MUpMore,
 .music_botton .ico_slide {
 	width: 15px;
 	height: 16px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -74px -123px;
 	position: absolute;
 	left: -20px;
@@ -4261,7 +4261,7 @@ li:hover .MUpMore,
 .dp_ding a {
 	width: 32px;
 	height: 32px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -99px -210px;
 	display: inline-block
 }
@@ -4294,7 +4294,7 @@ li:hover .MUpMore,
 .dp_tags i {
 	width: 30px;
 	height: 30px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -132px -210px;
 	display: inline-block
 }
@@ -4379,7 +4379,7 @@ li:hover .MUpMore,
 .dp_thumb .ico_dp {
 	width: 76px;
 	height: 76px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: 0 -243px;
 	position: absolute;
 	left: 0;
@@ -4497,7 +4497,7 @@ li:hover .MUpMore,
 	height: 71px;
 	line-height: 0;
 	display: inline-block;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -1px -256px;
 	vertical-align: middle
 }
@@ -4560,7 +4560,7 @@ li:hover .MUpMore,
 	content: '';
 	width: 32px;
 	height: 32px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -66px -210px;
 	position: absolute;
 	left: 2px;
@@ -4575,7 +4575,7 @@ li:hover .MUpMore,
 .notes_default i {
 	width: 208px;
 	height: 157px;
-	background-image: url('/images/home_new2015/default_sprite_v6.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/default_sprite_v6.png');
 	background-position: -5px -68px;
 	display: block
 }
@@ -4916,7 +4916,7 @@ screen\9 {
 .recommend_personal .checkbox {
 	width: 16px;
 	height: 15px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -99px -506px;
 	position: absolute;
 	left: 0;
@@ -4963,7 +4963,7 @@ screen\9 {
 .wft .ico_wft {
 	width: 53px;
 	height: 56px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -77px -243px;
 	position: absolute;
 	left: -1px;
@@ -5060,7 +5060,7 @@ screen\9 {
 	width: 15px;
 	height: 14px;
 	display: inline-block;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: 0 -257px;
 	margin-left: 5px;
 	position: relative;
@@ -5143,7 +5143,7 @@ screen\9 {
 	position: absolute;
 	width: 65px;
 	height: 64px;
-	background-image: url('/images/home_new2015/home_sprite_v15.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png');
 	background-position: -251px 0;
 	left: 50%;
 	top: 50%;
@@ -5249,7 +5249,7 @@ screen\9 {
 .congratulation {
 	width: 308px;
 	padding: 320px 296px 0;
-	background-image: url('/images/home_new2015/congratulation.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/congratulation.png');
 	background-repeat: no-repeat;
 	line-height: 30px
 }
@@ -5313,7 +5313,7 @@ screen\9 {
 @media only screen and (-webkit-min-device-pixel-ratio:2),
 only screen and (min-device-pixel-ratio:2) {
 	.main_links li i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-repeat: no-repeat
 	}
@@ -5351,7 +5351,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.music_botton .ico_slide {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -101px -114px
 	}
@@ -5369,7 +5369,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.dp_ding a {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: 0 -153px
 	}
@@ -5388,7 +5388,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.banner .bg_btn i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: 0 -213px
 	}
@@ -5416,7 +5416,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.its_tags i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: 0 -262px
 	}
@@ -5468,13 +5468,13 @@ only screen and (min-device-pixel-ratio:2) {
 	.set_list li.on a:after {
 		width: 37px;
 		height: 27px;
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -173px -151px
 	}
 
 	.set_up i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: 0 -286px
 	}
@@ -5484,7 +5484,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.more_notes .btn_deleted i {
-		background-image: url('/images/home_new2015/twice_ico_sprite_v9.png');
+		background-image: url(http://images.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px;
 		background-position: -135px -286px
 	}
@@ -5500,7 +5500,7 @@ only screen and (min-device-pixel-ratio:2) {
 	right: 0;
 	width: 158px;
 	height: 79px;
-	background: url('/images/home_new2015/icon-note-deleted.png') no-repeat 0 0;
+	background: url('http://images.mafengwo.net/images/home_new2015/icon-note-deleted.png') no-repeat 0 0;
 	overflow: hidden;
 	line-height: 200px
 }
@@ -5517,7 +5517,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 2px 5px 0 0;
 	width: 17px;
 	height: 17px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -50px -215px
 }
 
@@ -5566,7 +5566,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 1px 5px 0 0;
 	width: 86px;
 	height: 22px;
-	background: url(/images/home_new2015/ico_sprite_v8.png) no-repeat 0 -280px;
+	background: url(http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png) no-repeat 0 -280px;
 	overflow: hidden
 }
 
@@ -5582,7 +5582,7 @@ only screen and (min-device-pixel-ratio:2) {
 	}
 
 	.note_info h3.hasxjicon a.lsbzicon {
-		background-image: url(/images/home_new2015/twice_ico_sprite_v9.png);
+		background-image: url(http://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png);
 		background-size: 220px auto;
 		background-position: -60px -355px
 	}
@@ -5596,7 +5596,7 @@ only screen and (min-device-pixel-ratio:2) {
 .notes_default_v2 .notes_dcon {
 	width: 100%;
 	height: 320px;
-	background: url('/images/home_new2015/noyj_v2.jpg') no-repeat
+	background: url('http://images.mafengwo.net/images/home_new2015/noyj_v2.jpg') no-repeat
 }
 
 .notes_default_v2 .notes_dcon p {
@@ -5635,7 +5635,7 @@ only screen and (min-device-pixel-ratio:2) {
 	display: inline-block;
 	width: 18px;
 	height: 18px;
-	background: url('/images/home_new2015/home_sprite_v15.png') -228px -325px no-repeat;
+	background: url('http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png') -228px -325px no-repeat;
 	margin-right: 5px;
 	vertical-align: middle
 }
@@ -5658,7 +5658,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 2px 5px 0 0;
 	width: 17px;
 	height: 17px;
-	background-image: url('/images/home_new2015/ico_sprite_v8.png');
+	background-image: url('http://images.mafengwo.net/images/home_new2015/ico_sprite_v8.png');
 	background-position: -50px -215px
 }
 
@@ -5694,7 +5694,7 @@ only screen and (min-device-pixel-ratio:2) {
 
 .tips-txt div {
 	position: absolute;
-	background: url(/images/home_new2015/cat/back-icons2.png) no-repeat;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-icons2.png) no-repeat;
 	opacity: 0;
 	-webkit-transition: opacity .5s linear 1s;
 	transition: opacity .5s linear 1s
@@ -5755,7 +5755,7 @@ only screen and (min-device-pixel-ratio:2) {
 .cat-back .X span {
 	display: block;
 	height: 100%;
-	background: url(/images/home_new2015/cat/back-X.png) no-repeat center center
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-X.png) no-repeat center center
 }
 
 .cat-back .X span:hover {
@@ -5797,7 +5797,7 @@ only screen and (min-device-pixel-ratio:2) {
 	left: 50%;
 	top: -1700px;
 	margin-left: -1250px;
-	background: url(/images/home_new2015/cat/back-bg.png) no-repeat center top;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-bg.png) no-repeat center top;
 	background-size: 100% auto;
 	opacity: .9;
 	opacity: filter(opacity=90);
@@ -5912,7 +5912,7 @@ only screen and (min-device-pixel-ratio:2) {
 	position: absolute;
 	width: 226px;
 	height: 176px;
-	background: url(/images/home_new2015/cat/back-icons2.png) no-repeat 0 -380px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-icons2.png) no-repeat 0 -380px
 }
 
 .pop-homeCat .get-cat .cat-icon {
@@ -5936,7 +5936,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 10px 20px 10px -25px;
 	width: 210px;
 	height: 41px;
-	background: url(/images/home_new2015/cat/back-icons2.png) no-repeat 0 -560px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-icons2.png) no-repeat 0 -560px;
 	overflow: hidden;
 	vertical-align: -12px;
 	*vertical-align: middle
@@ -5954,7 +5954,7 @@ only screen and (min-device-pixel-ratio:2) {
 	top: -20px;
 	width: 60px;
 	height: 84px;
-	background: url(/images/home_new2015/cat/back-icons2.png) no-repeat 0 -610px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-icons2.png) no-repeat 0 -610px
 }
 
 .pop-homeCat a.close-btn i,
@@ -5998,7 +5998,7 @@ only screen and (min-device-pixel-ratio:2) {
 .pop-homeCat .cat-icon {
 	display: block;
 	height: 141px;
-	background: url(/images/home_new2015/cat/cats-list-icon4.png) no-repeat center 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cats-list-icon4.png) no-repeat center 0;
 	position: relative
 }
 
@@ -6032,7 +6032,7 @@ only screen and (min-device-pixel-ratio:2) {
 	top: 10px;
 	width: 62px;
 	height: 57px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat -130px -140px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat -130px -140px;
 	overflow: hidden
 }
 
@@ -6134,7 +6134,7 @@ only screen and (min-device-pixel-ratio:2) {
 	top: 10px;
 	width: 20px;
 	height: 20px;
-	background: url(/images/home_new2015/cat/back-icons2.png) -80px -610px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/back-icons2.png) -80px -610px;
 	overflow: hidden;
 	cursor: pointer
 }
@@ -6257,7 +6257,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin-right: 20px;
 	width: 155px;
 	height: 170px;
-	background: url(/images/home_new2015/cat/anim-sumao.png) no-repeat -155px 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-sumao.png) no-repeat -155px 0
 }
 
 .homeCat .cat-sumao.active {
@@ -6268,7 +6268,7 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-tianyuan {
 	width: 140px;
 	height: 180px;
-	background: url(/images/home_new2015/cat/anim-tianyuan2.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-tianyuan2.png) no-repeat 0 0
 }
 
 .homeCat .cat-tianyuan.active {
@@ -6279,7 +6279,7 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-yingtou {
 	width: 200px;
 	height: 121px;
-	background: url(/images/home_new2015/cat/anim-yingtou2.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-yingtou2.png) no-repeat 0 0
 }
 
 .homeCat .cat-yingtou.active {
@@ -6290,7 +6290,7 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-gaogui {
 	width: 150px;
 	height: 200px;
-	background: url(/images/home_new2015/cat/anim-gaogui.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-gaogui.png) no-repeat 0 0
 }
 
 .homeCat .cat-gaogui.active {
@@ -6301,7 +6301,7 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-shenjing {
 	width: 125px;
 	height: 196px;
-	background: url(/images/home_new2015/cat/anim-shenjing.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-shenjing.png) no-repeat 0 0
 }
 
 .homeCat .cat-shenjing.active {
@@ -6312,7 +6312,7 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-euro {
 	width: 131px;
 	height: 200px;
-	background: url(/images/home_new2015/cat/anim-euro.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-euro.png) no-repeat 0 0
 }
 
 .homeCat .cat-euro.active {
@@ -6358,7 +6358,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 30px 0 0 160px;
 	width: 193px;
 	height: 155px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -210px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -210px;
 	font-size: 12px;
 	line-height: 20px;
 	text-align: left
@@ -6388,7 +6388,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 10px auto 0;
 	width: 174px;
 	height: 34px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 0;
 	overflow: hidden;
 	text-align: center;
 	line-height: 32px;
@@ -6405,7 +6405,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 7px 14px 0 0;
 	width: 17px;
 	height: 17px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -40px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -40px;
 	overflow: hidden
 }
 
@@ -6425,7 +6425,7 @@ only screen and (min-device-pixel-ratio:2) {
 	display: block;
 	width: 60px;
 	height: 60px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -70px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -70px
 }
 
 .homeCat .act-box .item>.icon-rank {
@@ -6450,7 +6450,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .homeCat .act-box .item>.icon-8k {
-	background: url(/images/home_new2015/cat/anim-8k2.png) no-repeat;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-8k2.png) no-repeat;
 	animation: .7s cat steps(5) 0s infinite
 }
 
@@ -6490,7 +6490,7 @@ only screen and (min-device-pixel-ratio:2) {
 	bottom: 0;
 	width: 185px;
 	height: 301px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat -200px 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat -200px 0;
 	overflow: hidden;
 	font-size: 12px;
 	line-height: 20px;
@@ -6567,7 +6567,7 @@ only screen and (min-device-pixel-ratio:2) {
 	display: inline-block;
 	width: 16px;
 	height: 14px;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat -20px -40px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat -20px -40px;
 	overflow: hidden
 }
 
@@ -6579,7 +6579,7 @@ only screen and (min-device-pixel-ratio:2) {
 	position: relative;
 	width: 537px;
 	height: 376px;
-	background: url(/images/home_new2015/cat/cat-rank-bg.png) no-repeat 0 0 !important;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-rank-bg.png) no-repeat 0 0 !important;
 	box-shadow: none
 }
 
@@ -6599,7 +6599,7 @@ only screen and (min-device-pixel-ratio:2) {
 	height: 52px;
 	border-radius: 50%;
 	position: relative;
-	background: url(/images/home_new2015/cat/cat-nav-icon2.png) no-repeat;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-nav-icon2.png) no-repeat;
 	cursor: pointer
 }
 
@@ -6753,7 +6753,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: 1px 5px 0 0;
 	width: 13px;
 	height: 13px;
-	background: url(/images/home_new2015/cat/cat-nav-icon2.png) no-repeat 0 -330px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-nav-icon2.png) no-repeat 0 -330px;
 	overflow: hidden;
 	vertical-align: top
 }
@@ -6790,7 +6790,7 @@ only screen and (min-device-pixel-ratio:2) {
 	position: absolute;
 	z-index: 2;
 	top: 50%;
-	background: url(/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -370px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/homeCat-icon7.png) no-repeat 0 -370px;
 	cursor: pointer
 }
 
@@ -6869,7 +6869,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .tags_more_list li a i {
-	background-image: url("/images/home_new2015/home_sprite_v15.png")
+	background-image: url("http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png")
 }
 
 .tags_more_list li a .ico_rent {
@@ -6884,7 +6884,7 @@ only screen and (min-device-pixel-ratio:2) {
 (-webkit-min-device-pixel-ratio:1.25),
 (min-device-pixel-ratio:1.25) {
 	.tags_more_list li a .ico_rent {
-		background-image: url("/images/home_new2015/twice_ico_sprite_v9.png");
+		background-image: url("http://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png");
 		background-size: 220px;
 		background-position: 0 -354px
 	}
@@ -6895,7 +6895,7 @@ only screen and (min-device-pixel-ratio:2) {
 
 	.notes_status .ding i,
 	.notes_status .cover i {
-		background: url(/images/home_new2015/twice_ico_sprite_v9.png) -20px -375px;
+		background: url(http://images.mafengwo.net/images/home_new2015/twice_ico_sprite_v9.png) -20px -375px;
 		background-size: 220px
 	}
 
@@ -6966,7 +6966,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin: -18px 0 0 -24px;
 	width: 48px;
 	height: 36px;
-	background: url(/images/home_new2015/home_sprite_v15.png) no-repeat -390px 0
+	background: url(http://images.mafengwo.net/images/home_new2015/home_sprite_v15.png) no-repeat -390px 0
 }
 
 .set-notesCover .ui-selected .mark {
@@ -7028,7 +7028,7 @@ only screen and (min-device-pixel-ratio:2) {
 	left: -40px;
 	width: 267px;
 	height: 203px;
-	background: url(/images/home_new2015/cat/anim-olympics2.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-olympics2.png) no-repeat 0 0
 }
 
 .homeCat .cat-olympics.active {
@@ -7041,7 +7041,7 @@ only screen and (min-device-pixel-ratio:2) {
 	left: -18px;
 	width: 234px;
 	height: 273px;
-	background: url(/images/home_new2015/cat/olympics-sprites3.png) no-repeat -330px 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/olympics-sprites3.png) no-repeat -330px 0;
 	-webkit-animation: none;
 	animation: none
 }
@@ -7054,7 +7054,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .homeCat .cat-icon.prop-stick {
-	cursor: url(http://css.mafengwo.net/images/home_new2015/cat/stick.cur), auto
+	cursor: url(http://css.mafengwo.nethttp://images.mafengwo.net/images/home_new2015/cat/stick.cur), auto
 }
 
 .homeCat .cat-olympics .bn {
@@ -7085,7 +7085,7 @@ only screen and (min-device-pixel-ratio:2) {
 	top: 2px;
 	width: 80px;
 	height: 80px;
-	background: url(/images/home_new2015/cat/anim-goldMedal.png) no-repeat 0 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-goldMedal.png) no-repeat 0 0;
 	-webkit-animation: cat 1s steps(9) 0s infinites;
 	animation: cat 1s steps(9) 0s infinite
 }
@@ -7097,7 +7097,7 @@ only screen and (min-device-pixel-ratio:2) {
 	left: -2px;
 	width: 62px;
 	height: 62px;
-	background: url(/images/home_new2015/cat/olympics-sprites3.png) no-repeat -670px -170px;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/olympics-sprites3.png) no-repeat -670px -170px;
 	overflow: hidden
 }
 
@@ -7106,7 +7106,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .homeCat .act-box .item>.icon-rank-olympics {
-	background: url(/images/home_new2015/cat/olympics-sprites3.png) no-repeat -670px 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/olympics-sprites3.png) no-repeat -670px 0
 }
 
 .pop-homeCat .cat-olympics {
@@ -7114,14 +7114,14 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .pop-rankCat .cat-nav .cat-nav-olympics {
-	background: url(/images/home_new2015/cat/olympics-sprites3.png) no-repeat -570px -100px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/olympics-sprites3.png) no-repeat -570px -100px
 }
 
 .pop-goldMedal {
 	position: absolute;
 	width: 323px;
 	height: 513px;
-	background: url(/images/home_new2015/cat/olympics-sprites3.png) no-repeat 0 0;
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/olympics-sprites3.png) no-repeat 0 0;
 	overflow: visible
 }
 
@@ -7225,7 +7225,7 @@ only screen and (min-device-pixel-ratio:2) {
 .pop-goldMedal.full {
 	width: 922px;
 	height: 521px;
-	background: url(/images/home_new2015/cat/pop-gold-bg.png) no-repeat
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/pop-gold-bg.png) no-repeat
 }
 
 .pop-goldMedal.full .inner {
@@ -7272,25 +7272,25 @@ only screen and (min-device-pixel-ratio:2) {
 .homeCat .cat-kids {
 	width: 152px;
 	height: 198px;
-	background: url(/images/home_new2015/cat/cat-kids2.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-kids2.png) no-repeat 0 0
 }
 
 .pop-homeCat .cat-kids {
-	background: url(/images/home_new2015/cat/cat-kids2.png) no-repeat center -200px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-kids2.png) no-repeat center -200px
 }
 
 .pop-rankCat .cat-nav .cat-nav-kids {
-	background: url(/images/home_new2015/cat/cat-kids2.png) no-repeat 0 -341px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-kids2.png) no-repeat 0 -341px
 }
 
 .cat-cursor {
-	cursor: url("/images/home_new2015/cursor.gif"), auto
+	cursor: url("http://images.mafengwo.net/images/home_new2015/cursor.gif"), auto
 }
 
 .homeCat .cat-halloween {
 	width: 190px;
 	height: 220px;
-	background: url(/images/home_new2015/cat/anim-halloween.png) no-repeat
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/anim-halloween.png) no-repeat
 }
 
 .homeCat .cat-halloween.active {
@@ -7299,11 +7299,11 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .pop-homeCat .cat-halloween {
-	background: url(/images/home_new2015/cat/cat-halloween.png) no-repeat center 0
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-halloween.png) no-repeat center 0
 }
 
 .pop-rankCat .cat-nav .cat-nav-halloween {
-	background: url(/images/home_new2015/cat/cat-halloween.png) no-repeat 0 -145px
+	background: url(http://images.mafengwo.net/images/home_new2015/cat/cat-halloween.png) no-repeat 0 -145px
 }
 
 .hide {
@@ -7311,7 +7311,7 @@ only screen and (min-device-pixel-ratio:2) {
 }
 
 .banner_ask {
-	background-image: url('/images/home_new2015/banner_ask.gif')
+	background-image: url('http://images.mafengwo.net/images/home_new2015/banner_ask.gif')
 }
 
 .MWendaMod {
@@ -7351,7 +7351,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin-right: 12px;
 	width: 40px;
 	height: 26px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat 0 0
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat 0 0
 }
 
 .wendaHonor .zlr.have i {
@@ -7393,7 +7393,7 @@ only screen and (min-device-pixel-ratio:2) {
 	height: 18px;
 	float: left;
 	margin-right: 4px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat -80px -30px
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat -80px -30px
 }
 
 .achievement {
@@ -7541,7 +7541,7 @@ only screen and (min-device-pixel-ratio:2) {
 	margin-top: 10px;
 	width: 13px;
 	height: 8px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat -120px -40px
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat -120px -40px
 }
 
 .wd-dropdown .dropdown-menu {
@@ -7633,7 +7633,7 @@ wd-meta .meta-pull {
 	margin: 9px 5px 0 0;
 	width: 14px;
 	height: 16px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat -100px -40px
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat -100px -40px
 }
 
 .wd-question {
@@ -7641,7 +7641,7 @@ wd-meta .meta-pull {
 	margin: 0 0 0 10px;
 	width: 16px;
 	height: 16px;
-	background: url(/images/home_new2015/ask_v2_sprite3.png) no-repeat -140px -40px;
+	background: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3.png) no-repeat -140px -40px;
 	vertical-align: baseline
 }
 
@@ -7752,7 +7752,7 @@ wd-meta .meta-pull {
 	.wd-title .label-mdd i,
 	.wd-meta .meta-like i,
 	.wd-question {
-		background-image: url(/images/home_new2015/ask_v2_sprite3@2x.png);
+		background-image: url(http://images.mafengwo.net/images/home_new2015/ask_v2_sprite3@2x.png);
 		background-size: 200px auto
 	}
 }

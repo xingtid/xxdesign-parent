@@ -14,6 +14,7 @@ import xyz.hpwyx.baseresult.IndexPojo;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.cookie.CookieUtil;
 import xyz.hpwyx.fegin.IndexServiceFigen;
+import xyz.hpwyx.fegin.ShareServiceFigen;
 import xyz.hpwyx.fegin.UserServiceFigen;
 import xyz.hpwyx.fegin.VipServiceFigen;
 import xyz.hpwyx.iputil.GetIp;
@@ -43,34 +44,33 @@ public class IndexController {
 
     @Autowired
     private VipServiceFigen vipServiceFigen;
-
+    @Autowired
+    private ShareServiceFigen shareServiceFigen;
 
     @Autowired
     MsgController msgController;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest reqest, HttpSession session) {
-
-
         try {
             String json3 = redisUtil.hget ("INDEX", "index_pic1");
             if (StringUtils.isNotBlank (json3)) {
                 System.out.println ("取出缓存");
                 reqest.setAttribute ("index_pic1", JsonUtils.jsonToList (json3, XIndex.class));
-            }else {
+            } else {
                 List<XIndex> xResult = indexServiceFigen.showPic ();
                 reqest.setAttribute ("index_pic1", xResult);
 
                 redisUtil.hset ("INDEX", "index_pic1", JsonUtils.objectToJson (xResult));
                 redisUtil.expire ("INDEX", 20000, 0);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace ();
         }
 
         List<IndexPojo> indexPojos1 = indexServiceFigen.showShare ();
 
-        reqest.setAttribute ("shareList",indexPojos1);
+        reqest.setAttribute ("shareList", indexPojos1);
         List<DesignPojo> indexPojos = indexServiceFigen.showDesign ();
         reqest.setAttribute ("designList", indexPojos);
         List<XIndex> xIndices = indexServiceFigen.showService ();
@@ -91,13 +91,19 @@ public class IndexController {
                 msgController.refreshA (reqest.getSession ());
                 String s = vipServiceFigen.updateVIP (getuser.getUId ());
                 int i = Integer.parseInt (s);
-                if(i>0){
-                    reqest.getSession ().setAttribute ("VIP",1);
-                }else {
-                    reqest.getSession ().setAttribute ("VIP",0);
+                if (i > 0) {
+                    reqest.getSession ().setAttribute ("VIP", 1);
+                } else {
+                    reqest.getSession ().setAttribute ("VIP", 0);
                 }
             }
         }
+        int yesa = serviceFigen.countBy ("yesa");
+        int yes = serviceFigen.countBy ("yes");
+        reqest.setAttribute ("vipCount", yes+yesa);
+        reqest.setAttribute ("designCount", yesa);
+        Integer integer = shareServiceFigen.shareCount ("null");
+        reqest.setAttribute ("shareCount", integer);
         return "index";
     }
 
@@ -115,10 +121,10 @@ public class IndexController {
                 session.setAttribute ("USERINFO", getuser);
                 String s = vipServiceFigen.updateVIP (getuser.getUId ());
                 int i = Integer.parseInt (s);
-                if(i>0){
-                    request.getSession ().setAttribute ("VIP",1);
-                }else {
-                    request.getSession ().setAttribute ("VIP",0);
+                if (i > 0) {
+                    request.getSession ().setAttribute ("VIP", 1);
+                } else {
+                    request.getSession ().setAttribute ("VIP", 0);
                 }
                 msgController.refreshA (request.getSession ());
                 return "redirect:/";
@@ -129,6 +135,7 @@ public class IndexController {
 
     /**
      * 全局跳转方法
+     *
      * @param page
      * @param request
      * @param model
@@ -144,8 +151,7 @@ public class IndexController {
             System.out.println ("page:" + page);
             model.addAttribute ("REFERER", url);
             return page;
-        }else
-        if ("isContent.html".equals (page)) {
+        } else if ("isContent.html".equals (page)||"iswardrobe.html".equals (page)||"question.html".equals (page)) {
             log.info ("page:" + ipAddress + " " + page);
             String url = request.getHeader ("REFERER");
             System.out.println (url);
@@ -159,6 +165,9 @@ public class IndexController {
 
     @RequestMapping("/{path}/{page}.html")
     public String showPage2(@PathVariable String path, @PathVariable String page, HttpServletRequest request, Model model) {
+        if (request.getSession ().getAttribute ("USERINFO") == null) {
+            return "login";
+        }
         String ipAddress = GetIp.getIpAddress (request);
         log.info ("page:" + ipAddress + " " + page);
         String url = request.getHeader ("REFERER");

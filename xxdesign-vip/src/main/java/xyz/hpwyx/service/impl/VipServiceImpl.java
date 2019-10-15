@@ -74,6 +74,9 @@ public class VipServiceImpl implements VipService {
         criteria.andVUidEqualTo (uId);
         List<XVip> xVips = xVipMapper.selectByExample (example);
 
+        if (xVips.size () == 0){
+            return 0+"";
+        }
         return xVips.get (0).getvTimeLeft ();
     }
 
@@ -93,8 +96,6 @@ public class VipServiceImpl implements VipService {
         return pay;
     }
 
-    @Autowired
-    private XPayMapper paymentInfoDao;
     @Autowired
     private RedisUtil redisUtil;
 

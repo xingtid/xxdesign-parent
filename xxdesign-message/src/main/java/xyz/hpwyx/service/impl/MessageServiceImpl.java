@@ -59,4 +59,6 @@ public class MessageServiceImpl implements MessageService {
         System.out.println ("insert"+insert);
         return XResult.isOk ();
     }
+
+
 }

@@ -59,6 +59,7 @@
             <button type="button" class="btn button-style mt-sm-5 mt-4" style="margin-left: 45%;padding:6px 30px ;margin-bottom: 40px" onclick="insert()" >发布</button>
         </div>
 	</form>
+<script src="/js/jqAlert2.js"></script>
 <script>
     Simditor.locale = 'zh-CN';
 
@@ -75,34 +76,22 @@
     });
 </script>
 <script type="text/javascript">
-    function hint() {
-        let hit = document.getElementById("hint");
-        hit.style.display = "block";
-        setTimeout("closea()", 1500)
+    function hint(data) {
+        jqAlert.Confirm(data,2000)
     }
-
-    function closea() {
-        let hit = document.getElementById("hint");
-        hit.style.display = "none"
-    }
-
-    $('.all>li').hover(function (e) {
-        $(this).children('ul').stop().slideToggle()
-    });
 
     function insert() {
         var content = $(".simditor-body").html();
         $("#content").val(content);
-        let hit = document.getElementById("hint");
         $.post("/insertShare", $("#myInfo").serialize(), function (data) {
             if (data.rtnCode == 200) {
+                hint("发布成功")
                 setTimeout(function () {
                     location.href = "http://localhost:8088/getShare/" + data.msg;
                 }, 500);
 
             } else {
-                hit.innerHTML = data.msg;
-                hint()
+                hint(data.msg)
             }
         });
     }

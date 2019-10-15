@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import xyz.hpwyx.baseresult.XResult;
+import xyz.hpwyx.fegin.ShareServiceFigen;
 import xyz.hpwyx.fegin.UserServiceFigen;
+import xyz.hpwyx.pojo.XShare;
 import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.pojo.XUserInfo;
 
@@ -23,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserServiceFigen serviceFigen;
+    @Autowired
+    private ShareServiceFigen shareServiceFigen;
 
     @RequestMapping(value = "/findMyInfo")
     public String index(HttpServletRequest reqest, HttpSession session) {
@@ -33,8 +37,10 @@ public class UserController {
         }
         XUser userById = serviceFigen.findUserById (userinfo.getUId ());
         XUserInfo infoById = serviceFigen.findInfoById (userinfo.getUId ());
+        List<XShare> shareByUId = shareServiceFigen.findShareByUId (userinfo.getUId ());
+        session.setAttribute ("share",shareByUId);
         session.setAttribute ("USERINFO", userById);
-        reqest.setAttribute ("userinfo", infoById);
+        session.setAttribute ("userinfo", infoById);
         return "user/userinfo";
     }
 

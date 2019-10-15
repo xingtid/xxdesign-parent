@@ -23,7 +23,12 @@ public interface UserService {
      */
     @RequestMapping("/baselogin")
     XResult baseLogin(@RequestBody XUser user);
-
+    /**
+     * 根据类型获取文章列表
+     * @return
+     */
+    @RequestMapping("/getDesignList")
+    List<XUser> getDesignList();
     @RequestMapping("/findById")
     XUser findUserById(@RequestParam("id")Integer id);
     @RequestMapping("/findInfoById")
@@ -72,4 +77,7 @@ public interface UserService {
 
     @RequestMapping("/findByUId")
     XDesign findByUId(@RequestParam("id") Integer id);
+
+    @RequestMapping("/countBy")
+    int countBy(@RequestParam("type") String type);
 }

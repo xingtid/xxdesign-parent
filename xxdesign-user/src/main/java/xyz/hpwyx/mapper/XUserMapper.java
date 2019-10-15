@@ -11,8 +11,6 @@ import xyz.hpwyx.pojo.XUserExample;
 public interface XUserMapper {
     int countByExample(XUserExample example);
 
-    int deleteByExample(XUserExample example);
-
     int deleteByPrimaryKey(Integer uId);
 
     int insert(XUser record);
@@ -24,8 +22,6 @@ public interface XUserMapper {
    XUser selectByPhoneAndPassword(@Param("uPhone")String phone,@Param("uPassword")String password);
 
     XUser selectByPrimaryKey(Integer uId);
-
-
 
     int updateByExampleSelective(@Param("record") XUser record, @Param("example") XUserExample example);
 
@@ -40,4 +36,6 @@ public interface XUserMapper {
     XUser findByPhone(String phone);
 
     Integer updateOpenIdUser(@Param ("openId") String openId,@Param ("userId") Integer userId);
+
+    List<XUser> findAllUserInfoAndDesign();
 }

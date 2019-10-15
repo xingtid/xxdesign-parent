@@ -222,7 +222,7 @@ input[required]:invalid, input:focus:invalid, textarea[required]:invalid, textar
 .as_register .rbtn_s1 {
     margin-top: 20px;
     font-size: 16px;
-    background: #e93b57;
+    background: #2E4E8B;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
 }
@@ -253,10 +253,10 @@ input[required]:invalid, input:focus:invalid, textarea[required]:invalid, textar
     font-size: 16px;
 }
 .as_register .func_tab .cur {
-    background-color: #ff5a59;
+    background-color: #2E4E8B;
 }
 .as_register .func_tab .cur {
-    background-color: #f73f5b;
+    background-color: #2E4E8B;
     color: #FFF;
 }
 .as_register .pwlevel {

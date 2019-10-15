@@ -117,14 +117,18 @@ public class VipController {
      * 同步
      *
      * @param request
-     * @param session
      * @return
      */
     @RequestMapping("/callBack/returnUrl")
-    public String returnUrl(HttpServletRequest request, HttpSession session) {
+    @ResponseBody
+    public String returnUrl(HttpServletRequest request) {
         // 验证签名
         boolean flag = rsaCheck (request);
+        if (flag) {
 
+        } else {
+
+        }
         return "success";
 
     }

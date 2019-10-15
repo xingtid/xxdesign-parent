@@ -3,6 +3,7 @@ package xyz.hpwyx.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,10 +14,7 @@ import xyz.hpwyx.pojo.XUser;
 import xyz.hpwyx.service.MessageService;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author tid
@@ -143,5 +141,22 @@ public class MsgController {
 
         XResult result = msgServiceFigen.readMessage (mId);
         return result;
+    }
+
+    @RequestMapping("/insertMsg/{bsendId}/{msg}")
+    @ResponseBody
+    public XResult insertMsg(@PathVariable int bsendId,@PathVariable String msg,HttpSession session){
+        XUser user = (XUser) session.getAttribute ("USERINFO");
+        XMessage message = new XMessage ();
+        message.setmBesendId (bsendId);
+        message.setmContent (msg);
+        message.setmParent (0);
+        message.setmSendId (user.getUId ());
+        message.setmTitle (msg);
+        message.setmType (2);
+        message.setmMark ("0");
+        message.setmTime (new Date ());
+        XResult xResult = msgServiceFigen.insertMessage (message);
+        return xResult;
     }
 }
