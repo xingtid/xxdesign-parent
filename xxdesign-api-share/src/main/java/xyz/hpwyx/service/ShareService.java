@@ -28,7 +28,7 @@ public interface ShareService {
      * @return
      */
     @RequestMapping("/getList")
-    List<XShare> getList();
+    List<XShare> getList(@RequestParam("page")Integer page);
 
     /**
      * 插入

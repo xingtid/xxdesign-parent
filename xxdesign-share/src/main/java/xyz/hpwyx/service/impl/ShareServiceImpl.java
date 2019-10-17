@@ -37,8 +37,8 @@ public class ShareServiceImpl implements ShareService {
     }
 
     @Override
-    public List<XShare> getList() {
-        PageHelper.startPage (0, 12);
+    public List<XShare> getList(@RequestParam("page")Integer page) {
+        PageHelper.startPage (page, 6);
         List<XShare> xShares = shareMapper.selectShareAndUser ();
         return xShares;
     }

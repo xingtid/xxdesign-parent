@@ -80,4 +80,8 @@ public interface UserService {
 
     @RequestMapping("/countBy")
     int countBy(@RequestParam("type") String type);
+
+    @RequestMapping("/insertIntoUserInfo")
+    XResult insertIntoUserInfo(@RequestBody XUserInfo xUserInfo);
+
 }

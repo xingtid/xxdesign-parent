@@ -65,7 +65,7 @@
                             <label for="drop-4" class="toggle toogle-2">share<span class="fa fa-angle-down"
                                                                                   aria-hidden="true"></span>
                             </label>
-                            <a href="/getShareList">获取文章 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <a href="/getShareList/1">获取文章 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-4"/>
                             <ul>
                                 <li><a href="isContent.html" class="drop-text">分享穿搭</a></li>
@@ -85,8 +85,8 @@
                             </ul>
                            </li>
 
-                        <li th:if="${session.USERINFO} eq null"><a href="login.html">登录</a>
-                            <a href="register.html">注册</a></li>
+                        <li th:if="${session.USERINFO} eq null"><a href="/login.html">登录</a>
+                            <a href="/register.html">注册</a></li>
                         <!-- <li><a href="admin.html">后台</a></li>-->
 
                         <li th:if="${session.USERINFO} ne null"> <div  id="message"></div></li>
@@ -181,7 +181,7 @@
                     <div class="contact-info">
                         <div class="footer-style-w3ls mb-4">
                             <h4 class="text-li mb-2">电话</h4>
-                            <p>+18896785465</p>
+                            <p>+86 18896785465</p>
                         </div>
                         <div class="footer-style-w3ls mb-4">
                             <h4 class="text-li mb-2">邮箱 </h4>
@@ -206,15 +206,14 @@
                         <ul class="mobamuits_social_list list-unstyled">
 
                             <li class="w3_mobamu_twitter">
-                                <a href="#">
-                                    <span class="fa fa-qq"></span>
-                                </a>
+                                <a href="tencent://message/?Menu=yes&uin=1010004316& Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">  <span class="fa fa-qq"></span></a>
                             </li>
 
                             <li class="w3_mobamu_weixin">
                                 <a href="#">
                                     <span class="fa fa-weixin"></span>
                                 </a>
+
                             </li>
                             <li class="w3_mobamu_google">
                                 <a href="#">
@@ -279,7 +278,7 @@
             <h3>我的文章</h3>
             <ul class="wendaHonor">
                 <li th:if="${session.share.size()} eq 0">暂无文章</li>
-                <li th:each="c:${session.share}" ><a th:text="${c.sTitle}"  th:href="@{'/getShare/'+${s.sId}}"></a></li>
+                <li th:each="c:${session.share}" ><a th:text="${c.sTitle}"  th:href="@{'/getShare/'+${c.sId}}"></a></li>
 
             </ul>
         </div>

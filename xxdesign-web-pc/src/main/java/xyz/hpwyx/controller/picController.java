@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
 public class picController {
     @ResponseBody
     @RequestMapping(value = "/uploadImg")
-    public void upLoadImg(MultipartFile file, HttpServletResponse response, HttpSession session) throws IOException {
+    public Map upLoadImg(MultipartFile file, HttpServletResponse response, HttpSession session) throws IOException {
         try {
             FastDFSClient fastDFSClient = new FastDFSClient ("/config/client.conf");
             //取扩展名
@@ -42,9 +44,16 @@ public class picController {
                 session.setAttribute ("img",imgList);
             }
             response.getWriter ().write (urla);
+            Map map = new HashMap ();
+            map.put ("success", true);
+            map.put ("file_path", urla);
+            return map;
         } catch (Exception e) {
             e.printStackTrace ();
             response.getWriter ().write (e.toString ());
+            Map map = new HashMap ();
+            map.put ("success", false);
+            return map;
         }
     }
 }

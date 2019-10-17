@@ -1,5 +1,7 @@
 package xyz.hpwyx.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -29,7 +31,7 @@ public class ShareController {
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
     @RequestMapping(value = "/getShare/{sId}")
-    public String toShare(@PathVariable Integer sId, Model model) {
+    public String toShare(@PathVariable Integer sId,Model model) {
         XShare xResult = shareServiceFigen.showShare (sId);
         System.out.println (sId);
         model.addAttribute ("share", xResult);
@@ -69,10 +71,21 @@ public class ShareController {
         jmsMessagingTemplate.convertAndSend (destination,  integer + "");
         return xResult;
     }
-    @RequestMapping(value = "/getShareList")
-    public String getShareList( Model model) {
-        List<XShare> list = shareServiceFigen.getList ();
+    @RequestMapping(value = "/getShareList/{page}")
+    public String getShareList( Model model,@PathVariable int page) {
+
+
+//        Page<Object> objects = PageHelper.startPage (1, 3);
+        List<XShare> list = shareServiceFigen.getList (page);
+        if (list.size ()<3){
+            model.addAttribute ("num",0);
+        }else {
+            model.addAttribute ("num",1);
+        }
+        System.out.println (list.size ());
+//        int pageNum = objects.getPageNum ();
         model.addAttribute ("shareList",list);
+        model.addAttribute ("page",page);
         return "shareList";
     }
 

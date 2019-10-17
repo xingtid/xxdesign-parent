@@ -120,7 +120,6 @@ public class UserServiceImpl implements UserService {
         return XResult.isOk ();
     }
 
-
     @Override
     public XResult findByToken(@RequestParam("token") String token) {
         if (StringUtils.isEmpty (token)) {
@@ -192,6 +191,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public XResult changeStates(@RequestParam("state") String states) {
+
         return null;
     }
 
@@ -202,6 +202,14 @@ public class UserServiceImpl implements UserService {
         criteria.andUIsdesignEqualTo (type);
         int i = xUserMapper.countByExample (example);
         return i;
+    }
+
+    @Override
+    public XResult insertIntoUserInfo(@RequestBody XUserInfo xUserInfo) {
+        System.out.println (xUserInfo.getUId ());
+        int i = xUserInfoMapper.updateByPrimaryKey (xUserInfo);
+        System.out.println (i);
+        return XResult.isOk ();
     }
 
     /**

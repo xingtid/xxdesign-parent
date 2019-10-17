@@ -21,7 +21,7 @@ public class ShareController {
     private ShareServiceFigen serviceFigen;
     @RequestMapping("/findAllShare")
     public XResult findAll() {
-        List<XShare> alls = serviceFigen.getList ();
+        List<XShare> alls = serviceFigen.getList (1);
         return XResult.isOk (alls);
     }
     @RequestMapping("/delShare/{sid}")

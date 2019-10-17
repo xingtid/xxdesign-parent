@@ -2,7 +2,6 @@
 <html lang="zxx" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Booking Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -40,7 +39,7 @@
 </div>
 
 <div class="wjContent clear" id="survey_page">
-
+<form id="myInfo">
     <div class="content_box">
         <div class="wjtitle mtop project_title">
             <h1>
@@ -58,13 +57,13 @@
                 <div class="matrix">
                     <div class="related-tip"></div>
                     <div id="sexerr" class="red"></div>
-                    <div class="icheckbox_div "><input type="radio" name="uAge" id="nan" class="option"><label
+                    <div class="icheckbox_div "><input type="radio" name="uSex" id="nan" class="option" value="男"><label
                             for="nan" class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label">男</span></div>
                     </label></div>
-                    <div class="icheckbox_div "><input type="radio" name="uAge" id="nv" class="option"><label
-                            for="nv" class="option_cell"><span
+                    <div class="icheckbox_div "><input type="radio" name="uSex" id="nv" class="option" value="女"><label
+                            for="nv" class="option_cell" ><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label">女</span></div>
                     </label></div>
@@ -95,50 +94,50 @@
                 <div class="matrix">
                     <div class="related-tip"></div>
                     <div class="red"></div>
-                    <div class="icheckbox_div"><input type="radio" name="position" value="" id="position_zf"
+                    <div class="icheckbox_div"><input type="radio" name="uPosition" id="position_zf" value="政府/机关干部/公务员" required
                                                       class="option"><label for="position_zf" class="option_cell"><span
                             class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">政府/机关干部/公务员</span></div>
+                        <div class="option_label_wrap"><span class="option_label">政府/机关干部/公务员</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_glz"
+                    <div class="icheckbox_div " ><input type="radio" name="uPosition" id="position_glz" value="企业管理者（包括基层及中高层管理者）"
                                                                 class="option"><label for="position_glz"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
-                        <div class="option_label_wrap"><span class="option_label ">企业管理者（包括基层及中高层管理者）</span></div>
+                        <div class="option_label_wrap"><span class="option_label">企业管理者（包括基层及中高层管理者）</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_pt"
+                    <div class="icheckbox_div "><input type="radio" name="uPosition" id="position_pt" value="普通职员（办公室/写字楼工作人员）"
                                                                 class="option"><label for="position_pt"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label ">普通职员（办公室/写字楼工作人员）</span></div>
                     </label></div>
 
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_gt"
+                    <div class="icheckbox_div " ><input type="radio" name="uPosition" id="position_gt" value="个体经营者/承包商"
                                                                 class="option"><label for="position_gt"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label">个体经营者/承包商</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_zy"
+                    <div class="icheckbox_div " ><input type="radio" name="uPosition" id="position_zy" value="自由职业者"
                                                                 class="option"><label for="position_zy"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label ">自由职业者</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_nm"
+                    <div class="icheckbox_div "><input type="radio" name="uPosition" id="position_nm" value="农林牧渔劳动者"
                                                                 class="option"><label for="position_nm"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label ">农林牧渔劳动者</span></div>
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_tx"
+                    <div class="icheckbox_div " ><input type="radio" name="position" id="position_tx" value="退休"
                                                                 class="option"><label for="position_tx"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
                         <div class="option_label_wrap"><span class="option_label ">退休</span></div>
 
                     </label></div>
-                    <div class="icheckbox_div " style=""><input type="radio" name="position" id="position_other"
+                    <div class="icheckbox_div "><input type="radio" name="position" id="position_other" value="其他职业人员（请注明）"
                                                                 class="option"><label for="position_other"
                                                                                       class="option_cell"><span
                             class="radio_box"></span>
@@ -149,27 +148,114 @@
                 </div>
             </div>
             <div class="wjques maxtop question">
-                <div class="title">第二部分：个人色彩性格分析</div>
+                <div class="title">第二部分：个人色彩风格分析</div>
             </div>
             <div class="wjques maxtop question" id="color">
                 <div class="title"><span class="answer_title"><span class="Qnum">5.</span>您喜欢的颜色？<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
                     <div class="related-tip"></div>
-                    <div id="posi" class="red"></div>
-                    <div class="icheckbox_div"><input type="radio" name="color" id="color_red" class="option">
+                    <div id="sw" class="red"></div>
+                    <div class="icheckbox_div"><input type="radio" name="uStyle2" id="color_red" class="option">
                         <label for="color_red" class="option_cell"><span class="radio_box"></span>
                             <div class="option_label_wrap"><span class="option_label" style="color: red">红色</span></div>
                         </label></div>
-                    <div class="icheckbox_div"><input type="radio" name="color" id="color_blue" class="option">
-                        <label for="color_red" class="option_cell"><span class="radio_box"></span>
+                    <div class="icheckbox_div"><input type="radio" name="uStyle2" id="color_blue" class="option">
+                        <label for="color_blue" class="option_cell"><span class="radio_box"></span>
                             <div class="option_label_wrap"><span class="option_label" style="color: blue">蓝色</span>
                             </div>
                         </label></div>
                 </div>
             </div>
+            <div class="wjques maxtop question" id="skin">
+                <div class="title"><span class="answer_title"><span class="Qnum">6.</span>您的肤质？<span
+                        class="asterisk">*</span></span></div>
+                <div class="matrix">
+                    <div class="related-tip"></div>
+                    <div id="posi" class="red"></div>
+                    <div class="icheckbox_div"><input type="radio" name="skin" id="bai" class="option">
+                        <label for="bai" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label">肤色偏白</span></div>
+                        </label></div>
+                    <div class="icheckbox_div"><input type="radio" name="skin" id="hei" class="option">
+                        <label for="hei" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label">肤色偏黑</span>
+                            </div>
+                        </label></div>
+                    <div class="icheckbox_div"><input type="radio" name="skin" id="huang" class="option">
+                        <label for="huang" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label">肤色偏黄</span></div>
+                        </label></div>
+                    <div class="icheckbox_div"><input type="radio" name="skin" id="hong" class="option">
+                        <label for="hong" class="option_cell"><span class="radio_box"></span>
+                            <div class="option_label_wrap"><span class="option_label">肤色偏红</span></div>
+                        </label></div>
+                </div>
+            </div>
             <div class="wjques maxtop question" id="xztp">
-                <div class="title"><span class="answer_title"><span class="Qnum">6.</span>请选择以下图片<span class="asterisk">*</span></span>
+                <div class="title"><span class="answer_title"><span class="Qnum">7.</span>请选择以下图片<span class="asterisk">*</span></span>
+                </div>
+                <div class="matrix">
+                    <div class="red" id="sw"></div>
+                    <ul class="Imgli">
+                        <li>
+                            <div class="questionImgBox">
+                                <div class="QImgCon"><img class="option_origin_img"
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6de11d35780a27460ec9f-9623658e-eff4-11e9-9577-44a8420c29f3.jpg">
+                                </div>
+                                <input
+                                        type="radio" name="uStyle1" id="ganlian" value="干练" class="option"><label
+                                    class="option_cell" for="ganlian" name="option"><span
+                                    class="radio_box"></span>
+                                <p class="option_label ">干练</p>
+                            </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="questionImgBox">
+                                <div class="QImgCon"><img class="option_origin_img"
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6de2fd35780a28012d6bb-9ee626ca-eff4-11e9-944a-44a8420c29f3.jpg">
+                                </div>
+                                <input
+                                        type="radio" name="uStyle1" id="kuku" value="酷酷" class="option"><label
+                                    class="option_cell" for="kuku" name="option"><span
+                                    class="radio_box"></span>
+                                <p class="option_label ">
+                                    酷酷</p>
+                            </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="questionImgBox">
+                                <div class="QImgCon"><img class="option_origin_img"
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6de3dd35780a3451fac31-baf088ba-eff4-11e9-9278-44a8420c29f3.jpg">
+                                </div>
+                                <input
+                                        type="radio" name="uStyle1" id="duanzhen" value="端正" class="option"><label
+                                    class="option_cell" for="duanzhen" name="option"><span
+                                    class="radio_box"></span>
+                                <p class="option_label ">端正</p>
+                            </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="questionImgBox">
+                                <div class="QImgCon"><img class="option_origin_img"
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6de44d35780a22c75a3e9-c0ea4e2c-eff4-11e9-9577-44a8420c29f3.jpg">
+                                </div>
+                                <input
+                                        type="radio" name="uStyle1" id="wenrou" value="温柔" class="option"><label
+                                    class="option_cell" for="wenrou" name="option"><span
+                                    class="radio_box"></span>
+                                <p class="option_label ">温柔</p>
+                            </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="wjques maxtop question" id="lx">
+                <div class="title"><span class="answer_title"><span class="Qnum">8.</span>请选择你的脸型<span class="asterisk">*</span></span>
                 </div>
                 <div class="matrix">
                     <div class="red" id="fa"></div>
@@ -177,99 +263,118 @@
                         <li>
                             <div class="questionImgBox">
                                 <div class="QImgCon"><img class="option_origin_img"
-                                                          data-imgsrc="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/-3e6b2232-daeb-11e9-b6bb-44a8420c29f3.jpg"
-                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d839309d357802514250dbf-3e7b4acc-daeb-11e9-b6bb-44a8420c29f3-thumb.jpg">
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6dbadd35780a212971907-1b2aa4ec-eff3-11e9-b27a-44a8420c29f3-thumb.jpg">
                                 </div>
                                 <input
-                                        type="radio" name="img1" id="img1" value="qc" class="option"><label
-                                    class="option_cell" for="img1" name="option"><span
+                                        type="radio" name="uFace" id="guazi" value="瓜子脸" class="option"><label
+                                    class="option_cell" for="guazi" name="option"><span
                                     class="radio_box"></span>
-                                <p class="option_label ">图片1</p>
+                                <p class="option_label ">瓜子脸</p>
                             </label>
                             </div>
                         </li>
                         <li>
                             <div class="questionImgBox">
                                 <div class="QImgCon"><img class="option_origin_img"
-                                                          data-imgsrc="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5cb449c6-daeb-11e9-9150-44a8420c29f3.jpg"
-                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5ccb12b4-daeb-11e9-9150-44a8420c29f3-thumb.jpg">
+
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6dbb8d35780a32b7583f0-21f23d76-eff3-11e9-bdfe-44a8420c29f3-thumb.jpg">
                                 </div>
                                 <input
-                                        type="radio" name="img1" id="img2" value="a" class="option"><label
-                                    class="option_cell" for="img2" name="option"><span
+                                        type="radio" name="uFace" id="fangxin" value="方形脸" class="option"><label
+                                    class="option_cell" for="fangxin" name="option"><span
                                     class="radio_box"></span>
-                                <p class="option_label ">图片2</p>
+                                <p class="option_label ">方形脸</p>
                             </label>
                             </div>
                         </li>
                         <li>
                             <div class="questionImgBox">
                                 <div class="QImgCon"><img class="option_origin_img"
-                                                          data-imgsrc="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5cb449c6-daeb-11e9-9150-44a8420c29f3.jpg"
-                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5ccb12b4-daeb-11e9-9150-44a8420c29f3-thumb.jpg">
+
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6dbd7d35780a3451fac2c-344fc5ce-eff3-11e9-b718-44a8420c29f3-thumb.jpg">
                                 </div>
                                 <input
-                                        type="radio" name="img1" id="img2" value="a" class="option"><label
-                                    class="option_cell" for="img2" name="option"><span
+                                        type="radio" name="uFace" id="yuanxin" value="圆形脸" class="option"><label
+                                    class="option_cell" for="yuanxin" name="option"><span
                                     class="radio_box"></span>
-                                <p class="option_label ">图片3</p>
+                                <p class="option_label ">圆形脸</p>
                             </label>
                             </div>
                         </li>
                         <li>
                             <div class="questionImgBox">
                                 <div class="QImgCon"><img class="option_origin_img"
-                                                          data-imgsrc="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5cb449c6-daeb-11e9-9150-44a8420c29f3.jpg"
-                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5d83933cd35780261cd50955-5ccb12b4-daeb-11e9-9150-44a8420c29f3-thumb.jpg">
+
+                                                          src="https://cdn1.wenjuan.com/5d8391d792beb57731fcc326/5da6dbdfd35780a28c8303ce-391d05bc-eff3-11e9-83af-44a8420c29f3-thumb.jpg">
                                 </div>
                                 <input
-                                        type="radio" name="img1" id="img2" value="a" class="option"><label
-                                    class="option_cell" for="img2" name="option"><span
+                                        type="radio" name="uFace" id="xingxin" value="心形脸" class="option"><label
+                                    class="option_cell" for="xingxin" name="option"><span
                                     class="radio_box"></span>
-                                <p class="option_label ">图片4</p>
+                                <p class="option_label ">心形脸</p>
                             </label>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
+            <div class="wjques maxtop question" id="picture">
+                <div class="title"><span class="answer_title"><span class="Qnum">9.</span>上传一张你的近照<span
+                        class="asterisk">*</span></span></div>
+                <div class="matrix">
+                    <div class="related-tip"></div>
+                    <div id="sa" class="red"></div>
+                    <div class="matrix">
+<!--                        <input name="photo" type="file" id="uploada" style="display: none">-->
+
+                        <div class="before_file_upload" id="upload">
+                            <label for="uploada">
+                                <div class="select_text_wrapper"><i></i> <span> 选择文件（30M以内） </span></div>
+                            </label></div>
+                    </div>
+                </div>
+            </div>
             <div class="wjques maxtop question" id="jianyi">
                 <div class="title">第三部分：你想说的</div>
             </div>
             <div class="wjques maxtop question" id="jianyi2">
-                <div class="title"><span class="answer_title"><span class="Qnum">6.</span>你对自己的看法？<span
+                <div class="title"><span class="answer_title"><span class="Qnum">10.</span>你对自己的看法？<span
                         class="asterisk">*</span></span></div>
                 <div class="matrix">
-                    <div> <textarea type="text" name="pingjia" class="blank option" id="areas" style="width: 450px;" rows="5"></textarea>
+                    <div><textarea type="text" name="uOther" class="blank option" id="areas" style="width: 450px;"
+                                   rows="5"></textarea>
                         <div id="qe" class="red"></div>
 
+                    </div>
                 </div>
-            </div>
 
-<!--            <div class="wjques maxtop question">-->
-<!--                <div class="title"><span class="answer_title"><span class="Qnum">11.</span>请上传文件<span-->
-<!--                        class="asterisk">*</span></span></div>-->
-<!--                <div class="matrix">-->
-<!--                    <div class="before_file_upload" data-max-file-quantity="" id="upload">-->
-<!--                        <label for="upload">-->
-<!--                          <div class="select_text_wrapper"><i></i> <span> 选择文件（30M以内） </span></div>-->
-<!--                        </label></div>-->
-<!--                    <input>-->
-<!--                </div>-->
-<!--            </div>-->
-
-            <div class="maxtop btns" id="control_panel">
-                <div class="WJButton wj_color" id="next_button" style="">&nbsp;提交&nbsp;</div>
-                <div class="WJButton wj_color" id="confirm_verify_btn" style="display:none;">确认</div>
+                <div class="maxtop btns" id="control_panel">
+                    <div class="WJButton wj_color" id="next_button" onclick="tijiao()">&nbsp;提交&nbsp;</div>
+                    <div class="WJButton wj_color" id="confirm_verify_btn" style="display:none;">确认</div>
+                </div>
             </div>
         </div>
     </div>
-
-
-</div>
+</form>
 </div>
 <!-- footer -->
 <div th:replace="templates::footer"></div>
+<script>
+    function tijiao(){
+        $.post("/updateUserInfo", $("#myInfo").serialize(), function (data) {
+            if (data.rtnCode == 200) {
+                hint("发布成功")
+                setTimeout(function () {
+                    location.href = "http://localhost:8088/getShare/" + data.msg;
+                }, 500);
+
+            } else {
+                hint(data.msg)
+            }
+        });
+    }
+
+</script>
 </body>
 
 </html>

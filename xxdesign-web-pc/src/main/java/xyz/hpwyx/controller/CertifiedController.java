@@ -25,6 +25,14 @@ public class CertifiedController {
     @Autowired
     private CertifiedServiceFigen serviceFigen;
 
+    /**
+     * 提交认证
+     * @param xCertified
+     * @param date
+     * @param session
+     * @return
+     * @throws ParseException
+     */
     @RequestMapping(value = "/addCertified")
     @ResponseBody
     public XResult addCertified(XCertified xCertified, @RequestParam("date") String date, HttpSession session) throws ParseException {
