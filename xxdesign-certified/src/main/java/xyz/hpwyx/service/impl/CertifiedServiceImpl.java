@@ -44,4 +44,10 @@ public class CertifiedServiceImpl implements CertifiedService {
         int i = xCertifiedMapper.updateByPrimaryKey (xCertified);
         return XResult.isOk ();
     }
+
+    @Override
+    public XCertified findErti(int id) {
+        XCertified xCertified = xCertifiedMapper.selectByPrimaryKey (id);
+        return xCertified;
+    }
 }

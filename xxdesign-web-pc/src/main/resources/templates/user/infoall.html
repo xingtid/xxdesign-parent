@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <title>个人信息</title>
+    <title>个人详细信息</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/headandfoot.css">
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
@@ -25,7 +25,7 @@
     <div class="content flt2">
         <div class="achievement clearfix">
             <ul>
-                <li><a><strong th:text="${session.shareCount}">4</strong>
+                <li><a><strong th:text="${shareCount}">4</strong>
                     <div>内容数</div>
                 </a></li>
                 <li>
@@ -41,34 +41,34 @@
         <div class="wd-main">
             <div class="wd-navbar clearfix">
                 <ul class="wd-nav _j_qa_nav">
-                    <li class="on"><a href="/findMyInfo">我的信息</a></li>
+                    <li><a href="/findMyInfo">我的信息</a></li>
                     <li><a href="/getMsg">我的消息</a></li>
-                    <li><a href="/getInfo">我的形象参数</a></li>
+                    <li class="on"><a href="/getInfo">我的形象参数</a></li>
 
                 </ul>
             </div>
-            <form action="" method="post" style=" padding: 67px;">
                 <div class="wd-list _j_qa_list">
                     <div class="form-control-sm">
-                        <label class="table_info">昵称: </label><input type="text" name="uName" th:value="${session.USERINFO.uName}">
+                        <label class="table_info" style="    width: 121px;"><span th:text="'昵称: '+${session.USERINFO.uName}"></span></label>
                     </div>
                     <div class="form-control-sm">
-                        <label class="table_info"> 所在城市: </label><input type="text">
+                        <label class="table_info" style="    width: 121px;" >  <span th:text="'身高:'+${session.userinfo.uHeight}"></span> </label>
                     </div>
                     <div class="form-control-sm">
-                        <label class="table_info"> 邮箱: </label><input type="text">
+                        <label class="table_info" style="    width: 121px;">  <span th:text="'体重:'+${session.userinfo.uWeight}"></span></label>
+                    </div>
+                    <div class="form-control-sm">
+                        <label class="table_info" style="    width: 121px;">  <span th:text="'城市:'+${session.userinfo.uCity}"></span> </label>
+                    </div>
+                    <div class="form-control-sm">
+                        <label class="table_info" style="    width: 121px;">  <span th:text="'脸型:'+${session.userinfo.uFace}"></span> </label>
+
+        </div>
+                    <div class="form-control-sm">
+                        <label class="table_info" style="    width: 121px;">  <span th:text="'风格:'+${session.userinfo.uStyle1}"></span> </label>
 
                     </div>
-<!--                    <div class="form-control-sm">-->
-<!--                        <label class="table_info"> 出生日期: </label><input type="date">-->
-<!--                    </div>-->
-                        <button class="btn btn_id" type="submit">提交</button>
-                    </div>
-            </form>
-            <div class="pagin" id="smallpager"></div>
-        </div>
     </div>
-</div>
 </div>
 
 <script type="text/javascript">

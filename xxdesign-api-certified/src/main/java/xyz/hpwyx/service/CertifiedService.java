@@ -22,4 +22,7 @@ public interface CertifiedService {
 
     @RequestMapping("/changeErtified")
    XResult changeErtified(@RequestParam("id")int id);
+
+    @RequestMapping("/findErtified")
+    XCertified findErti(@RequestParam("id")int id);
 }

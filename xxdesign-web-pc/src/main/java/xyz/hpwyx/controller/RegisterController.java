@@ -20,6 +20,16 @@ public class RegisterController {
     @Autowired
     private UserServiceFigen serviceFigen;
 
+
+    /**
+     * 注册
+     * @param uName
+     * @param uPassword
+     * @param uPhone
+     * @param request
+     * @param usercode
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public XResult doregister(@RequestParam(value = "uName", required = false) String uName, @RequestParam(value = "uPassword", required = false) String uPassword,@RequestParam(value = "uPhone", required = false) String uPhone,HttpServletRequest request, @RequestParam(value = "usercode", required = false) String usercode) {
         String ipAddress = GetIp.getIpAddress (request);

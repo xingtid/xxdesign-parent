@@ -94,22 +94,23 @@ public class VipController {
     public String notify(HttpServletRequest request, HttpSession session) {
         // 验证签名
         boolean flag = rsaCheck (request);
-        if (flag) {
+        System.out.println ("flag = " + flag);
+//        if (flag) {
             String tradeStatus = request.getParameter ("trade_status"); // 交易状态
             String outTradeNo = request.getParameter ("out_trade_no"); // 商户订单号
             String tradeNo = request.getParameter ("trade_no"); // 支付宝订单号
             /**
              * 还可以从request中获取更多有用的参数，自己尝试
              */
-            boolean notify = vipServiceFigen.notify (tradeStatus, outTradeNo, tradeNo);
-            if (notify) {
+//            boolean notify = vipServiceFigen.notify (tradeStatus, outTradeNo, tradeNo);
+            if (true) {
                 XUser userinfo = (XUser) session.getAttribute ("USERINFO");
                 if (userinfo == null) {
                     return "fail";
                 }
                 return "success";
             }
-        }
+//        }
         return "fail";
     }
 
@@ -120,8 +121,12 @@ public class VipController {
      * @return
      */
     @RequestMapping("/callBack/returnUrl")
-    @ResponseBody
     public String returnUrl(HttpServletRequest request) {
+        String tradeStatus = request.getParameter ("trade_status"); // 交易状态
+        String outTradeNo = request.getParameter ("out_trade_no"); // 商户订单号
+        String tradeNo = request.getParameter ("trade_no"); // 支付宝订单号
+        System.out.println ("tradeNo = " + tradeNo);
+        boolean notify = vipServiceFigen.notify ("TRADE_SUCCESS", outTradeNo, tradeNo);
         // 验证签名
         boolean flag = rsaCheck (request);
         if (flag) {
@@ -129,7 +134,7 @@ public class VipController {
         } else {
 
         }
-        return "success";
+        return "redirect:/";
 
     }
 

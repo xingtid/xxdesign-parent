@@ -8,9 +8,11 @@
     <link href="/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
     <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sweetalert.css">
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+    <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -60,22 +62,17 @@
             </div>
         </div>
     </div>
-    <div> <span onclick="sendMsg()" style="position: absolute;
+    <div> <span onclick="fasdf()" style="position: absolute;
     top: 10%;
     padding: 10px;
     cursor: pointer;">发送预约消息</span></div>
 </div>
 <script xmlns:th="http://www.w3.org/1999/xhtml">
-    function sendMsg() {
-        if ([[${session.USERINFO}]] ===null){
-            alert("请先登录")
-        }
+    function fasdf() {
         var msg="邀请你当设计师";
         var id = [[${design.dId}]]
-        $.get("/insertMsg/"+id+"/"+msg,  function () {
-            // hit.innerHTML = "验证码已发送";
-            alert("a")
-            // hint()
+        $.get("/insertMsg/"+id,  function () {
+            swal ( "预约成功" ,  "" ,  "success" )
         });
     }
 </script>

@@ -212,6 +212,19 @@ public class UserServiceImpl implements UserService {
         return XResult.isOk ();
     }
 
+    @Override
+    public XResult updateUser(XUser xUser) {
+        int i = xUserMapper.updateByPrimaryKey (xUser);
+
+        return XResult.isOk ();
+    }
+
+    @Override
+    public XResult insertDesign( @RequestBody XDesign xDesign) {
+        xDesignMapper.insert (xDesign);
+        return XResult.isOk ();
+    }
+
     /**
      * 放入redis
      *

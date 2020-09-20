@@ -1,7 +1,5 @@
 package xyz.hpwyx.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -30,6 +28,13 @@ public class ShareController {
     private ShareServiceFigen shareServiceFigen;
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
+
+    /**
+     * 通过ID获取文章
+     * @param sId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/getShare/{sId}")
     public String toShare(@PathVariable Integer sId,Model model) {
         XShare xResult = shareServiceFigen.showShare (sId);
@@ -37,6 +42,14 @@ public class ShareController {
         model.addAttribute ("share", xResult);
         return "share";
     }
+
+    /**
+     * 文章插入
+     * @param title
+     * @param content
+     * @param session
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/insertShare")
     public XResult insertShare(@RequestParam("sTitle")String title,@RequestParam("sContent")String content,  HttpSession session) {
@@ -71,11 +84,17 @@ public class ShareController {
         jmsMessagingTemplate.convertAndSend (destination,  integer + "");
         return xResult;
     }
+
+    /**
+     * 获取文章列表
+     * @param model
+     * @param page
+     * @return
+     */
     @RequestMapping(value = "/getShareList/{page}")
     public String getShareList( Model model,@PathVariable int page) {
 
 
-//        Page<Object> objects = PageHelper.startPage (1, 3);
         List<XShare> list = shareServiceFigen.getList (page);
         if (list.size ()<3){
             model.addAttribute ("num",0);
@@ -83,16 +102,16 @@ public class ShareController {
             model.addAttribute ("num",1);
         }
         System.out.println (list.size ());
-//        int pageNum = objects.getPageNum ();
         model.addAttribute ("shareList",list);
         model.addAttribute ("page",page);
         return "shareList";
     }
 
 
-
-
-
+    /**
+     * 导入所有文章到索引库
+     * @return
+     */
     @RequestMapping("/solr")
     @ResponseBody
     public XResult importAllContent() {
@@ -101,6 +120,13 @@ public class ShareController {
         return result;
     }
 
+    /**
+     * 搜索
+     * @param key
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/search")
     public String search(@RequestParam(value = "key",required=false) String key, Model model) throws Exception{
         System.out.println (key);

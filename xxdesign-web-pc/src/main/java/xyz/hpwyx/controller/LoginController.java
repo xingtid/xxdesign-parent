@@ -57,7 +57,7 @@ public class LoginController {
         user.setUPhone (phone);
         user.setUPassword (password);
         //2。调用接口，获取token 信息
-        String pa = password+"+1998";
+        String pa = password + "+1998";
         //加盐MD5加密
         String pwd = DigestUtils.md5DigestAsHex (pa.getBytes ());
 
@@ -66,7 +66,7 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken (phone, pwd);
         try {
             subject.login (token);
-            System.out.println("isAuthen:"+subject.isAuthenticated());
+            System.out.println ("isAuthen:" + subject.isAuthenticated ());
 
         } catch (UnknownAccountException e) {
             return XResult.build (400, "用户名不存在", null);
@@ -76,10 +76,10 @@ public class LoginController {
         XUser xUser = serviceFigen.findUserByPhone (token.getUsername ());
         String s = vipServiceFigen.updateVIP (xUser.getUId ());
         int i = Integer.parseInt (s);
-        if(i>0){
-            request.getSession ().setAttribute ("VIP",1);
-        }else {
-            request.getSession ().setAttribute ("VIP",0);
+        if (i > 0) {
+            request.getSession ().setAttribute ("VIP", 1);
+        } else {
+            request.getSession ().setAttribute ("VIP", 0);
         }
         XResult login = serviceFigen.baseLogin (xUser);
         // 判断

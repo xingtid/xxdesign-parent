@@ -293,5 +293,6 @@
   <include refid="Base_Column_List"/>
   from x_message
   where m_besend_id=#{uId,jdbcType=INTEGER}
+order by m_time desc
 </select>
 </mapper>

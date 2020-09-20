@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="/css/headandfoot.css">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/question.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sweetalert.css">
     <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
-
+    <script type="text/javascript" src="/js/sweetalert.min.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
 </head>
@@ -328,7 +329,7 @@
 <!--                        <input name="photo" type="file" id="uploada" style="display: none">-->
 
                         <div class="before_file_upload" id="upload">
-                            <label for="uploada">
+                            <label>
                                 <div class="select_text_wrapper"><i></i> <span> 选择文件（30M以内） </span></div>
                             </label></div>
                     </div>
@@ -363,13 +364,13 @@
     function tijiao(){
         $.post("/updateUserInfo", $("#myInfo").serialize(), function (data) {
             if (data.rtnCode == 200) {
-                hint("发布成功")
+                swal ( "发布成功" ,  "" ,  "success" )
                 setTimeout(function () {
                     location.href = "http://localhost:8088/getShare/" + data.msg;
                 }, 500);
 
             } else {
-                hint(data.msg)
+                swal ( "发布失败" ,  "" ,  "error" )
             }
         });
     }

@@ -40,9 +40,6 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public XResult delMessage(Integer mId) {
         int i = messageMapper.deleteByPrimaryKey (mId);
-        if (i<0){
-            return XResult.build (300,"删除失败",null);
-        }
         return XResult.isOk ();
     }
 

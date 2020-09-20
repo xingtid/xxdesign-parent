@@ -84,4 +84,12 @@ public interface UserService {
     @RequestMapping("/insertIntoUserInfo")
     XResult insertIntoUserInfo(@RequestBody XUserInfo xUserInfo);
 
+    @RequestMapping("/updateUser")
+    XResult updateUser(XUser xUser);
+
+    @RequestMapping("/insertDesign")
+    XResult insertDesign(@RequestBody XDesign xDesign);
+
+
+
 }

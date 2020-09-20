@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.fegin.MsgServiceFigen;
-import xyz.hpwyx.pojo.XMessage;
-import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.fegin.ShareServiceFigen;
+import xyz.hpwyx.fegin.UserServiceFigen;
+import xyz.hpwyx.fegin.WardrobeFeign;
+import xyz.hpwyx.pojo.*;
 import xyz.hpwyx.service.MessageService;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,12 @@ import java.util.*;
 public class MsgController {
     @Autowired
     private MsgServiceFigen msgServiceFigen;
+    @Autowired
+    private UserServiceFigen serviceFigen;
+    @Autowired
+    private ShareServiceFigen shareServiceFigen;
+    @Autowired
+    private WardrobeFeign wardrobeFeign;
 
     @RequestMapping("/getMsg")
     public String getMsg(HttpSession session, Model model) {
@@ -34,6 +42,14 @@ public class MsgController {
         System.out.println ("getMsg");
         List<XMessage> msgs = msgServiceFigen.showMess (user.getUId ());
 //        refresh (session, model);
+        XUser userById = serviceFigen.findUserById (user.getUId ());
+        List<XWardrobe> wardList = wardrobeFeign.getWardList (userById.getUId ());
+        session.setAttribute ("woSize",wardList.size ());
+        XUserInfo infoById = serviceFigen.findInfoById (user.getUId ());
+        List<XShare> shareByUId = shareServiceFigen.findShareByUId (user.getUId ());
+        session.setAttribute ("share", shareByUId);
+        session.setAttribute ("USERINFO", userById);
+        session.setAttribute ("userinfo", infoById);
         model.addAttribute ("msgList", msgs);
         return "user/usermessage";
     }
@@ -143,18 +159,25 @@ public class MsgController {
         return result;
     }
 
-    @RequestMapping("/insertMsg/{bsendId}/{msg}")
+    @RequestMapping("/insertMsg/{bsendId}")
     @ResponseBody
-    public XResult insertMsg(@PathVariable int bsendId,@PathVariable String msg,HttpSession session){
+    public XResult insertMsg(@PathVariable int bsendId,HttpSession session){
+        System.out.println (bsendId);
+        XUser userById = serviceFigen.findUserById (bsendId);
         XUser user = (XUser) session.getAttribute ("USERINFO");
+        if (user==null){
+            return XResult.failNoMsg ();
+        }
+        String msg = "<a href='/toUInfo?id="+user.getUId ()+"'>"+user.getUName ()+"</a>"+"要求你当设计师";
+        String t = user.getUName ()+"要求你当设计师";
         XMessage message = new XMessage ();
         message.setmBesendId (bsendId);
         message.setmContent (msg);
         message.setmParent (0);
         message.setmSendId (user.getUId ());
-        message.setmTitle (msg);
+        message.setmTitle (t);
         message.setmType (2);
-        message.setmMark ("0");
+        message.setmMark ("1");
         message.setmTime (new Date ());
         XResult xResult = msgServiceFigen.insertMessage (message);
         return xResult;

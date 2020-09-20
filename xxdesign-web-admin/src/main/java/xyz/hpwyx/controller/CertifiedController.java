@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.hpwyx.baseresult.XResult;
 import xyz.hpwyx.feign.CertifiedServiceFigen;
+import xyz.hpwyx.feign.UserServiceFigen;
 import xyz.hpwyx.pojo.XCertified;
+import xyz.hpwyx.pojo.XDesign;
 import xyz.hpwyx.pojo.XUser;
+import xyz.hpwyx.pojo.XUserInfo;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -24,10 +27,26 @@ import java.util.List;
 public class CertifiedController {
     @Autowired
     private CertifiedServiceFigen serviceFigen;
+    @Autowired
+    private UserServiceFigen userServiceFigen;
+
     @RequestMapping(value = "/changeState")
     public XResult changeState( @RequestParam("id") int id) {
         XResult xResult = serviceFigen.changeErtified (id);
-        return xResult;
+
+        XCertified erti = serviceFigen.findErti (id);
+        XUser xUser = userServiceFigen.findUserById (erti.getrId ());
+        System.out.println ("xx"+xUser.getUId ());
+        xUser.setUIsdesign ("yesa");
+        userServiceFigen.updateUser (xUser);
+
+        XDesign xDesign= new XDesign ();
+        xDesign.setDId (xUser.getUId ());
+        xDesign.setDStar ("4");
+        xDesign.setDHead (xUser.getUEx1 ());
+        userServiceFigen.insertDesign (xDesign);
+        List<XCertified> certified = serviceFigen.findCertified ();
+        return XResult.build (200,"",certified);
     }
     @RequestMapping(value = "/addCertified")
     public XResult addCertified(XCertified xCertified, @RequestParam("date") String date, HttpSession session) throws ParseException {
@@ -47,7 +66,12 @@ public class CertifiedController {
         SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
         Date parse = format.parse (date);
         xCertified.setrTime (parse);
-        XResult xResult = serviceFigen.insertCertified (xCertified);
+        XResult xResult;
+        try {
+            xResult = serviceFigen.insertCertified (xCertified);
+        }catch (Exception e){
+            return XResult.failMsg ("已经提交");
+        }
         return xResult;
     }
 }

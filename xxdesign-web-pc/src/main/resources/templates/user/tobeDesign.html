@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="/css/dropzone.min.css">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sweetalert.css">
     <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/other.js"></script>
     <script src="/js/dropzone.min.js"></script>
+    <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 </head>
 
 <script type="text/javascript">
@@ -97,7 +99,14 @@
                         </div>
                         <div class="col-lg-4 form-group">
                             <label>喜欢的风格</label>
-                            <input type="text" name="rEx" required="">
+                            <input type="text" name="rEx1" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-4 form-group">
+                            <label>身份证号</label>
+                            <input type="text" name="rEx" required="" pattern="[0-9]{16,17,18}">
                         </div>
                     </div>
                     <div class="col-lg-8 form-group">
@@ -113,18 +122,17 @@
 <!-- //booking form -->
 
 <div th:replace="templates::footer"></div>
-<script src="/js/jqAlert2.js"></script>
 <script>
     function add() {
         $.post("/addCertified", $("#info").serialize(), function (data) {
             if (data.rtnCode === 200) {
-                jqAlert.Confirm('申请成功',2000)
+                swal ( "提交成功" ,  "" ,  "success" )
                 setTimeout(function () {
 
                     location.href = "http://localhost:8088/findMyInfo";
                 }, 500);
             } else {
-                jqAlert.Confirm('网络异常',2000)
+                swal ( "发布失败" ,  "" ,  "error" )
             }
         });
     }

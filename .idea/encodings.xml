@@ -3,25 +3,46 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-certified" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-certified/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-index" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-index/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-message" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-message/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-share" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-share/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-vip" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-vip/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-api-wardrobe" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-api-wardrobe/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-certified" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-certified/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-index" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-index/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-message" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-message/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-share" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-share/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-vip" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-vip/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-wardrobe" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-wardrobe/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-web-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-web-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xxdesign-web-pc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xxdesign-web-pc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-server/src/main/java" charset="UTF-8" />
   </component>
 </project>

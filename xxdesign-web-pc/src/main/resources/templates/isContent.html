@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/headandfoot.css">
+    <link rel="stylesheet" href="/css/sweetalert.css">
 	<link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/simditor/js/jquery.min.js"></script>
@@ -15,6 +16,7 @@
     <script type="text/javascript" src="/simditor/js/uploader.js"></script>
     <script type="text/javascript" src="/simditor/js/simditor.js"></script>
     <script type="text/javascript" src="/simditor/js/simditor-dropzone.js"></script>
+    <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 <style>
     .banner_w3lspvt-2 {
         background: url(http://www.hpwyx.xyz:81/group1/M00/00/01/rBM2Ql2aBfKABSW1AAC6rDpaurs552.jpg) no-repeat center;
@@ -59,7 +61,7 @@
             <button type="button" class="btn button-style mt-sm-5 mt-4" style="margin-left: 45%;padding:6px 30px ;margin-bottom: 40px" onclick="insert()" >发布</button>
         </div>
 	</form>
-<script src="/js/jqAlert2.js"></script>
+<!--<script src="/js/jqAlert2.js"></script>-->
 <script>
     Simditor.locale = 'zh-CN';
 
@@ -85,13 +87,13 @@
         $("#content").val(content);
         $.post("/insertShare", $("#myInfo").serialize(), function (data) {
             if (data.rtnCode == 200) {
-                hint("发布成功")
+                swal ( "发布成功" ,  "" ,  "success" )
                 setTimeout(function () {
                     location.href = "http://localhost:8088/getShare/" + data.msg;
                 }, 500);
 
             } else {
-                hint(data.msg)
+                swal ( "发布失败" ,  "" ,  "error" )
             }
         });
     }

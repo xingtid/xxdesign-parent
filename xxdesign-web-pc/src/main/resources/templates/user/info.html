@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>个人详细信息</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/headandfoot.css">
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="/css/cropper.min.css"/>
+    <link href="/css/user/infor.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/user/info.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="main-top" id="home">
+    <div th:replace="templates::head"></div>
+    <div class="banner_w3lspvt-2" style="background: url(/images/2.jpg) no-repeat center;">
+
+    </div>
+</div>
+
+<div class="center">
+    <div th:fragment="userleft">
+        <div class="side_bar flt1">
+            <div class="MAvatar">
+                <div class="MAvaImg hasAva">
+                    <img th:src="${USERINFO.uEx1}"
+                         height="120" width="120" alt="eyuo"><a  class="MAvaUp" data-toggle="modal" data-target="#avatar-modal"><i class="Mphoto"></i></a></i>
+                </div>
+                <div class="MAvaName"><span th:text="${USERINFO.uName}"></span></div>
+                <div class="MAvaInfo clearfix MAvaMyInfo">
+                    <span class="MAvaLevel flt1">等级：<a href="#" target="_blank"><span>无</span></a></span>
+                    <span class="MAvaPlace flt1">现居：<span th:text="${userinfo.uCity}"></span></span>
+                    <span class="MAvaPlace flt1"><spqn th:if="${session.VIP} eq 1">会员<span th:text="'剩余天数：'+${session.levelcount}"></span></spqn></span>
+                    <span class="MAvaPlace flt1"  th:if="${session.VIP} eq 0"><spqn><a href="/joinVIP.html">开通会员</a></spqn></span>
+                </div>
+                <div class="MAvaProfile">
+                    <div class="MProfile">
+                        <pre>个人说明</pre>
+                    </div>
+                </div>
+                <div class="MAvaMore clearfix">
+                    <div class="MAvaNums">
+                        <strong><a href="#" target="_blank" th:text="${session.share.size()}">0</a></strong>
+                        <p>累计分享</p>
+                    </div>
+                    <div class="MAvaNums">
+                        <strong><a href="#" target="_blank" th:text="${session.woSize}">0</a></strong>
+                        <p>衣物</p>
+                    </div>
+                    <div class="MAvaNums">
+                        <strong><a href="/getMsg" target="_blank" th:text="${session.msg1Size}">0</a></strong>
+                        <p>消息通知</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="MWendaMod">
+                <h3>作者的文章</h3>
+                <ul class="wendaHonor">
+                    <li th:if="${session.share.size()} eq 0">暂无文章</li>
+                    <li th:each="c:${session.share}" ><a th:text="${c.sTitle}"  th:href="@{'/getShare/'+${c.sId}}"></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content flt2">
+
+        <div class="wd-main">
+
+            <div class="wd-list _j_qa_list" style="padding: 20px;">
+                <div class="form-control-sm">
+                    <label class="table_info" style="width: 140px;"><span th:text="'昵称: '+${USERINFO.uName}"></span></label>
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="width: 140px;" >  <span th:text="'身高:'+${userinfo.uHeight}"></span> </label>
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="width: 140px;">  <span th:text="'体重:'+${userinfo.uWeight}"></span></label>
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="    width: 140px;">  <span th:text="'城市:'+${userinfo.uCity}"></span> </label>
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="    width: 140px;">  <span th:text="'脸型:'+${userinfo.uFace}"></span> </label>
+
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="    width: 140px;">  <span th:text="'风格:'+${userinfo.uStyle1}"></span> </label>
+
+                </div>
+                <div class="form-control-sm">
+                    <label class="table_info" style="    width: 140px;">  <span th:text="'职位:'+${userinfo.uPosition}"></span> </label>
+
+                </div>
+            </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -31,6 +31,8 @@ public interface VipService {
     @RequestMapping("/findAllVip")
     List<XVip> findAllVip();
 
+    @RequestMapping("/findByUserId")
+    public List<XVip> findByUserId(@RequestParam("id")Integer id);
     /**
      * 添加会员
      * @return

@@ -40,6 +40,9 @@ public class ShareServiceImpl implements ShareService {
     public List<XShare> getList(@RequestParam("page")Integer page) {
         PageHelper.startPage (page, 6);
         List<XShare> xShares = shareMapper.selectShareAndUser ();
+        for (XShare xShare : xShares) {
+            xShare.setsContent ("");
+        }
         return xShares;
     }
 

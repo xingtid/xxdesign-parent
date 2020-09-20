@@ -35,6 +35,9 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public    List<IndexPojo> showShare() {
         List<IndexPojo> share = indexMapper.findShare ();
+        for (IndexPojo indexPojo : share) {
+            indexPojo.setS_content ("");
+        }
         return share;
     }
 

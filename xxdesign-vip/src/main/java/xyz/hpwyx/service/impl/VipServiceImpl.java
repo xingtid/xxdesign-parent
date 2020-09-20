@@ -9,9 +9,7 @@ import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.alipay.config.AlipayConfig;
 import xyz.hpwyx.baseresult.XResult;
@@ -20,7 +18,6 @@ import xyz.hpwyx.mapper.XVipMapper;
 import xyz.hpwyx.pojo.XPay;
 import xyz.hpwyx.pojo.XVip;
 import xyz.hpwyx.pojo.XVipExample;
-import xyz.hpwyx.redis.RedisUtil;
 import xyz.hpwyx.service.VipService;
 import xyz.hpwyx.token.TokenUtils;
 
@@ -55,6 +52,16 @@ public class VipServiceImpl implements VipService {
         List<XVip> xVips = xVipMapper.selectByExample (example);
         return xVips;
     }
+
+    @Override
+    public List<XVip> findByUserId(@RequestParam("id")Integer id) {
+        XVipExample example= new XVipExample ();
+        XVipExample.Criteria criteria = example.createCriteria ();
+        criteria.andVUidEqualTo (id);
+        List<XVip> xVips = xVipMapper.selectByExample (example);
+        return xVips;
+    }
+
 
     @Override
     public XResult addVIP(XVip xVip) {
@@ -95,10 +102,6 @@ public class VipServiceImpl implements VipService {
         XPay pay = xPayMapper.selectByPrimaryKey (id);
         return pay;
     }
-
-    @Autowired
-    private RedisUtil redisUtil;
-
 
     @Override
     public String createOrder(@RequestParam("orderNo") String orderNo, @RequestParam("amount") double amount, @RequestParam("body") String body) throws AlipayApiException {
@@ -201,6 +204,68 @@ public class VipServiceImpl implements VipService {
             // 支付成功，根据业务逻辑修改相应数据的状态
             System.out.println ("orderNo" + orderNo);
             System.out.println ("tradeNo" + tradeNo);
+            System.out.println ("orderNo" + orderNo);
+            System.out.println ("tradeNo" + tradeNo);
+            XPay payById = xPayMapper.selectByPrimaryKey (orderNo);
+            payById.setoPlatformorderid (tradeNo);
+            payById.setoState (1);
+            xPayMapper.updateByPrimaryKey (payById);
+
+            XVipExample example = new XVipExample ();
+            XVipExample.Criteria criteria = example.createCriteria ();
+            criteria.andVUidEqualTo (payById.getoUserid ());
+            List<XVip> xVips = xVipMapper.selectByExample (example);
+            XVip vip = new XVip ();
+            int score = 0;
+            int left = 0;
+            if (xVips.size () > 0) {
+                vip = xVips.get (0);
+                score =vip.getvScore ();
+                left = Integer.parseInt (vip.getvTimeLeft ());
+            }else {
+                vip.setvId (TokenUtils.getUserToken ());
+                vip.setvLevel (1);
+            }
+            String aDouble = payById.getoPrice () + "";
+            System.out.println (aDouble);
+            int day = 0;
+            int pay =0;
+            /**
+             * 根据不同对价位开通不同时间段的会员
+             */
+            switch (aDouble) {
+                case "30.0":
+                    day = 31;
+                    pay = 30;
+                    break;
+                case "70.0":
+                    day = 90;
+                    pay = 70;
+                    break;
+                case "230.0":
+                    day = 365;
+                    pay = 230;
+                    break;
+                case "700.0":
+                    day = 999999;
+                    pay = 700;
+                    break;
+                default:
+                    day = 0;
+                    break;
+            }
+
+            vip.setvTime (new Date ());
+            vip.setvUid (payById.getoUserid ());
+            vip.setvScore (pay + score);
+            System.out.println ((left+ day)+"");
+            vip.setvTimeLeft ((left + day)+"");
+            if (xVips.size () > 0) {
+                xVipMapper.updateByPrimaryKey (vip);
+            }else {
+                xVipMapper.insert (vip);
+            }
+
             return true;
         }
         System.out.println ("支付失败notify");

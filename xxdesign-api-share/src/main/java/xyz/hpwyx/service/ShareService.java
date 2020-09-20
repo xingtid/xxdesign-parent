@@ -60,9 +60,21 @@ public interface ShareService {
     @RequestMapping("/importAllItem")
     XResult importAllItem();
 
+    /**
+     *
+     * 文章数量
+     * @param type
+     * @return
+     */
     @RequestMapping("/shareCount")
     Integer shareCount(@RequestParam("type")String type);
 
+    /**
+     *
+     * 通过用户ID查找文章
+     * @param uId
+     * @return
+     */
     @RequestMapping("/findShareByUId")
     List<XShare> findShareByUId(@RequestParam("uId")Integer uId);
 }

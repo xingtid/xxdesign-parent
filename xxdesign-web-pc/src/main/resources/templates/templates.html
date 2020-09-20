@@ -18,10 +18,10 @@
                 msgUnReadData:[[${session.msg1Size}]] ,
                 noticeUnReadData: [[${session.note1Size}]],
                 msgClick: function(obj) {
-                    location.href="https://localhost/getMsg"
+                    location.href="http://localhost:8088/getMsg"
                 },
                 noticeClick: function(obj) {
-                    location.href="https://localhost/getMsg"
+                    location.href="http://localhost:8088/getMsg"
                 },
                 allRead: function(obj) {
                     alert("全部已读");
@@ -58,7 +58,7 @@
                     <ul class="menu">
                         <li style="margin-right: 3px;"><input onblur="unblur()" id="slow" class="input-search" type="text" th:value="${query}"><i class="fa fa-search" style="font-size: 18px; line-height: 30px;cursor: pointer" onclick="slowd()"></i> </a></li>
                         <li><a href="/" class="active">主页</a></li>
-                        <li th:if="${session.VIP} eq 0"><a href="joinVIP.html">加入会员</a></li>
+                        <li th:if="${session.VIP} eq 0"><a href="/joinVIP.html">加入会员</a></li>
 
                         <li>
                             <!-- First Tier Drop Down -->
@@ -68,8 +68,8 @@
                             <a href="/getShareList/1">获取文章 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-4"/>
                             <ul>
-                                <li><a href="isContent.html" class="drop-text">分享穿搭</a></li>
-                                <li><a href="#price" class="drop-text">我的喜欢</a></li>
+                                <li><a href="/isContent.html" class="drop-text">分享穿搭</a></li>
+                                <li><a href="/getShareList/1" class="drop-text">分享列表</a></li>
                             </ul>
                         </li>
                         <li>
@@ -81,7 +81,8 @@
                             <a href="/getWardList">我的衣柜 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-5"/>
                             <ul>
-                                <li><a href="iswardrobe.html" class="drop-text">放入衣柜</a></li>
+                                <li><a href="/iswardrobe.html" class="drop-text">放入衣柜</a></li>
+                                <li><a href="/getWardList" class="drop-text">我的衣物间</a></li>
                             </ul>
                            </li>
 
@@ -103,10 +104,10 @@
                             <ul style="top: 35px;width: 100px">
                                 <li style="width: 80px;font-size: 13px"><a style="color: orange;" href="/findMyInfo" class="drop-text" th:text="*{uName}">个人信息</a>
                                 </li>
-                                <li style="width: 80px;font-size: 13px"><a style="color: orange;" href="question.html" class="drop-text">个人定制</a>
+                                <li style="width: 80px;font-size: 13px"><a style="color: orange;" href="/question.html" class="drop-text">个人定制</a>
                                 </li>
                                 <li style="width: 80px"><a href="/findMyInfo" class="drop-text"  th:if="${session.VIP} eq '0'">我的信息</a></li>
-                                <li style="width: 80px"><a href="#vip" class="drop-text"  th:if="${session.VIP} eq '1'">VIP会员</a></li>
+                                <li style="width: 80px"><a href="/joinVIP.html" class="drop-text"  th:if="${session.VIP} eq '1'">VIP会员</a></li>
                                 <li style="width: 80px"><a href="/loginOut" class="drop-text">退出</a></li>
                             </ul>
                     </ul>
@@ -149,7 +150,7 @@
             <div class="row footer-top">
                 <div class="col-lg-4 col-md-6 footer-grid_section_1its">
                     <h2 class="logo-2 mb-lg-4 mb-3">
-                        <a href="index.html" class="text-uppercase text-wh">地图</a>
+                        <a href="/" class="text-uppercase text-wh">地图</a>
                     </h2>
                     <!-- Map -->
                     <div class="map-fo">
@@ -249,8 +250,8 @@
             <div class="MAvaInfo clearfix MAvaMyInfo">
                 <span class="MAvaLevel flt1">等级：<a href="#" target="_blank"><span>无</span></a></span>
                 <span class="MAvaPlace flt1">现居：<span th:text="${session.userinfo.uCity}"></span></span>
-                <span class="MAvaPlace flt1"><spqn th:if="${session.VIP} eq 1">会员</spqn></span>
-                <span class="MAvaPlace flt1"  th:if="${session.VIP} eq 0"><spqn><a href="joinVIP.html">开通会员</a></spqn></span>
+                <span class="MAvaPlace flt1"><spqn th:if="${session.VIP} eq 1">会员<span th:text="'剩余天数：'+${session.levelcount}"></span></spqn></span>
+                <span class="MAvaPlace flt1"  th:if="${session.VIP} eq 0"><spqn><a href="/joinVIP.html">开通会员</a></spqn></span>
             </div>
             <div class="MAvaProfile">
                 <div class="MProfile">
@@ -263,7 +264,7 @@
                     <p>累计分享</p>
                 </div>
                 <div class="MAvaNums">
-                    <strong><a href="#" target="_blank">0</a></strong>
+                    <strong><a href="#" target="_blank" th:text="${session.woSize}">0</a></strong>
                     <p>我的衣物</p>
                 </div>
                 <div class="MAvaNums">

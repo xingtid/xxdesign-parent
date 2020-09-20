@@ -26,6 +26,10 @@ public class WardrobeController {
 
     @Autowired
     private WardrobeFeign wardrobeFeign;
+
+    /**
+     * 插入衣柜
+     */
     @RequestMapping(value = "/insertWard")
     @ResponseBody
     public XResult insertWard(XWardrobe xWardrobe, @RequestParam("date") String date, HttpSession session) throws ParseException {
@@ -53,6 +57,12 @@ public class WardrobeController {
         return xResult;
     }
 
+    /**
+     * 获取用户衣物
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/getWardList")
     public String getWardList(HttpSession session, Model model) {
         XUser userinfo = (XUser) session.getAttribute ("USERINFO");
